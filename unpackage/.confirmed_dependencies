@@ -1,151 +1,155 @@
 {
-  "index.html": {
-    "resources": [
-      "sy.html"
-    ],
-    "refer": [
-      "qyhl.html",
-      "sy.html",
-      "wd.html",
-      "jxfy.html",
-      "fwsc.html"
-    ]
-  },
-  "jxfy.html": {
-    "resources": [
-      "jxfyList.html"
-    ],
-    "refer": [
-      "jxfyList.html"
-    ]
-  },
-  "welcome.html": {
-    "refer": [
-      "index.html"
-    ]
-  },
-  "wd.html": {
-    "refer": [
-      "page/myset.html",
-      "page/wode_fangyang.html",
-      "page/login.html",
-      "page/repairs_bx.html",
-      "page/mycollection.html",
-      "page/person.html",
-      "page/notice_center.html"
-    ]
-  },
-  "page/wode_fangyang.html": {
-    "resources": [
-      "page/wode_fang_list.html"
-    ],
-    "refer": [
-      "page/wode_fang_list.html"
-    ]
-  },
-  "page/repairs_bx.html": {
-    "refer": [
-      "page/relet_xz.html",
-      "page/forms_kjcmt.html",
-      "page/forms_fwfy.html",
-      "page/room_change.html",
-      "page/forms_zxbx2.html",
-      "page/room_tz.html",
-      "page/forms_zxbx3.html"
-    ]
-  },
-  "qyhl.html": {
-    "refer": [
-      "page/fb_need.html",
-      "page/qy_detail.html",
-      "page/fb_ser.html",
-      "page/add_vip.html",
-      "page/more_qy.html"
-    ]
-  },
-  "page/mycollection.html": {
-    "resources": [
-      "page/mysc_list.html"
-    ],
-    "refer": [
-      "page/mysc_list.html"
-    ]
-  },
-  "sy.html": {
-    "refer": [
-      "page/wt_house.html",
-      "page/loupan.html",
-      "page/topNewsInfo.html",
-      "page/find_house.html",
-      "page/loupan_detail.html"
-    ]
-  },
-  "page/mysc_list.html": {
-    "refer": [
-      "page/fyTail.html"
-    ]
-  },
-  "jxfyList.html": {
-    "refer": [
-      "page/fyTail.html"
-    ]
-  },
-  "page/loupanList.html": {
-    "refer": [
-      "page/loupan_detail.html"
-    ]
-  },
-  "page/loupan.html": {
-    "resources": [
-      "page/loupanList.html"
-    ],
-    "refer": [
-      "page/loupanList.html"
-    ]
-  },
-  "page/wode_fang_list.html": {
-    "refer": [
-      "page/fyTail.html"
-    ]
-  },
-  "page/myset.html": {
-    "refer": [
-      "page/disclaimer.html"
-    ]
-  },
-  "fwsc.html": {
-    "refer": [
-      "page/fitup.html",
-      "page/tax.html",
-      "page/added.html"
-    ]
-  },
-  "page/person.html": {
-    "refer": [
-      "page/add_sfz.html"
-    ]
-  },
-  "page/notice_center.html": {
-    "resources": [
-      "page/notice_center_list.html"
-    ],
-    "refer": [
-      "page/notice_center_list.html"
-    ]
-  },
-  "page/notice_center_list.html": {
-    "refer": [
-      "page/notice_center_detail.html"
-    ]
-  },
-  "page/login.html": {
-    "refer": [
-      "page/wechat_log.html"
-    ]
-  },
-  "page/more_qy.html": {
-    "refer": [
-      "page/qy_detail.html"
-    ]
-  }
+	"index.html": {
+		"resources": [
+			"sy.html"
+		],
+		"refer": [
+			"qyhl.html",
+			"sy.html",
+			"wd.html",
+			"jxfy.html",
+			"fwsc.html"
+		]
+	},
+	"jxfy.html": {
+		"resources": [
+			"jxfyList.html"
+		],
+		"refer": [
+			"jxfyList.html"
+		]
+	},
+	"welcome.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"wd.html": {
+		"refer": [
+			"page/myset.html",
+			"page/wode_fangyang.html",
+			"page/login.html",
+			"page/repairs_bx.html",
+			"page/mycollection.html",
+			"page/person.html",
+			"page/notice_center.html"
+		]
+	},
+	"page/wode_fangyang.html": {
+		"resources": [
+			"page/wode_fang_list.html"
+		],
+		"refer": [
+			"page/wode_fang_list.html"
+		]
+	},
+	"page/repairs_bx.html": {
+		"refer": [
+			"page/relet_xz.html",
+			"page/forms_kjcmt.html",
+			"page/forms_fwfy.html",
+			"page/room_change.html",
+			"page/forms_zxbx2.html",
+			"page/room_tz.html",
+			"page/forms_zxbx3.html",
+			"page/forms_zxbx.html",
+			"page/forms_zxbx1.html"
+		]
+	},
+	"qyhl.html": {
+		"refer": [
+			"page/fb_need.html",
+			"page/qy_detail.html",
+			"page/fb_ser.html",
+			"page/add_vip.html",
+			"page/more_qy.html"
+		]
+	},
+	"page/mycollection.html": {
+		"resources": [
+			"page/mysc_list.html"
+		],
+		"refer": [
+			"page/mysc_list.html"
+		]
+	},
+	"sy.html": {
+		"refer": [
+			"page/wt_house.html",
+			"page/loupan.html",
+			"page/topNewsInfo.html",
+			"page/find_house.html",
+			"page/loupan_detail.html",
+			"page/latest_datas.html",
+			"page/login.html"
+		]
+	},
+	"page/mysc_list.html": {
+		"refer": [
+			"page/fyTail.html"
+		]
+	},
+	"jxfyList.html": {
+		"refer": [
+			"page/fyTail.html"
+		]
+	},
+	"page/loupanList.html": {
+		"refer": [
+			"page/loupan_detail.html"
+		]
+	},
+	"page/loupan.html": {
+		"resources": [
+			"page/loupanList.html"
+		],
+		"refer": [
+			"page/loupanList.html"
+		]
+	},
+	"page/wode_fang_list.html": {
+		"refer": [
+			"page/fyTail.html"
+		]
+	},
+	"page/myset.html": {
+		"refer": [
+			"page/disclaimer.html"
+		]
+	},
+	"fwsc.html": {
+		"refer": [
+			"page/fitup.html",
+			"page/tax.html",
+			"page/added.html"
+		]
+	},
+	"page/person.html": {
+		"refer": [
+			"page/add_sfz.html"
+		]
+	},
+	"page/notice_center.html": {
+		"resources": [
+			"page/notice_center_list.html"
+		],
+		"refer": [
+			"page/notice_center_list.html"
+		]
+	},
+	"page/notice_center_list.html": {
+		"refer": [
+			"page/notice_center_detail.html"
+		]
+	},
+	"page/login.html": {
+		"refer": [
+			"page/wechat_log.html"
+		]
+	},
+	"page/more_qy.html": {
+		"refer": [
+			"page/qy_detail.html"
+		]
+	}
 }

@@ -207,7 +207,7 @@
             detailData();
             /*通知中心的数据*/
 			function detailData(){
-				mui.ajax(Interface_url+'/yskjApp/webApp/dataInfo/getMessageInfoByUserId',{
+				mui.ajax(url+'/yskjApp/webApp/dataInfo/getMessageInfoByUserId',{
 					data:{"id":String(notice_id),"bussinessType":String(buess_type),"type":String(type)},
 					dataType:'json',//服务器返回json格式数据
 					type:'post',//HTTP请求类型
