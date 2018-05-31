@@ -1,0 +1,97 @@
+.wode_blank{
+	height: 2.746666rem;
+	margin-top: 2.773333rem;
+	text-align: center;
+	background: url(../img/wode/balnk.png) no-repeat center;
+	background-size: auto 100%;
+}
+.wode_blank_wenzi{
+	height: 0.4rem;
+	font-size: 0.4rem;
+	margin-top: 0.4rem;
+	text-align: center;
+	color: #999999;
+}
+.wode_blanl_displauy{
+	/*display: block;*/
+	display: none;
+}
+.wode_beirong_display{
+	/*display: none;*/
+	display: block;
+}
+.gunajia_img{
+	position: absolute;
+	top: 0px;
+	bottom: 1.466666rem;
+	width: 100%;
+	overflow: auto;
+}
+.gunajia_bottom a{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	height: 1.466666rem;
+	background-color: #2b70d8;
+	color: #fefefe;
+	font-size: 0.4rem;
+	text-align: center;
+	line-height: 1.466666rem;
+}
+.guaj_img{
+	height: 7.146666rem;
+}
+.guanjia_name{
+	/*height: 1.16rem;*/
+	height: 2.293333rem;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #e5e5e5;
+	margin: 0rem 0.4rem;
+}
+.guanjia_name p{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 50%;
+	height: 1.173333rem;
+}
+.guanjia_shouji{
+	font-style: normal;
+	font-size: 0.346666rem;
+	color: #666666;
+	margin-left: 0.2rem;
+}
+.guanjia_naixian span:first-child{margin-bottom: 0.4rem;}
+.guanjia_naixian span{
+	width: 100%;
+	color: #333333;
+	font-size: 0.373333rem;
+	text-align: right;
+}
+.guanjia_star_span{display: flex;}
+.guanjia_stars{width: 0.373333rem;height: 0.373333rem;line-height: 0.373333rem;background: url(../img/wode/stars.png) no-repeat center;background-size: auto 100%;margin-right: 4px;}
+.guanjia_stars_flas{width: 0.373333rem;height: 0.373333rem;line-height: 0.373333rem;background: url(../img/wode/stars_half.png) no-repeat center;background-size: auto 100%;margin-right: 0.2rem;}
+.guanjia_fen{font-style: normal;font-size: 0.373333rem;color: #666666;}
+.guanjia_phone span:first-child{margin-bottom: 0.4rem;}
+.guanjia_phone span{
+	width: 100%;
+	color: #333333;
+	font-size: 0.453333rem;
+	/*text-align: center;*/
+}
+.guanjia_naixian i{
+	font-style: normal;
+	color: #ea4e4e;
+}
+.guanjia_shooujiha{
+	color: #666666 !important;
+}
+.guanjia_wenben{
+	margin-top: 0.6rem;
+	font-size: 0.4rem;
+	padding: 0rem 0.4rem;
+	line-height: 0.6rem;
+	color: #666666;
+}
+#name{font-style: normal;}

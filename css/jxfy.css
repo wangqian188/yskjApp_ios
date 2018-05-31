@@ -1,0 +1,18 @@
+.circle{background-color: #2b70d8;border:1px solid red;}
+.jxfy-bg-color{background:#181b20;padding-top:26px;height:70px;padding-left: 0px;}
+.fanhui{border: 1px solid red;}
+.mui-pull-top-pocket{margin-top:0px;}
+.sousu{height: 30px;width: 7.066666rem !important;margin-left: 1.413333rem;background-color: #ffffff;border-radius: 0.066666rem;}
+.sousudubiao{color: #2b70d7;padding-top: 0px !important;margin-left:0px !important;margin-right: 0px !important;top:0.04rem;}
+.sousuwenzi{color: #bababa;font-size: 0.346666rem;display: inline-block;height: 30px;line-height: 30px;}
+.jxfytjxz{position: absolute;top: 70px;width: 100%;border-bottom: 1px solid  #e5e5e5;height:0.6rem;background-color: #ffffff;}
+.jxfytjweizhi{position: absolute;top:0rem;height: 100%;width: 100%;}
+.jxfytjweizhi li{width: 25%;font-size: 0.346666rem;display: flex;align-items: center;justify-content: center;position: relative;color: #333333;}
+.jxfytjweizhi ul{display: flex;height: 100%;}
+.jxfytjweizhi li:after{content: "";display: block;width: 1px;height: 0.4rem;background-color: #e5e5e5;position: absolute;top: 50%;right: 0px;margin-top: -0.2rem;}
+.jxfyzxtubiao{color: #b9b9b9;}
+.jiage{color: #2c6fd7 !important;}
+.muiJiage{color: #2c6fd7;}
+.mui-backdrop {position: fixed;top: 0;right: 0;bottom: 0;left: 0;z-index: 998;background-color: rgba(0,0,0,.3);
+　　}
+.zhezoc{border: 1px solid red;position: fixed;z-index: 9998;height: 100px;}

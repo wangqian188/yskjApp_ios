@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/lib/flexible.js"></script>
+		<script type="text/javascript" src="js/lib/flexible_css.js"></script>
+		<script src="js/lib/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/fwsc.css"/>
+		<link rel="stylesheet" type="text/css" href="css/a_fringe.css"/>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-transparent bg-color-bg bar-h-s has-topbar-h">
+		    <h1 class="mui-title"></h1>
+		</header>
+		<div class="mui-content fw_main">
+		    <div class="fw_banner">
+		    	<img src="http://omc.urskongjian.com:81/yskjapp/servicemall/banner/mall_banner.jpg"/>
+		    </div> 
+			<div class="fw_box">
+				<ul class="fw">
+					<li>
+						<p class="fw_ion">
+							<img src="http://omc.urskongjian.com:81/yskjapp\servicemall\fourservices\mall_register.png" alt="" />
+						</p>
+						<p class="fw_name">工商税务</p>
+					</li>
+					<li>
+						<p class="fw_ion">
+							<img src="http://omc.urskongjian.com:81/yskjapp\servicemall\fourservices\mall_renovation.png" alt="" />
+						</p>
+						<p class="fw_name">装修定制</p>
+					</li>
+					<!--<li>
+						<p class="fw_ion">
+							<img src="http://omc.urskongjian.com:81/yskjapp\servicemall\fourservices\mall_finance.png" alt="" />
+						</p>
+						<p class="fw_name">金融服务</p>
+					</li>-->
+					<li>
+						<p class="fw_ion">
+							<img src="http://omc.urskongjian.com:81/yskjapp\servicemall\fourservices\mall_addservice.png" alt="" />
+						</p>
+						<p class="fw_name">增值服务</p>
+					</li>
+				</ul>
+			</div>
+			<div class="zxsj_box" style="padding-bottom: 0.533333rem;">
+				<div class="tit">热门推荐</div>
+				<div class="rmtj_pic yiny" id="gssw">
+					<img src="http://omc.urskongjian.com:81/yskjapp\servicemall\recommend\hotservice1.png"/>
+				</div>
+				<div class="rmtj_pic yiny" id="zxdz">
+					<img src="http://omc.urskongjian.com:81/yskjapp\servicemall\recommend\hotservice2.png"/>
+				</div>
+				<div class="rmtj_pic yiny" style="margin-top: 0.533333rem;" id="jrfw">
+					<img src="http://omc.urskongjian.com:81/yskjapp\servicemall\recommend\hotservice3.png"/>
+				</div>
+			</div>
+			<div class="zxsj_box" style="padding-bottom: 1rem;">
+				<div class="tit">为什么选择我们</div>
+				<ul class="whysel">
+					<li>
+						<!--<p class="sel_ion">-->
+							<img src="http://omc.urskongjian.com:81/yskjapp\servicemall\advantage\service.png" alt="" />
+						<!--</p>-->
+						<!--<p class="sel_name">1+N专属服务</p>-->
+					</li>
+					<li>
+						<!--<p class="sel_ion">-->
+							<img src="http://omc.urskongjian.com:81/yskjapp\servicemall\advantage\information.png" alt="" />
+						<!--</p>-->
+						<!--<p class="sel_name">信息安全</p>-->
+					</li>
+					<li>
+						<!--<p class="sel_ion">-->
+							<img src="http://omc.urskongjian.com:81/yskjapp\servicemall\advantage\convenient.png" alt="" />
+						<!--</p>-->
+						<!--<p class="sel_name">高效便捷</p>-->
+					</li>
+				</ul>
+			</div>
+			<!--<div class="sy_kfion">
+				<p><a href="tel:400-078-8800"></a></p>
+			</div>-->
+		</div>
+		<script type="text/javascript">
+			mui.init()
+			var toUrl = ['./page/tax.html','./page/fitup.html'/*,'./page/financial.html'*/,'./page/added.html']
+			var fwli = $('.fw li');
+			for (var i=0; i<fwli.length; i++) {
+				(function(index){
+					fwli[i].addEventListener('tap',function(){
+						//打开关于页面
+						mui.openWindow({
+							url: toUrl[index], 
+							id:'fw'+index
+						});
+					})
+				})(i)
+			}
+			//
+//			if(localStorage.getItem('lostate') == 1){
+				$('#gssw').click(function(){
+					mui.openWindow({
+						url: toUrl[0], 
+						id:'fw0'
+					});
+				});
+				$('#zxdz').click(function(){
+					mui.openWindow({
+						url: toUrl[1], 
+						id:'fw1'
+					});
+				});
+				$('#jrfw').click(function(){
+					mui.openWindow({
+						url: toUrl[2], 
+						id:'fw2'
+					});
+				});
+//			}else{
+//				$('#gssw').click(function(){
+//					mui.openWindow({
+//						url: './page/login.html', 
+//						id:'login'
+//					});
+//				});
+//				$('#zxdz').click(function(){
+//					mui.openWindow({
+//						url: './page/login.html', 
+//						id:'login'
+//					});
+//				});
+//				$('#jrfw').click(function(){
+//					mui.openWindow({
+//						url: './page/login.html', 
+//						id:'login'
+//					});
+//				});
+//			}
+			
+			
+			//接收参数刷新
+			window.addEventListener('fwsc_jz', function(event) {
+			    // mui.fire()传过来的额外的参数，在event.detail中；
+			    var detail = event.detail;
+			    var param = detail.fwsc_jz;
+			    if(param == 2){
+			    	setTimeout(function(){
+			    		var wobj2 = plus.webview.getWebviewById("fwsc.html");
+						wobj2.reload(true);
+			    	},3000);
+			    }
+			});
+		</script>
+	</body>
+
+</html>

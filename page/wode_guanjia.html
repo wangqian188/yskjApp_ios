@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/wode_guanjia.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		   <h1 class="mui-title">我的管家</h1>
+		</header>
+		<div class="mui-content sy_ipx_content" style="bottom: 0;background: #ffffff;overflow: auto;">
+			<!--我的管家空白页面123-->
+			<div class="wode_blanl_displauy wode_gj">
+				<div class="wode_blank"></div>
+				<div class="wode_blank_wenzi">暂无管家</div>
+			</div>
+
+			<!--我的管家内容11-->
+			<div class="wode_beirong_display wode_neironggj">
+			   	<div class="gunajia_img">
+			   		<div class="guaj_img">
+			   			<!--<img src="../img/wode/douxiang.png"/ height="100%">-->
+			   			<img src="" width="100%" height="100%"/>
+			   		</div>
+			   		<div class="guanjia_name">
+			   			<p class="guanjia_phone">
+			   				<span><i  id='name'></i><i class="guanjia_shouji"></i></span>
+			   				<span class="guanjia_star_span">
+			   					<i class="guanjia_stars"></i>
+			   					<i class="guanjia_stars"></i>
+			   					<i class="guanjia_stars"></i>
+			   					<i class="guanjia_stars"></i>
+			   					<i class="guanjia_stars_flas"></i>
+			   					<i class="guanjia_fen">4.5分</i>
+			   				</span>
+			   			</p>
+			   			<p class="guanjia_naixian">
+			   				<span><i></i> 年</span>
+			   				<span class="guanjia_shooujiha">从业年限</span>
+			   			</p>
+			   		</div>
+			   		<p class="guanjia_wenben">
+			   			<!--本人从事房地产行业8年零3个月,具有丰富的从业
+	经验.熟悉北京各大写字楼,了解商业地产市场服务
+	客户共1000人,客户评价都高，并能为您提供更多
+	办公服务，希望能合作愉快。-->
+			   		</p>
+			   </div>
+			   <div class="gunajia_bottom">
+			   		<a href="tel:400-078-8800" class="a_d">联系管家</a>
+			   </div>
+		   </div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js" ></script>
+		<script src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js" ></script>
+		<script src="../js/lib/app_config.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			var user_id = localStorage.getItem('user_id');
+			var user_type = localStorage.getItem('user_type');
+			if(user_type == 1){
+				$('.wode_gj').removeClass('wode_blanl_displauy');
+				$('.wode_gj').addClass('wode_beirong_display');
+				$('.wode_neironggj').removeClass('wode_beirong_display');
+				$('.wode_neironggj').addClass('wode_blanl_displauy');
+			}else if(user_type == 2){
+				user_type = 1;
+			}else{
+				user_type = 2;
+			}
+			mui.ajax(url + '/yskjApp/appYskj/V1/getButlerInfo.do',{
+				data:{"userid":user_id,"category":user_type},
+				dataType:'json',
+				type:'post',
+				timeout:10000,
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					if(data.success){
+						var data = data.data;
+//						alert(JSON.stringify(data));
+						$('#name').html(data.name);
+						$('.guanjia_shouji').html(data.phone);
+						$('.guanjia_naixian i').html(data.empyear);
+						$('.guanjia_wenben').html(data.introduction);
+						$('.gunajia_bottom a').attr('href','tel:'+data.phone);
+						if(data.pic.indexOf(';')){
+							var array = data.pic.split(';');
+							$('.guaj_img img').attr('src',img_url + array[0]);
+						}else{
+							$('.guaj_img img').attr('src',img_url + data.pic);
+						}
+					}else{
+//						mui.alert(data.message+'请点击屏幕下方"快速注册"进行注册', '提示', function(){});
+//						mui.alert(data.message);
+						return;
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					console.log(type);
+				}
+			});
+		</script>
+	</body>
+
+</html>

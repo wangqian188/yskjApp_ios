@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js" ></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/qy_detail.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title qy_mc"></h1>
+		</header>
+		<div class="mui-content sy_ipx_content" style="bottom: 0;background: #f0f0f0;overflow: auto;">
+			<div class="top_box">
+				<p class="qy_logo"><img src=""/></p>
+				<p class="qy_xx">
+					<span></span>
+					<span></span>
+				</p>
+			</div>
+			<!--企业信息-->
+			<div class="qy_message">
+				<p class="qy_mes">
+					<span>企业电话：</span>
+					<span></span>
+				</p>
+				<p class="qy_mes">
+					<span>所属行业：</span>
+					<span></span>
+				</p>
+				<p class="qy_mes">
+					<span>所在区域：</span>
+					<span></span>
+				</p>
+				<p class="qy_mes">
+					<span>经营范围：</span>
+					<span></span>
+				</p>
+			</div>
+			<!--企业简介-->
+			<div class="qy_intro">
+				<h3>企业简介</h3>
+				<p class="intro_detail"></p>
+			</div>
+		</div>
+		<script src="../js/lib/app_config.js"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+	            //从服务器获取数据            
+	            mui.plusReady(function(){
+	                var self = plus.webview.currentWebview();
+	                var id = self.qy_id;
+	                qy_news(id);
+	            });
+	       	}
+			function qy_news(qy_id){
+				mui.ajax(url + '/yskjApp/webApp/dataInfo/getMemberEnterpriseInfo.do',{
+					data:{
+						'id': qy_id
+					},
+					dataType:'json',
+					type:'post',
+					timeout:10000,
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						if(data.success){
+							var allData = data.data;
+							var enterpriseWebsite = allData.enterpriseWebsite;
+							if(enterpriseWebsite == null){
+								enterpriseWebsite = '';
+							}
+							$('.qy_xx span').eq(0).text(allData.enterpriseName);//企业名称
+							$('.qy_xx span').eq(1).text(enterpriseWebsite);//企业网站
+							$('.qy_mes:eq(0) span:eq(1)').text(allData.phone);//企业电话
+							$('.qy_mes:eq(1) span:eq(1)').text(allData.industry);//所属行业
+							$('.qy_mes:eq(2) span:eq(1)').text(allData.location);//所在区域
+							$('.qy_mes:eq(3) span:eq(1)').text(allData.ranges);//经营范围
+							$('.qy_logo img').attr('src',allData.logoImg);//企业logo
+							$('.qy_mc').text(allData.enterpriseName);//企业名称  页面标题
+							$('.intro_detail').text(allData.enterpriseDesc);//企业简介
+						}else{
+							
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type);
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js" ></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="../css/wt_house.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/relet_xz.css"/>
+		<script src="../mypic/binaryajax.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../mypic/exif.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../mypic/canvasResize.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/pickers/mui.dtpicker.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/pickers/mui.picker.min.css"/>
+		<script src="../js/mui.picker.min.js"></script>
+	</head>
+	<style type="text/css">
+		.showimg {
+			position: relative;
+        	display: flex;
+        	justify-content: flex-start;
+        	flex-wrap: wrap;
+            text-align: center;
+        }
+        .add_img_btn{position: absolute;top: 50%;margin-top: -1.026666rem;width: 2.053333rem;height: 2.053333rem;border:1px slid #c8c8c8;background: url(../img/repairs_pic/z_add.png)no-repeat center;background-size: 100% auto;}
+		.up_img_phnoto{border: 0px solid #c8c8c8 !important;}
+		.up_img{min-height: 3.2rem;height: auto;background-color: #ffffff;display: flex;padding-bottom: 0.4rem;justify-content: flex-start;flex-wrap: wrap;align-items: center;}
+		.up_img_span{border: 1px solid #c8c8c8;display: flex;width: 2.053333rem;height: 2.053333rem;margin-top: 0.52rem;margin-right: 0.453333rem;}
+		.up_img_span span{display: flex;align-items: center;justify-content: center;width: 100%;font-size: 2rem;color: #c8c8c8;}
+		.del_pic{
+			position: relative;
+		}
+		.del_pic_btn{
+			position: absolute;
+			top: 0;
+			right: 0;
+			z-index: 9;
+			width: 0.533333rem;
+			height: 0.533333rem;
+			line-height: 0.533333rem;
+			border-radius: 50%;
+			overflow: hidden;
+			background: #C7C7CC url(../img/qyhl/del_ion.png) no-repeat center;
+			background-size: 80% auto;
+		}
+		.vip_tip{
+			padding: 0.4rem 0.4rem 0 0.213333rem;
+		}
+		.vip_tip h1{
+			font-size: 0.346666rem;
+			color: #666666;
+		}
+		.vip_tip p{
+			display: flex;
+			margin-top: 0.4rem;
+			font-size: 0.346666rem;
+			color: #999;
+			line-height: 0.533333rem;
+		}
+		.vip_tip p span{
+			display: inline-block;
+		}
+		.wt_btnbox{
+			margin: 0.866666rem auto 0;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title">加入会员</h1>
+		</header>
+		<div class="mui-content sy_ipx_content" style="bottom: 0;background: #f0f0f0;overflow: auto;">
+		    <div class="wt_ms">
+		    	<p>请留下您的联系方式与企业信息，我们会及时与您联系，为您提供专属服务。</p>
+		    </div>
+		    <!--基本信息表单-->
+		    <div class="wt_jbxx" style="min-height: 2rem;height: auto;">
+		    	<div class="mui-input-row wt_inpsty">
+		    	    <label>姓名</label>
+		    	    <input type="text" class="mui-input-clear" placeholder="请输入真实姓名" id="user_name">
+		    	</div>
+		    	<div class="mui-input-row wt_inpsty">
+		    	    <label>手机号</label>
+		    	    <input type="text" class="mui-input-clear" placeholder="请输入手机号" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" autocomplete="off" maxlength="11"  id="tel">
+		    	</div>
+		    </div>
+		    <!--企业信息-->
+		    <div class="wt_jbxx" style="min-height: 2rem;height: auto;">
+		    	<div class="mui-input-row wt_inpsty">
+		    	    <label>企业名称</label>
+		    	    <input type="text" class="mui-input-clear" placeholder="请输入企业名称" id="qy_name">
+		    	</div>
+		    	<div class="mui-input-row wt_inpsty">
+		    	    <label>企业电话</label>
+		    	    <input type="text" class="mui-input-clear" placeholder="请输入企业电话"  autocomplete="off" id="qy_tel">
+		    	</div>
+		    	<div class="mui-input-row wt_inpsty">
+		    	    <label>企业网址</label>
+		    	    <input type="text" class="mui-input-clear" placeholder="请输入企业网址" id="qy_bt">
+		    	</div>
+		    	<div class="mui-input-row wt_inpsty" style="height: auto;">
+		    	    <label>企业LOGO</label>
+		    	    <!--企业logo-->
+		    	    <div class="up_img">
+				    	<div class="showimg">
+				    		<div class="add_img_btn" id="add_img"></div>
+		            	</div>
+				    </div>
+		    	</div>
+		    </div>
+		    <!--行业信息-->
+		    <div class="wt_fwxx fwxx" style="min-height: 2rem;height: auto;">
+		    	<div class="mui-input-row wt_inpsty">
+		    	    <label>所属行业</label>
+		    	    <input type="text" class="mui-input-clear" placeholder="请选择企业所属行业" id="house_news" onclick="sshy()" readonly>
+		    	    <span class="mui-icon mui-icon-arrowright right_xz"></span>
+		    	</div>
+		    	<div class="mui-input-row wt_inpsty">
+		    	    <label>所在区域</label>
+		    	    <input type="text" class="mui-input-clear" placeholder="请选择企业所在区域" id="add_area" onclick="szqy()" readonly>
+		    	    <span class="mui-icon mui-icon-arrowright right_xz"></span>
+		    	</div>
+		    </div>
+			<!--经营范围-->
+			<div class="wt_fwms" style="border-bottom:0px solid red !important;padding-bottom: 0.666666rem;height: 4.666666rem;">
+		    	<p class="wt_fwms_bt">经营范围</p>
+		    	<p class="wt_texar" style="height: 2.866666rem;">
+		    		<textarea name="" rows="" cols="" placeholder="请输入经营范围" id="jyfw" oninput="jyfwCheckLength()" maxlength="50"></textarea>
+		    		<span class="wt_texar_count"><i id="textareaCount">0</i>/50</span>
+		    	</p>
+		   </div>
+			<!--企业简介-->
+			<div class="wt_fwms" style="border-bottom:0px solid red !important;padding-bottom: 0.666666rem;height: 5.466666rem;">
+		    	<p class="wt_fwms_bt">企业简介</p>
+		    	<p class="wt_texar" style="height: 3.733333rem">
+		    		<textarea name="" rows="" cols="" placeholder="请输入企业简介" id="qyjj" oninput="qyjjCheckLength()" maxlength="500"></textarea>
+		    		<span class="wt_texar_count"><i id="textareaCount1">0</i>/500</span>
+		    	</p>
+		   </div>
+		   <!--会员须知-->
+		   <div class="vip_tip">
+		   	<h1>会员须知</h1>
+		   	<p><span>1、</span><span>只有亮狮客户才可成为亮狮会员；</span></p>
+		   	<p><span>2、</span><span>企业互联平台旨在为所有亮狮客户提供产品、品牌、服务与需求的对接及交流平台；</span></p>
+		   	<p><span>3、</span><span>申请加入会员则表示同意在亮狮平台上展示企业logo及企业信息。</span></p>
+		   </div>
+		    <!--底部-->
+		    <div class="wt_bottom">
+		    	<div class="wt_btnbox">
+		    		<button class="wt_btn btn">提交</button>
+		    	</div>
+		    	<div class="wt_yw">
+		    		<p class="wt_tip">如有任何疑问请拨打咨询电话</p>
+		    		<p class="wt_tel"><a href="tel:400-078-8800" class="a_d">400-078-8800</a></p>
+		    	</div>
+		    </div>
+		</div>
+		<script src="../js/lib/app_config.js"></script>
+		<script src="../js/lib/vip_upload_pic.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/add_vip.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function(){  
+		        //控制文本域输入字数
+		          $('#jyfw').keyup(function(event) {  
+		                jyfwCheckLength();
+		          });  
+		      });
+		      function jyfwCheckLength(){
+		        var maxLength = 50;  
+		            var len = $('#jyfw').val().length;  
+		            jyfw = $('#jyfw').val();
+		            btnzt();
+		            $('#textareaCount').html(len);  
+		            if(parseInt($('#textareaCount').text()) > 50){  
+		                $('#textareaCount').html('50');  
+		                //var res = $(this).val().substring(0,50);  
+		                //$(this).val(res);  
+		            }
+		      }
+		      $(function(){  
+		        //控制文本域输入字数
+		          $('#qyjj').keyup(function(event) {  
+		                qyjjCheckLength();
+		          });  
+		      });
+		      function qyjjCheckLength(){
+		        var maxLength = 500;  
+		            var len = $('#qyjj').val().length;  
+		            qyjj = $('#qyjj').val();
+		            btnzt();
+		            $('#textareaCount1').html(len);  
+		            if(parseInt($('#textareaCount').text()) > 500){  
+		                $('#textareaCount1').html('500');  
+		                //var res = $(this).val().substring(0,500);  
+		                //$(this).val(res);  
+		            }
+		      }
+		</script>
+	</body>
+</html>

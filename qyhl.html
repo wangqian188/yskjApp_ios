@@ -1,0 +1,628 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<script type="text/javascript" src="js/lib/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="js/lib/flexible.js"></script>
+		<script type="text/javascript" src="js/lib/flexible_css.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/qiYeHuLian.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="css/a_fringe.css"/>
+		<style>
+			a{
+				text-decoration: none;
+			}
+			.add_vip{
+				position: absolute;
+				right: 0;
+				bottom: 0.506666rem;
+				width: 2.56rem;
+				height: 0.8rem;
+				background: url(img/qyhl/add_vip.png) no-repeat center;
+				background-size: 100% auto;
+				font-size: 0.373333rem;
+				color: #fff;
+				text-align: center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.huiyuanqyyi{
+				display: flex;
+				justify-content: space-between;
+			}
+			.huiyuanqyyi p:first-child{
+				display: flex;
+				width: 3.333333rem;
+			}
+			.huiyuanqyyi p:last-child{
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				width: 3.333333rem;
+				font-size: 0.346666rem;
+				color: #999999;
+			}
+			.qyfw_fbfw{
+				height: 2.266666rem;
+				width: 10rem;
+				border-bottom: 1px solid #e5e5e5;
+				background: #ffffff;
+				padding: 0 0.4rem;
+			}
+			#fb{
+				height: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			#fb li{
+				display: flex;
+				align-items: center;
+			}
+			#fb .fb_ion{
+				width: 1.013333rem;
+				height: 1.013333rem;
+				margin-right: 0.133333rem;
+			}
+			#fb li:first-child .fb_ion{
+				background: url(img/qyhl/fb_ion1.png)no-repeat center;
+				background-size: 100% auto;
+			}
+			#fb li:last-child .fb_ion{
+				background: url(img/qyhl/fb_ion2.png)no-repeat center;
+				background-size: 100% auto;
+			}
+			#fb .fb_tit{
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+			#fb .fb_tit p{
+				line-height: 0.533333rem;
+			}
+			#fb .fb_tit p:first-child{
+				font-size: 0.4rem;
+				color: #333333;
+			}
+			#fb .fb_tit p:last-child{
+				font-size: 0.32rem;
+				color: #999;
+			}
+			.fb_jt{
+				font-size: 0.5rem;
+				color: #999;
+				margin-left: 0.133333rem;
+			}
+			.qiyehuilianssan .jiaoyv{
+				display: inline-block;
+				width: 4.48rem;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-transparent bg-color-bg bar-h-s has-topbar-h">
+		    <h1 class="mui-title"></h1>
+		</header>
+		<div class="mui-content">
+			<div class="qiyehulimg" style="position: relative;">
+				<div class="add_vip"><span>加入会员</span></div>
+			</div>
+		  	<div class="qiyehuler">
+			    <div class="huiyuanqyyi">
+			    	<p>
+			    		<span class="huiyueing"></span>
+			    		<span class="huiyuanqiyr">会员企业</span>				    
+			    	</p>
+			    	<p id="more_qy">
+			    		<span>更多企业</span>
+			    		<span class="mui-icon mui-icon-arrowright fb_jt"></span>
+			    	</p>
+			    </div>
+			    
+			    <div class="xindongfang">
+			   			
+			    </div>
+		    </div>
+			<!--发布服务-->
+			<div class="qyfw_fbfw">
+				<ul id="fb">
+					<li id="fb_ser">
+						<div class="fb_ion"></div>
+						<div class="fb_tit">
+							<p><span>发布服务</span><span class="mui-icon mui-icon-arrowright fb_jt"></span></p>
+							<p>您的服务在这里推广</p>
+						</div>
+					</li>
+					<li id="fb_need">
+						<div class="fb_ion"></div>
+						<div class="fb_tit">
+							<p><span>发布需求</span><span class="mui-icon mui-icon-arrowright fb_jt"></span></p>
+							<p>您的需求在这里发布</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+		    <!--Tab切换1-->
+		    <div class="tab">
+		    	<p class="tayequw">
+		    		<span class="qiyefuwu qiyefuwubg">企业服务</span>
+		    		<span class="qiyexvqiu">企业需求</span>
+		    	</p>
+		    </div>
+		    <div class="kognjde"></div>
+		    <!--切换选项-->
+		    <div class="">
+		    	<!--企业服务-->
+		    	<ul class="qyfwul qydegystyle sclass">
+		    		
+		    	</ul>
+		    	<!--企业需求11111-->
+		    	<ul class="qyfwul qydegystyle qyfwulxuqiuy dclass">
+
+		    	</ul>
+		    </div>
+		    <div class="boottms"></div>
+		    <!--<div class="sy_kfion">
+				<p><a href="tel:400-078-8800"></a></p>
+			</div>-->
+		</div>
+		 <script src="js/lib/app_config.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			(function(){
+			detailData();
+			enterpriseService();
+			enterpriseDemand();
+		    })();
+			//tab切换
+			var tabNav = $('.tayequw');
+			var tabSp = $('.tayequw span');
+			var boxq = $('.qydegystyle');
+			for (var i=0; i<tabSp.length; i++) {
+				(function(index){
+					tabSp[i].onclick = function(){
+						$('.tayequw span').eq(0).addClass('qiyefuwu');
+						$('.tayequw span').eq(1).addClass('qiyefuwu');
+						for (var j=0; j<boxq.length; j++) {
+							boxq[j].style.display = 'none';
+						}
+						if(index == 0){
+//							tabSp[index].className = 'qiyefuwubg';
+							$('.tayequw span').eq(0).addClass('qiyefuwubg qiyefuwu');
+							$('.tayequw span').eq(1).removeClass('qiyexvqiubg');
+						}else{
+//							tabSp[index].className = 'qiyexvqiubg';
+							$('.tayequw span').eq(0).removeClass('qiyefuwubg');
+							$('.tayequw span').eq(1).addClass('qiyexvqiubg qiyefuwu');
+						}
+						boxq[index].style.display = 'block';
+					}
+				})(i)
+			}
+			//获得slider插件对象
+			var gallery = mui('.mui-slider');
+			gallery.slider({
+			  interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
+			});
+			
+			/*注意:如果ajax获得图片后，需要在写入图片以后，需要从新调用一下*/
+			gallery.slider();
+				mui.init();   
+			/*会员企业*/
+			function   detailData(){
+				mui.ajax(url+'/yskjApp/webApp/dataInfo/memberEnterprise.do',{
+					dataType:'json',//服务器返回json格式数据
+					type:'post',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						if(data.success){
+						var data=data.data;
+						//[{"logoImg":"http://yskjApp/image", "id":1, "category":"1", "enterpriseName":"北京幼师科技有限公司", "enterpriseDesc":"幼师科技"}]
+						var le=data.length;
+						var hyhtml="";
+						hyhtml+="<ul>"
+						if(le!=0){
+							//具体数据
+							for(var i=0;i<le;i++){
+							var logoImg=data[i].logoImg
+							var category=data[i].category
+							var enterpriseName=data[i].enterpriseName
+							var enterpriseDesc=data[i].enterpriseDesc
+							hyhtml+='<li style="background:url('+data[i].logoImg+') no-repeat center;background-size:100% auto;" onclick="list_detail('+data[i].id+')">';
+				   			hyhtml+='<div class="qiyehuilianyyi">';
+				   			hyhtml+='<div>';
+	//					    hyhtml+='<img src="';
+	//					    hyhtml+=logoImg;
+	//					    hyhtml+='"/>';
+						    hyhtml+='</div>';
+				   			hyhtml+='</div>';
+				   			hyhtml+='<div class="qiyehuilianeer">';
+				   			hyhtml+=enterpriseName;
+				   			hyhtml+='</div>';
+				   			hyhtml+='<div class="qiyehuilianssan">';
+				   			hyhtml+='<span class="qiyehuilianssanicon"></span>';
+				   			hyhtml+='<span class="jiaoyv">';
+				   			hyhtml+=enterpriseDesc;
+				   			hyhtml+='</span></div></li>';
+							}
+						}
+						hyhtml+="</ul>"
+						$(".xindongfang").html(hyhtml);
+						}else{
+							mui.alert(data.message);
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理；
+						console.log(type);
+					}
+				});
+			}
+			//企业服务
+			function enterpriseService(){
+				mui.ajax(url+'/yskjApp/webApp/dataInfo/listReleaseDemand.do',{
+				data:{
+					"demandCategory":1
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					if(data.success){
+						var data=data.data;
+						var le=data.length;
+						var shtml="";
+						if(le!=0){
+							for(var i=0;i<le;i++){
+								var demandType=data[i].demandType;
+								var butlerName=data[i].butlerName;
+								var enterpriseName=data[i].enterpriseName
+								var demandDesc=data[i].demandDesc;
+								var createTime=data[i].createTime.substring(0,10);
+								var butlerPhone=data[i].butlerPhone;
+								var imgUrl = '';
+								if(demandType == '文化'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/1.png';
+								}
+								else if(demandType == '咨询'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/2.png';
+								}
+								else if(demandType == '传媒'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/3.png';
+								}
+								else if(demandType == '互联网'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/4.png';
+								}
+								else if(demandType == '教育'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/5.png';
+								}
+								else if(demandType == '金融'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/6.png';
+								}
+								else if(demandType == '科技'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/7.png';
+								}
+								else if(demandType == '旅游'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/8.png';
+								}
+								else {
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/9.png';
+								}
+							    shtml+='<li>';
+		    			        shtml+='<div class="beijmggj">';
+		    				    shtml+='<span class="guojilxgs"></span>';
+		    				    shtml+='<span class="lvyouxaigsfont">';
+		    				    shtml+=enterpriseName;
+		    				    shtml+='</span>';
+		    			        shtml+='</div>';
+                		    	shtml+='<div class="gnlyyw">';
+		    				    shtml+=demandDesc;
+		    			        shtml+='</div>';
+		    			        shtml+='<div class="lijicx">';
+		    				    shtml+='<span class="lijiztti">';
+		    				    //调用手机通讯录
+		    				    shtml+='<a class="a_d" href="tel:';
+		    				    shtml+=butlerPhone;
+		    				    shtml+='" >';
+		    				    shtml+='立即咨询';
+		    				    shtml+="</a>";
+		    				    shtml+='</span>';
+//		    				    shtml+='<span class="shijanrq">';
+//		    				    shtml+=createTime;
+//		    				    shtml+='</span>';
+		    			        shtml+='</div>';
+		    			        shtml+='<div style="width: 2.773333rem;height: 3.226666rem;position: absolute;top: -0.16rem;right: -0.213333rem;background:  url('+imgUrl+' ) no-repeat;background-size: 100% 100%;box-shadow:0px 0px 18px #dedede;border-radius:0.066666rem;overflow: hidden;" > </div> </li>';
+							}
+						}
+						$(".sclass").html(shtml);
+					}else{
+						mui.alert("取消失败："+data.message);
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					//异常处理；
+					console.log(type);
+				}
+			});
+				
+			}
+			//企业需求
+			function enterpriseDemand(){
+				mui.ajax(url+'/yskjApp/webApp/dataInfo/listReleaseDemand.do',{
+				data:{
+							"demandCategory":2
+						},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型；
+				timeout:10000,//超时时间设置为10秒；
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					if(data.success){
+						var data=data.data;
+						var le=data.length;
+						var dhtml="";
+						if(le!=0){
+							for(var i=0;i<le;i++){
+								var demandType=data[i].demandType;
+								var butlerName=data[i].butlerName;
+								var enterpriseName=data[i].enterpriseName
+								var demandDesc=data[i].demandDesc;
+								var dtDay = '剩余'+ data[i].dtDay + '天到期';
+								if(data[i].dtDay == 0){
+									dtDay = '今日到期';
+								}
+								var createTime=data[i].createTime.substring(0,10);
+								var butlerPhone=data[i].butlerPhone;
+								var imgUrl = '';
+								if(demandType == '文化'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/1.png';
+								}
+								else if(demandType == '咨询'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/2.png';
+								}
+								else if(demandType == '传媒'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/3.png';
+								}
+								else if(demandType == '互联网'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/4.png';
+								}
+								else if(demandType == '教育'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/5.png';
+								}
+								else if(demandType == '金融'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/6.png';
+								}
+								else if(demandType == '科技'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/7.png';
+								}
+								else if(demandType == '旅游'){
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/8.png';
+								}
+								else {
+									imgUrl = 'http://omc.urskongjian.com:81/yskjapp/qyhl_type/9.png';
+								}
+								//budget
+							    var budget=(data[i].budget==null?"":data[i].budget);
+							    var status= data[i].type;
+								dhtml+='<li'; 
+								if(status==5){
+									dhtml+=' class="hechhez"';
+								}
+								dhtml+='>';
+		    			        dhtml+='<div class="beijmggj">';
+		    				    dhtml+='<span class="guojilxgs"></span>';
+		    				    dhtml+='<span class="xitongruanjianhuise">';
+		    				    dhtml+=demandType;
+		    				    dhtml+='</span>';
+		    				    if(status==4&&budget!=""){
+		    				    	dhtml+='<span class="ycsahan">';
+		    				    	dhtml+='预算:￥';
+		    				    	dhtml+=budget;
+		    				    	dhtml+='</span>';
+		    				    }
+		    			        dhtml+='</div><div class="gnlyywhise">';
+		    				    dhtml+=demandDesc;
+		    			        dhtml+='</div><div class="lijicx">';
+		    			        if(status!=2){
+									dhtml+='<span class="lijiztti lijiztti1">';
+			    				    //调用手机通讯录
+			    				    dhtml+='<a class="a_d" href="tel:';
+			    				    dhtml+=butlerPhone;
+			    				    dhtml+='" >';
+			    				    dhtml+='立即咨询';
+			    				    dhtml+="</a>";
+			    				    dhtml+='</span>';
+			    				    dhtml+='<span class="shijanrq">';
+								}else{
+									 dhtml+='<span class="shijanrqhise">';
+								}
+		    			        
+		    				    dhtml+=dtDay;
+		    				    dhtml+='</span></div>';
+		    				    dhtml+='<div style="width: 2.773333rem;height: 3.226666rem;position: absolute;top: -0.16rem;right: -0.213333rem;background:  url('+imgUrl+' ) no-repeat;background-size: 100% 100%;box-shadow:0px 0px 18px #dedede;border-radius:0.066666rem;overflow: hidden;" > </div>';
+		    			        //dhtml+='<div style="background: url('+imgUrl+' ) no-repeat;" > </div>';
+		    			        if(status==5){
+		    			        	dhtml+='<div class="dacheghezuo"></div>';
+		    			        }
+		    			        dhtml+="</li>";
+							}
+						}
+						$(".dclass").html(dhtml);
+						for(var j=0;j<le;j++){
+							if(data[j].type == 5){
+								$('.shijanrq').eq(j).css('display','none');
+								$('.lijiztti1').eq(j).css('display','none');
+							}
+						}
+						
+					}else{
+						mui.alert("取消失败："+data.message);
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					//异常处理；
+					console.log(type);
+				}
+			});
+			}
+			//接收参数刷新
+			window.addEventListener('qyhl_jz', function(event) {
+			    // mui.fire()传过来的额外的参数，在event.detail中；
+			    var detail = event.detail;
+			    var param = detail.qyhl_jz;
+			    if(param == 3){
+			    	setTimeout(function(){
+			    		var wobj3 = plus.webview.getWebviewById("qyhl.html");
+						wobj3.reload(true);
+			    	},3000);
+			    }
+			});
+			//查询用户是否是会员
+			function cx_hy_zt(){
+				if(localStorage.getItem('user_id')){
+				  	var user_id = localStorage.getItem('user_id');
+				  	mui.ajax(url + '/yskjApp/webApp/dataInfo/checkMembership.do',{
+						data:{
+							"uid": user_id
+						},
+						dataType:'json',//服务器返回json格式数据
+						type:'post',//HTTP请求类型
+						timeout:10000,//超时时间设置为10秒；
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							if(data.success){
+								if(data.data){
+									vip_state = data.data.type;
+									if(vip_state == 1){
+										mui.alert('正在审核中，请耐心等待','提示','确定',function(){},'div');
+										return;
+									}
+									if(vip_state == 2){
+										mui.alert('您已加入会员','提示','确定',function(){},'div');
+										return;
+									}
+									if(vip_state == 4){
+										mui.alert('您已加入会员','提示','确定',function(){},'div');
+										return;
+									}
+									mui.openWindow({ 
+										url:'page/add_vip.html', //需要打开页面的url地址 
+										id:'add_vip',  //需要打开页面的url页面id
+									})
+								}else{
+									//data返回为null
+									mui.openWindow({ 
+										url:'page/add_vip.html', //需要打开页面的url地址 
+										id:'add_vip',  //需要打开页面的url页面id
+									})
+								}
+							}else{
+								mui.alert(data.message);
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							//异常处理；
+							console.log(type);
+						}
+					});
+				}
+			}
+			
+			
+			//加入会员跳转
+			$('.add_vip').click(function(){
+				if(localStorage.getItem('lostate')){
+					if(localStorage.getItem('user_type') == '2' || localStorage.getItem('user_type') == '3'){
+						cx_hy_zt();						
+					}else{
+						mui.alert('您还不是我们的业主或租户','提示','确定',function(){},'div');
+						return;
+					}
+				}else{
+					mui.openWindow({
+					  url: './page/login.html', 
+					  id:'login'
+					});					
+				}
+			});
+			//发布服务跳转
+			$('#fb_ser').click(function(){
+				if(localStorage.getItem('lostate')){
+					if(localStorage.getItem('user_type') == '2' || localStorage.getItem('user_type') == '3'){//业主和租户
+						mui.openWindow({ 
+							url:'page/fb_ser.html',
+							id:'fb_ser',
+						})						
+					}else{
+						mui.alert('您还不是我们的业主或租户','提示','确定',function(){},'div');
+					}
+				}else{
+					mui.openWindow({
+					  url: './page/login.html', 
+					  id:'login'
+					});					
+				}
+			});
+			//发布需求跳转
+			$('#fb_need').click(function(){
+				if(localStorage.getItem('lostate')){
+					mui.openWindow({ 
+						url:'page/fb_need.html',
+						id:'fb_need',
+					})	
+				}else{
+					mui.openWindow({
+					  url: './page/login.html', 
+					  id:'login'
+					});					
+				}
+			});
+			//更多企业
+			$('#more_qy').click(function(){
+				mui.openWindow({ 
+					url:'page/more_qy.html',
+					id:'more_qy',
+				})
+			});
+			//会员企业详情
+			function list_detail(qy_id){
+				mui.openWindow({ 
+					url:'page/qy_detail.html',
+					id:'qy_detail',
+					extras:{
+				    	'qy_id':qy_id
+				    }
+				})
+			}
+			//下拉刷新
+			window.onload = function(){
+			    window.addEventListener('touchstart', touchstart, false);
+			    window.addEventListener('touchmove', touchMove, false);
+			}
+			var _start = 0; 
+			var _end = 0;
+			function touchstart(event) {
+			    var touch = event.targetTouches[0];
+			    _start = touch.pageY; 
+			}
+			function touchMove(event){ 
+			    var touch = event.targetTouches[0]; 
+			    _end = ( touch.pageY - _start); 
+			    //下滑才执行操作 
+			    if(_end > 200){     //200即手机下滑屏幕的距离，超过200则执行刷新动作
+			    location.reload();
+			    } 
+			}
+		</script>
+	</body>
+
+</html>

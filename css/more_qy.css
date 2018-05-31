@@ -1,0 +1,122 @@
+.top_box{
+	position: absolute;
+	height: 1.2rem;
+	width: 10rem;
+	border-bottom: 1px solid #e5e5e5;
+}
+.top_nav{
+	width: 10rem;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.top_nav li{
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	height: 100%;
+	font-size: 0.373333rem;
+	color#333333;
+	text-align: center;
+}
+.top_nav li:first-child::after{
+	content: '';
+	display: block;
+	height: 0.4rem;
+	border-left: 1px solid #e5e5e5;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	margin-top: -0.2rem;
+}
+.bottom_box{
+	position: absolute;
+	top: 1.2rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 10rem;
+	overflow: auto;
+}
+#vip_list{
+	padding: 0.466666rem 0.4rem;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+#vip_list li{
+	position: relative;
+	width: 4.426666rem;
+	height: 3.026666rem;
+	border-radius: 0.106666rem;
+	-webkit-box-shadow:0px 0px 8px #E7E7E7; 
+	box-shadow:0px 0px 8px #E7E7E7;
+	margin-bottom: 0.333333rem;
+	overflow: hidden;
+}
+.qy_news{
+	position: absolute;
+	bottom: 0.2rem;
+	left: 0.24rem;
+}
+.qy_name{
+	width: 100%;
+	height: 0.56rem;
+	overflow: hidden;
+	font-size: 0.293333rem;
+	color: #666666;
+}
+.qy_tip{
+	display: flex;
+	align-items: center;
+	font-size: 0.266666rem;
+	color: #999999;
+	margin-top: 0.16rem;
+}
+.qy_tip span:first-child{
+	display: inline-block;
+	width: 0.413333rem;
+	height: 0.413333rem;
+	background: url(../img/beijignicon.png)no-repeat center;
+	background-size: 100% auto;
+	margin-right: 0.16rem;
+}
+.qy_tip span:last-child{
+	display: inline-block;
+	width: 3.48rem;
+	height:  0.413333rem;
+	overflow: hidden;
+}
+.zc_box{
+	position: fixed;
+	z-index: 9;
+	left: 0;
+	right: 0;
+	top: 2.933333rem;
+	bottom: 0;
+	background: rgba(0,0,0,0.1);
+	display: none;
+}
+.tj_box,.tj_box1{
+	position: absolute;
+	flex-direction: column;
+	height: 8rem;
+	width: 10rem;
+	background: #fff;
+	display: none;
+	overflow: auto;
+	padding-left: 0.4rem;
+}
+.tj_box span,.tj_box1 span{
+	display: block;
+	font-size: 0.373333rem;
+	color: #666666;
+	height: 1.333333rem;
+	width: 100%;
+	line-height: 1.333333rem;
+	padding-left: 0.066666rem;
+	border-bottom: 1px solid #e5e5e5;
+}

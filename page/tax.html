@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/gongShangShuiWu.css"/>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		   <!--<div class="mui-icon mui-action-back mui-icon-back mui-icon-left-nav mui-pull-left"></div>-->
+		   <h1 class="mui-title">工商税务</h1>
+		</header>
+		<div class="mui-content public_con ipx_public_con">
+		    <div class="gongsswer" style="">
+		    	<div class="gongsswerbgimg"></div>
+		    </div>
+		    <div class="bottomeneir">
+		    	<span class="bodadianhua">
+		    		<a class="a_d" href="tel:400-078-8800">拨打电话</a>
+	    		</span>
+	    		<span class="woyaochuce">立即申请</span>
+		    </div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			//fwscType 1、工商税务，2、增值服务，3、定制装修，4金融服务
+			$('.woyaochuce').click(function(){
+				if(localStorage.getItem('lostate')){
+					mui.openWindow({ 
+						url:'wYaoZhuCe.html?fwscType=1', //需要打开页面的url地址 
+						id:'wYaoZhuCe',  //需要打开页面的url页面id
+	                    extras:{fwscType:1}
+					});
+				}else{
+					mui.openWindow({
+						url: './login.html', 
+						id:'login'
+					});
+				}
+			});
+			window.addEventListener('customEvent', function(event) {
+			    // mui.fire()传过来的额外的参数，在event.detail中；
+			    var detail = event.detail;
+			    var param = detail.ttt;
+			    if(param == 1){
+			    	mui.back();
+			    }
+			});
+		</script>
+	</body>
+
+</html>

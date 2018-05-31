@@ -1,0 +1,221 @@
+.public_h1{
+	height: 1.733333rem;
+	box-shadow: initial;
+	border-bottom: 1px solid #e5e5e5;
+}
+.public_h1{
+	padding-top: 0.666666rem;
+}
+.public_h1 h1,.public_h1 a{
+	font-size: 0.453333rem;
+	color: #333333;
+}
+.public_con{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 1.733333rem;
+	padding-top: 0px!important;
+	overflow: auto;
+	background: #fff;
+}
+.jr_head{
+	width: 10rem;
+	height: 6.76rem;
+}
+.jr_head img{
+	width: 100%;
+	height: auto;
+}
+.need{
+	position: relative;
+	background: #fff;
+	padding-bottom: 0.666666rem;
+}
+.jr_tit{
+	position: absolute;
+	top: -1.133333rem;
+	left: 0.4rem;
+	height: 1.04rem;
+	line-height: 1.04rem;
+	/*background: url(../img/jt_titbg.png) center;
+	background-size: 100% 100%;*/
+	font-size: 0.453333rem;
+	color: #3828a3;
+	text-align: center;
+	padding: 0 0.266666rem;
+}
+.jr_tit:before{
+	position: absolute;
+	left: 0;
+	top: 50%;
+	margin-top: -0.213333rem;
+	content: '';
+	display: block;
+	height: 0.426666rem;
+	width: 0.08rem;
+	background: #3828a2;
+}
+.jr_tit1:before{
+	position: absolute;
+	left: 0;
+	top: 50%;
+	margin-top: -0.213333rem;
+	content: '';
+	display: block;
+	height: 0.426666rem;
+	width: 0.08rem;
+	background: #3828a2;
+}
+.jr_one,.jr_two,.jr_three{
+	display: flex;
+	width: 10rem;
+	height: 2.826666rem;
+	padding: 0 0.4rem;
+	align-items: flex-end;
+}
+.jr_pic,.jr_t{
+	width: 4.6rem;
+	height: 2.16rem;
+}
+.jr_pic img{
+	width: 100%;
+	height: auto;
+}
+.jr_t{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.jr_t span{
+	display: inline-block;
+	font-size: 0.373333rem;
+	text-align: center;
+	color: #333333;
+	margin-bottom: 0.133333rem;
+}
+.jr_t span:first-child{
+	font-size: 0.4rem;
+	font-weight: 800;
+}
+.jr_two{
+	height: 3.666666rem;
+}
+.jr_two .jr_t,.jr_two .jr_pic{
+	position: relative;
+	height: 2.693333rem;
+}
+.jr_two .jr_pic img{
+	position: absolute;
+	right: -0.4rem;
+	height: 100%;
+	width: auto;
+}
+.jr_three{
+	height: 4.333333rem;
+	margin-bottom: 0.933333rem;
+}
+.jr_three .jr_t,.jr_three .jr_pic{
+	display: flex;
+	justify-content: center;
+	height: 3.946666rem;
+}
+.jr_three .jr_pic img{
+	height: 100%;
+	width: auto;
+}
+.hyyh{
+	width: 10rem;
+	height: 5.76rem;
+}
+.hyyh img{
+	width: 100%;
+}
+.dydk{
+	position: relative;
+	padding-bottom: 0.6rem;
+	background: #fff;
+}
+.jr_tit1{
+	position: relative;
+	display: inline-block;
+	height: 1.04rem;
+	line-height: 1.04rem;
+	/*background: url(../img/jt_titbg.png) center;
+	background-size: 100% 100%;*/
+	font-size: 0.453333rem;
+	color: #3828a3;
+	text-align: center;
+	padding: 0 0.266666rem;
+	margin:0 0 0.266666rem 0.4rem;
+}
+.dydk_box{
+	display: flex;
+	justify-content: space-between;
+	padding: 0 0.4rem;
+}
+.dydk_box p{
+	width: 4.466666rem;
+	height: 5.28rem;
+}
+.dydk_box p img{
+	height: auto;
+	width: 100%;
+}
+.xyd{
+	margin-top: 0.32rem;
+	background: #fff;
+	padding: 0.6rem 0;
+}
+.xyd_pic{
+	width: 9.2rem;
+	height: 5.32rem;
+	margin: 0 auto 0;
+}
+.xyd_pic img{
+	width: 100%;
+	height: auto;
+}
+.bot_nav{
+	display: flex;
+	width: 10rem;
+	height: 1.44rem;
+	line-height: 1.44rem;
+}
+.bot_nav p{
+	width: 50%;
+	height: 100%;
+	text-align: center;
+	font-size: 0.4rem;
+	color: #fefefe;
+}
+.bot_nav p:first-child{
+	background: #333333;
+}
+.bot_nav p:last-child{
+	background: #ffba26;
+}
+.bot_nav p a{
+	display: block;
+	text-decoration: none;
+	color: #fefefe;
+}
+.box{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 1.44rem;
+	width: 10rem;
+	overflow: auto;
+}
+.bottom{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 10rem;
+	height: 1.44rem;
+}

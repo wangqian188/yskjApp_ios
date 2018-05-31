@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/lib/app_config.js" ></script>
+		<script type="text/javascript" src="../js/lib/flexible.js" ></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js" ></script>
+		<script src="../js/lib/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/broker.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title">经纪人</h1>
+		</header>
+		<!--主体-->
+		<div class="mui-content public_con">
+		    <!--合作企业-->
+		    <div class="hzqy">
+		    	<p class="miaoshu">亮狮合作经济公司超过<i>100家</i>，合作经纪人超过<i>2万</i>人，同时利用空间内的强大数据资源，输出商业地产数据分析营销策略。</p>
+			    <div class="hzqy_list" ></div>
+		    </div>
+		    <!--历史成交信息-->
+		    <div class="his_news">
+		    	<p class="his_tit">历史佣金成交金额超过<i>5930万</i></p>
+		    	<div class="his_tab">
+		    		<table border="0" cellspacing="0" cellpadding="0" align="center" class="his_tabs price_class"> 
+		    			<tr>
+		    				<th>
+		    					<span>
+		    						<img src="../img/his_pm.png"/>
+		    					</span>
+		    					<i>排名</i>
+		    				</th>
+		    				<th>
+		    					<span>
+		    						<img src="../img/his_cs.png"/>
+		    					</span>
+		    					<i>成交次数</i>
+		    				</th>
+		    				<th>
+		    					<span>
+		    						<img src="../img/his_js.png"/>
+		    					</span>
+		    					<i>金额</i>
+		    				</th>
+		    			</tr>
+		    		
+		    			
+		    		</table>
+		    	</div>
+		    </div>
+		</div>
+		<script src="../js/lib/app_config.js"></script>
+		<script type="text/javascript">
+			(function(){
+			checkSubmit();
+			})();
+			mui.init();
+				function checkSubmit(){
+						mui.ajax(url + '/yskjApp/webApp/dataInfo/getBrokerData',{
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							if(data.success){
+								var content=data.content;
+								$(".miaoshu").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+content);
+								var data=data.data2;
+								var js="";
+								if(data.length>0){
+									for(var i=0;i<data.length;i++){
+										var num=data[i].orderNum;
+										var name=data[i].name;
+										var value=data[i].value;
+										js+="<tr>";
+										//<td>9</td>
+										js+="<td>";
+										js+=num;
+										js+="</td>";
+										js+="<td>";
+										js+=name;
+										js+="</td>";
+										js+="<td>";
+										js+=value;
+										js+="</td>";
+										js+="</tr>"
+									}
+								}
+								$(".price_class").append(js);
+								
+							}else{
+								mui.alert(data.message);
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});
+					
+				
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,404 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js" ></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/notice_center_detail.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/qy_detail.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title">通知详情</h1>
+		</header>
+		<div class="mui-content sy_ipx_content" style="bottom: 0;background: #f0f0f0;overflow: auto;padding: 0.613333rem 0.4rem 0rem !important;">
+			<div class="detail_lag">
+				<h1></h1>
+				<div class="xycontent">
+					<p>
+						<span class="xxingmspan xinmgwid">姓名：</span>
+						<span class="sansspan name"></span>
+					</p>
+					<p>
+						<span class="xxingmspan shoujihwid">手机号：</span>
+						<span class="sansspan phone"></span>
+					</p>
+					<p class="fuwushench qiyehuldis">
+						<span class="xxingmspan fangywidt">房屋信息：</span>
+						<span class="sansspan fangjian_xinxi"></span>
+					</p>
+					<p>
+						<span class="xxingmspan fangywidt">服务项目：</span>
+						<span class="sansspan sale_xingmu"></span>
+					</p>
+					<p>
+						<span class="xxingmspan fangywidt">提交时间：</span>
+						<span class="sansspan sub_time"></span>
+					</p>
+					
+					<!--企业互联独有的-->
+					<div class="qiyehul qiyehuldis">
+						<p class="qiehul_p">
+							<span class="xxingmspan fangywidt">企业名称：</span>
+							<span class="sansspan fabu_qiuqi"></span>
+						</p>
+						<p>
+							<span class="xxingmspan fangywidt">所属行业：</span>
+							<span class="sansspan fabu_qiuqi_hey"></span>
+						</p>
+					</div>
+					
+					<!--企业互联-需求发布独有的-->
+					<div class="qiyehulxqfb qiyehuldis">
+						<p class="qiehul_p">
+							<span class="xxingmspan fangywidt">企业名称：</span>
+							<span class="sansspan qymingcxv"></span>
+						</p>
+						<p>
+							<span class="xxingmspan fangywidt">所属行业：</span>
+							<span class="sansspan suoshyxvqi"></span>
+						</p>
+						<p>
+							<span class="xxingmspan fangywidt">需求预算：</span>
+							<span class="sansspan xvysxq"></span>
+						</p>
+						<p>
+							<span class="xxingmspan shoujihwid">有效期：</span>
+							<span class="sansspan yxqxq"></span>
+						</p>
+					</div>
+					
+					<!--合同变更-退租独有的-->
+					<div class="hetongtuizdis qiyehuldis">
+						<p>
+							<span class="xxingmspan fangywidt">退租时间：</span>
+							<span class="sansspan heotn_tuoifang"></span>
+						</p>
+					</div>
+
+					<!--合同变更-续租独有的-->
+					<div class="hetongxzudis qiyehuldis">
+						<p>
+							<span class="xxingmspan fangywidt">续租时间：</span>
+							<span class="sansspan hetong_xzhu"></span>
+						</p>
+					</div>
+				</div>
+				<div class="compete">
+					<img src="" width="100%" height="100%"/>
+				</div>
+			</div>
+			<div class="fangwumiashu fangyuanweituo qiyehuldis">
+				<h1></h1>
+				<div class="xycontent fangwufont fangdewnzi">
+					
+				</div>
+			</div>
+
+			<!--合同变更-换房独有的-->
+			<div class="fangwumiashu hetonghuangfanzdis qiyehuldis">
+				<h1>换房需求</h1>
+				<div class="xycontent">
+					<p>
+						<span class="xxingmspan fangywidt">目标区域：</span>
+						<span class="sansspan mubiao_qvyv"></span>
+					</p>
+					<p>
+						<span class="xxingmspan fangywidt">目标楼盘：</span>
+						<span class="sansspan mubiao_lupan"></span>
+					</p>
+					<p>
+						<span class="xxingmspan fangywidt">目标面积：</span>
+						<span class="sansspan mubioa_area"></span>
+					</p>
+					<p>
+						<span class="xxingmspan fangywidt">目标租金：</span>
+						<span class="sansspan mubiao_zijin"></span>
+					</p>
+					<p>
+						<span class="xxingmspan fangywidt">换房时间：</span>
+						<span class="sansspan huangfan_time"></span>
+					</p>
+					<p>
+						<span class="xxingmspan">是否需要注册：</span>
+						<span class="sansspan shifou_zhuce"></span>
+					</p>
+					
+				</div>
+			</div>
+			
+			<!--在线报修-门窗维修独有的-->
+			<div class="fangwumiashu zaixianbaoxius qiyehuldis">
+				<h1>原因说明</h1>
+				<div class="xycontent fangwufont">
+					<p class="content_class">
+						法就是疯狂就开始对方就开始打房间爱开始交付带看上级大方块房间爱卡圣诞节疯
+					</p>
+					<p class="menchwei_p">
+						<!--<span class="menchwei_img"><img src="../img/notice_ceter/menchwei_img.jpg" width="100%"/>123</span>
+						<span class="menchwei_img"></span>
+						<span class="menchwei_img"></span>
+						<span class="menchwei_img"></span>
+						<span class="menchwei_img"></span>-->
+					</p>
+					
+				</div>
+			</div>
+			
+			<!--企业互联-加入会员独有的-->
+			<div class="fangwumiashu jiaruhuiyuan qiyehuldis">
+				<h1>企业信息</h1>
+				<div class="top_box" style="height: 2.746666rem;background-color: #ffffff;">
+					<p class="qy_logo" style="height: 2rem;width: 2rem;"><img src="../img/qy_ion1.png"/></p>
+					<p class="qy_xx">
+						<span class="cmpate"></span>
+						<span class="wangzhi"></span>
+					</p>
+				</div>
+				<!--企业信息12-->
+				<div style="padding-left: 0.466666rem;background-color: #ffffff;">
+					<div class="qy_message">
+						<p class="qy_mes">
+							<span>企业电话：</span>
+							<span class="qy_phone"></span>
+						</p>
+						<p class="qy_mes">
+							<span>所属行业：</span>
+							<span class="shushi_hengq"></span>
+						</p>
+						<p class="qy_mes">
+							<span>所在区域：</span>
+							<span class="suo_qvyv"></span>
+						</p>
+						<p class="qy_mes">
+							<span>经营范围：</span>
+							<span class="suo_fanfwi"></span>
+						</p>
+					</div>
+					<!--企业简介-->
+					<div class="qy_intro" style="margin-top: 0rem;border-top: 0px solid #e5e5e5;">
+						<h3 style="color: #999999;font-weight: 400;">企业简介</h3>
+						<p class="intro_detail"></p>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+		<script src="../js/lib/app_config.js"></script>
+	</body>
+	<script>
+		mui.plusReady(function(){
+			var self = plus.webview.currentWebview();
+            var notice_id = self.notice_id;
+            var type = self.type;
+            var buess_type = self.buess_type;
+            var category = self.category;
+            detailData();
+            /*通知中心的数据*/
+			function detailData(){
+				mui.ajax(Interface_url+'/yskjApp/webApp/dataInfo/getMessageInfoByUserId',{
+					data:{"id":String(notice_id),"bussinessType":String(buess_type),"type":String(type)},
+					dataType:'json',//服务器返回json格式数据
+					type:'post',//HTTP请求类型
+					timeout:100000,//超时时间设置为10秒；
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						if(data.success){
+							var data = data.data;
+							if(data[0].statusName == '达成合作'){
+								$(".compete img").attr('src','../img/notice_ceter/compete1.png');
+							}else if(data[0].statusName == '已完成'){
+								$(".compete img").attr('src','../img/notice_ceter/compete2.png');
+							}else if(data[0].statusName == '已发布'){
+								$(".compete img").attr('src','../img/notice_ceter/compete3.png');
+							}else if(data[0].statusName == '待审批'){
+								$(".compete img").attr('src','../img/notice_ceter/compete4.png');
+							}else if(data[0].statusName == '待接单'){
+								$(".compete img").attr('src','../img/notice_ceter/compete5.png');
+							}else if(data[0].statusName == '审批通过'){
+								$(".compete img").attr('src','../img/notice_ceter/compete6.png');
+							}else if(data[0].statusName == '已接单'){
+								$(".compete img").attr('src','../img/notice_ceter/compete7.png');
+							}else if(data[0].statusName == '已拒绝'){
+								$(".compete img").attr('src','../img/notice_ceter/compete8.png');
+							}else if(data[0].statusName == '已过期'){
+								$(".compete img").attr('src','../img/notice_ceter/compete9.png');
+							}
+							if(buess_type == 1){
+//				            	alert('业主委托///房源委托');
+				            	$('.fuwushench').removeClass('qiyehuldis');
+				            	$('.fangyuanweituo').removeClass('qiyehuldis');
+				            	$(".detail_lag h1").html(data[0].typeName==null?"无":data[0].typeName);
+				            	$(".name").html(data[0].name==null?"无":data[0].name);
+								$(".phone").html(data[0].phone==null?"无":data[0].phone);
+								$(".sale_xingmu").html(data[0].categoryName==null?"无":data[0].categoryName);
+								$(".sub_time").html(data[0].createTime==null?"无":data[0].createTime);
+				            	$(".fangjian_xinxi").html(data[0].repairHouse==''?"无":data[0].repairHouse);
+				            	$(".fangdewnzi").html(data[0].memo==''?"无":data[0].memo);
+				            	$(".fangyuanweituo h1").html('房屋描述');
+				            }else if(buess_type == 2){
+//				            	alert('升级服务///服务商城');
+//				            	alert(data[0].memo);
+				            	$('.fangyuanweituo').removeClass('qiyehuldis');
+				            	$(".detail_lag h1").html(data[0].typeName==null?"无":data[0].typeName);
+				            	$(".name").html(data[0].name==null?"无":data[0].name);
+								$(".phone").html(data[0].phone==null?"无":data[0].phone);
+								$(".sale_xingmu").html(data[0].categoryName==null?"无":data[0].categoryName);
+								$(".sub_time").html(data[0].createTime==null?"无":data[0].createTime);
+				            	$(".fangdewnzi").html(data[0].memo==''?"无":data[0].memo);
+				            	$(".fangyuanweituo h1").html('其他信息');
+				            }else if(buess_type == 3){
+				            	if(type == 5){
+				            		if(category == 1){
+//				            			alert('续租');
+				            			$('.fuwushench').removeClass('qiyehuldis');
+				            			$('.hetongxzudis').removeClass('qiyehuldis');
+				            			$(".detail_lag h1").html(data[0].typeName==null?"无":data[0].typeName);
+						            	$(".name").html(data[0].name==null?"无":data[0].name);
+										$(".phone").html(data[0].phone==null?"无":data[0].phone);
+										$(".sale_xingmu").html(data[0].categoryName==null?"无":data[0].categoryName);
+										$(".sub_time").html(data[0].createTime==null?"无":data[0].createTime);
+						            	$(".fangjian_xinxi").html(data[0].repairHouse==''?"无":data[0].repairHouse);
+						            	$(".hetong_xzhu").html(data[0].renewalYears==''?"无":data[0].renewalYears + '年');
+				            		}else if(category == 2){
+//				            			alert('换房');
+//				            			alert(data[0].isZhuce);
+				            			$('.fuwushench').removeClass('qiyehuldis');
+				            			$('.hetonghuangfanzdis').removeClass('qiyehuldis');
+				            			$(".detail_lag h1").html(data[0].typeName==null?"无":data[0].typeName);
+						            	$(".name").html(data[0].name==null?"无":data[0].name);
+										$(".phone").html(data[0].phone==null?"无":data[0].phone);
+										$(".sale_xingmu").html(data[0].categoryName==null?"无":data[0].categoryName);
+										$(".sub_time").html(data[0].createTime==null?"无":data[0].createTime);
+						            	$(".fangjian_xinxi").html(data[0].repairHouse==''?"无":data[0].repairHouse);
+						            	$(".mubiao_qvyv").html(data[0].changArea==''?"无":data[0].changArea);
+						            	$(".mubiao_lupan").html(data[0].changeLouPan==''?"无":data[0].changeLouPan);
+						            	$(".mubioa_area").html(data[0].changeMJ==''?"无":data[0].changeMJ + '㎡');
+						            	$(".mubiao_zijin").html(data[0].changeZuJin==''?"无":data[0].changeZuJin + '元/月');
+						            	$(".huangfan_time").html(data[0].changeTime==''?"无":data[0].changeTime);
+						            	$(".shifou_zhuce").html(data[0].isZhuce==null?"无":data[0].isZhuce);
+						            	
+				            		}else if(category == 3){
+//				            			alert('退房///退租');
+				            			$('.fuwushench').removeClass('qiyehuldis');
+				            			$('.hetongtuizdis').removeClass('qiyehuldis');
+				            			$('.fangyuanweituo').removeClass('qiyehuldis');
+				            			$(".detail_lag h1").html(data[0].typeName==null?"无":data[0].typeName);
+						            	$(".name").html(data[0].name==null?"无":data[0].name);
+										$(".phone").html(data[0].phone==null?"无":data[0].phone);
+										$(".sale_xingmu").html(data[0].categoryName==null?"无":data[0].categoryName);
+										$(".sub_time").html(data[0].createTime==null?"无":data[0].createTime);
+						            	$(".fangjian_xinxi").html(data[0].repairHouse==''?"无":data[0].repairHouse);
+						            	$(".heotn_tuoifang").html(data[0].changeTime==''?"无":data[0].changeTime);
+						            	$(".fangdewnzi").html(data[0].memo==''?"无":data[0].memo);
+						            	$(".fangyuanweituo h1").html('退租理由');
+				            		}
+				            	}else{
+				//          		在线报修   物业对接   房屋凭证      房屋费用是一个页面
+//				            		alert('设备报修///在线报修');
+				            		if(data[0].pic == null){
+				            			
+				            		}else{
+				            			var array = data[0].pic.split(";");
+				            		}
+				            		$('.fuwushench').removeClass('qiyehuldis');
+				        			$('.zaixianbaoxius').removeClass('qiyehuldis');
+				        			$(".detail_lag h1").html(data[0].typeName==null?"无":data[0].typeName);
+					            	$(".name").html(data[0].name==null?"无":data[0].name);
+									$(".phone").html(data[0].phone==null?"无":data[0].phone);
+									$(".sale_xingmu").html(data[0].categoryName==null?"无":data[0].categoryName);
+									$(".sub_time").html(data[0].createTime==null?"无":data[0].createTime);
+					            	$(".fangjian_xinxi").html(data[0].repairHouse==''?"无":data[0].repairHouse);
+					            	$(".content_class").html(data[0].memo==''?"无":data[0].memo);
+					            	if(array.length == 1 && data[0].pic != null){
+										var str = '<span class="menchwei_img"><img src="'+data[0].pic+'" width="100%" height="100%"/></span>';
+					            		$('.menchwei_p').append(str);
+									}else if(array.length > 1 && data[0].pic != null){
+										var array = data[0].pic.split(";");
+										for(var i=0;i<array.length;i++){
+											var str = '<span class="menchwei_img"><img src="'+array[i]+'" width="100%" height="100%"/></span>';
+											$('.menchwei_p').append(str);
+										}
+									}
+				            	}
+				            }else if(buess_type == 4){
+				            	if(type == 1){
+//				            		alert('发布服务');
+//				            		$('.fuwushench').removeClass('qiyehuldis');
+				            		$('.qiyehul').removeClass('qiyehuldis');
+				        			$('.fangyuanweituo').removeClass('qiyehuldis');
+				        			$(".detail_lag h1").html(data[0].typeName==null?"无":data[0].typeName);
+				        			$(".name").html(data[0].enterName==null?"无":data[0].enterName);
+									$(".phone").html(data[0].enterPhone==null?"无":data[0].enterPhone);
+									$(".sale_xingmu").html(data[0].categoryName==null?"无":data[0].categoryName);
+									$(".sub_time").html(data[0].createTime==null?"无":data[0].createTime);
+//				        			$(".fangjian_xinxi").html(data[0].house==''?"无":data[0].house);
+				        			$(".fabu_qiuqi").html(data[0].enterpriseName==''?"无":data[0].enterpriseName);
+				        			$(".fabu_qiuqi_hey").html(data[0].demandType==''?"无":data[0].demandType);
+				        			$(".fangyuanweituo h1").html("服务描述");
+				        			$(".fangdewnzi").html(data[0].demandDesc==''?"无":data[0].demandDesc);
+				            	}else if(type == 2){
+				            		
+//				            		还没有接口
+//				            		alert('发布需求');
+//				            		$('.fuwushench').removeClass('qiyehuldis');
+				        			$('.qiyehulxqfb').removeClass('qiyehuldis');
+				        			$('.fangyuanweituo').removeClass('qiyehuldis');
+				        			$(".detail_lag h1").html(data[0].typeName==null?"无":data[0].typeName);
+				        			$(".name").html(data[0].enterName==null?"无":data[0].enterName);
+									$(".phone").html(data[0].enterPhone==null?"无":data[0].enterPhone);
+									$(".sale_xingmu").html(data[0].categoryName==null?"无":data[0].categoryName);
+									$(".sub_time").html(data[0].createTime==null?"无":data[0].createTime);
+//				        			$(".fangjian_xinxi").html(data[0].house==''?"无":data[0].house);
+				        			$(".qymingcxv").html(data[0].enterpriseName==''?"无":data[0].enterpriseName);
+				        			$(".suoshyxvqi").html(data[0].demandType==''?"无":data[0].demandType);
+				        			$(".xvysxq").html(data[0].budget==null?"无":data[0].budget+'元');
+				        			$(".yxqxq").html(data[0].effectiveTime==null?"无":data[0].effectiveTime+'天');
+				        			$(".fangyuanweituo h1").html("发布服务");
+				        			$(".fangdewnzi").html(data[0].demandDesc==''?"无":data[0].demandDesc);
+				            	}else if(type == 3){
+//				            		alert('加入会员');
+//				            		alert(data[0].enterpriseName);
+//				            		$('.fuwushench').removeClass('qiyehuldis');
+				        			$('.jiaruhuiyuan').removeClass('qiyehuldis');
+				        			$(".detail_lag h1").html(data[0].typeName==null?"无":data[0].typeName);
+				        			$(".name").html(data[0].name==null?"无":data[0].name);
+									$(".phone").html(data[0].phone==null?"无":data[0].phone);
+									$(".sale_xingmu").html(data[0].categoryName==null?"无":data[0].categoryName);
+									$(".sub_time").html(data[0].createTime==null?"无":data[0].createTime);
+//				        			$(".fangjian_xinxi").html(data[0].house==''?"无":data[0].house);//
+				        			$(".qy_logo img").attr('src',data[0].logoImg==null?"无":data[0].logoImg);
+				        			$(".cmpate").html(data[0].enterpriseName==null?"无":data[0].enterpriseName);
+				        			$(".wangzhi").html(data[0].enterpriseWebsite==null?"无":data[0].enterpriseWebsite);
+				        			$(".qy_phone").html(data[0].enterprisePhone==null?"无":data[0].enterprisePhone);
+				        			$(".shushi_hengq").html(data[0].industry==null?"无":data[0].industry);
+				        			$(".suo_qvyv").html(data[0].location==null?"无":data[0].location);
+				        			$(".suo_fanfwi").html(data[0].ranges==null?"无":data[0].ranges);
+				        			$(".intro_detail").html(data[0].enterpriseDesc==null?"无":data[0].enterpriseDesc);
+				        			
+				            	}
+				            }
+						}else{
+							mui.alert(data.message);
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理；
+						console.log(type);
+					}
+				});
+			}
+		});
+	</script>
+</html>

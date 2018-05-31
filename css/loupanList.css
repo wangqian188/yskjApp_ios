@@ -1,0 +1,15 @@
+.lpdiyih{display:flex;justify-content: space-between;height: 0.413333rem;}
+.lpname{font-size: 0.413333rem;width: 3.466666rem;display: flex;color: #333333;}
+.lpdanjia{display: flex;font-size: 0.413333rem;color: #f4513e;font-weight: 900;}
+.lpdanjia i{font-size: 0.293333rem;display:flex;font-style: normal;align-items: flex-start;position: relative;bottom: -1.5px;}
+.lpheigh{margin-bottom: 0.2rem;}
+.lper{display: flex;justify-content: space-between;height: 0.35rem;line-height:0.35rem;}
+.lpqvyv{display:flex;display: flex;font-size: 0.32rem;width: 3.466666rem;overflow: hidden;}
+.lpmianjis{display:flex;font-size: 0.24rem;color: #333333;}
+.lpfkezu{height: 0.32rem;font-size: 0.32rem;line-height: 0.32rem;}
+.jfList{white-space: nowrap;}
+.jfList .jzjf{min-width:0rem !important;padding:0px 0.106666rem !important;font-size: 0.266666rem !important;color: #999999 !important;background-color: #eff3fc !important;margin-right: 0.133333rem;}
+.lpkezhuce{color: #f06656 !important;background-color: #ffecec !important;padding:0px 0.106666rem !important;font-size: 0.266666rem !important;margin-left: 0px;}
+.testbq{display: inline-block;}
+.xiaoktese{}
+.tesebiaqidange{display:inline-block;border: 1px solid #ededed;padding:0px 0.2rem;height: 0.6rem;line-height:0.6rem;text-align: center;border-radius: 5px;font-size:0.346666rem;color: #898989;margin-right: 0.36rem;margin-bottom: 0.36rem;background-color:#ededed;}

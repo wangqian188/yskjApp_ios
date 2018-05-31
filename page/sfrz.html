@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js" ></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="../css/person.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/sfrz.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+	</head>
+	<style type="text/css">
+		.save{color: #fff;}
+		.mui-table-view-cell:after{background: none;}
+		.headimg{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title">上传名片</h1>
+		    <span class="save" onclick="save()">保存</span>
+		</header>
+		   <div class="mui-content per_zt">
+		     <ul class="list">
+            <li class='mui-table-view-cell mui-media'>
+            	<div class="card_zm">
+            	<p class="card_t">名片正面</p>
+            	<p class="mp mp_z">
+            	<a  class="imageup 1">
+                 <img id="headimg" class="headimg" >
+                 </a>
+                </p>
+                </div>
+               <!-- <p>名片正面 </p>-->
+               <!-- <p><button onclick="upload();" class='button'> 78提交</button></p>-->
+            </li>
+            <li class='mui-table-view-cell mui-media'>
+            	<div class="card_bm">
+            	<p class="card_t">名片背面</p>
+            	<p class="mp mp_f">
+            	<a  class="imageup 2">
+                 <img id="headimgf" class="headimg"  >
+                 </a>
+                </p>
+             </div>
+            </li>
+           
+        </ul>
+        </div>
+		</div>
+		 <script src="../js/lib/app_config.js"></script>
+		<script> 
+        	    var name="";
+				var card="";
+				var gsid="";
+				var gsname="";
+				var xmname="";
+				var phone="";
+				var mptp1=[];
+				var mptp2=[];
+				var ys1=1;
+				var ys2=1;
+				var ys=1;
+        	(function(){
+			   checkSubmit();
+			})();
+			  
+			mui.init();
+			//查看个人信息
+			function checkSubmit(){
+				if(JSON.parse(localStorage.getItem('cookxs_yh'))){
+						mui.ajax(url+'/yskjApp/appYskj/V1/getCookieInfo1.do',{
+						data:{
+							"cookie":JSON.parse(localStorage.getItem('cookxs_yh'))
+						},
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							if(data.success){
+								var userData = data.data;
+								//将手机号中间加密
+								 name=userData.name;
+								 phone=userData.phone;
+								 gsid=userData.gsid;
+								 gsname=userData.gsname;
+								 xmname=userData.xmname;
+								 card=userData.card;
+								 var p1=userData.mp1;
+								 
+								 if(p1!=null&&p1.length>0){
+								 	for(var i=0;i<p1.length;i++){
+								 		var tp=img_url;
+								 		tp+=p1[i].url;
+								 		$('#headimg').attr('src',tp);
+								 		mptp1.push(p1[i]);
+								 	}
+								 }
+								  var p2=userData.mp2;
+								 if(p2!=null&&p2.length>0){
+								 	 //mptp2=p2;
+								 	for(var i=0;i<p2.length;i++){
+								 		var tp=img_url;
+								 		tp+=p2[i].url;
+								 		$('#headimgf').attr('src',tp);
+								 		mptp2.push(p2[i]);
+								 	}
+								 }
+							}else{
+//								mui.alert(data.message);
+								mui.alert(data.message, '提示',function(){});
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});     
+					
+				}else{
+					mui.openWindow({
+						url: 'login.html', 
+						id:'login'
+					});
+				}
+			}
+			
+                  
+                 //扩展API完成后执行的操作
+                function plusReady(){               
+                 //给选中的li增加判别class
+                    $(".list li").on("tap",".imageup",function(){
+                    var $li = $(this).parents("li");
+                     console.log($($li).text())                
+                    $li.addClass("selectLi");
+                    $li.siblings().removeClass("selectLi");              
+                     page.imgUp();
+                    })
+                } 
+             
+                //弹出系统按钮选择框
+                var page=null; 
+                page={ 
+                    imgUp:function(){ 
+                        var m=this; 
+                       /* console.log(m);*/
+                        plus.nativeUI.actionSheet({cancel:"取消",buttons:[ 
+                            {title:"拍照"}, 
+                            {title:"从相册中选择"} 
+                        ]}, function(e){//1 是拍照  2 从相册中选择 
+                            switch(e.index){ 
+                                case 1:appendByCamera();break; 
+                                case 2:appendByGallery();break; 
+                            } 
+                        }); 
+                    } 
+                } 
+               
+            // 拍照添加文件
+             function appendByCamera(){
+                plus.camera.getCamera().captureImage(function(e){
+                    console.log("e is" +  e);
+                    plus.io.resolveLocalFileSystemURL(e, function(entry) {
+                        var path =  entry.toLocalURL();
+                        var indexa = liIndex();
+                       if(indexa==0){
+                       	ys1=2;
+                       }else{
+                       	ys2=2;
+                       }
+                        $(".headimg")[indexa].src = path;                
+                    }, function(e) {
+                        mui.toast("读取拍照文件错误：" + e.message);
+                    });
+     
+                });   
+            }
+            // 从相册添加文件
+            function appendByGallery(){
+                plus.gallery.pick(function(path){
+                    var indexa = liIndex();
+                    console.log(""+indexa);
+                    if(indexa==0){
+                    	ys1=2;
+                    }else{
+                    	ys2=2;
+                    }
+                    $(".headimg")[indexa].src = path;
+                });
+            }
+             
+          
+         
+            //服务端接口路径
+            var server =Interface_url+"/yhcms/web/jcsj/uploadPic.do";
+            //获取图片元素
+            var files = document.getElementById('headimg');
+            var filesf = document.getElementById('headimgf');
+            // 上传文件
+            function upload(){
+            	var f1=$("#headimg").attr("src");
+            	if(f1!=""){
+                var wt=plus.nativeUI.showWaiting();
+                //添加其他参数
+               var data = getBase64Image(files);
+                var newImgbase = data.split(",")[1]; 
+                 var  imgArray=[];   //通过逗号分割到新的编码
+                imgArray.push(newImgbase);            //放到imgArray数组里面
+                img(imgArray,1);
+                wt.close();
+               }else{
+//             	alert("请上传名片正面");
+               	mui.alert("请上传名片正面", '提示', function(){});
+               }
+              
+            } 
+              function uploadf(){
+              	var f1=$("#headimgf").attr("src");
+              	if(f1!=""){
+                var wt=plus.nativeUI.showWaiting();
+                //添加其他参数
+                var data = getBase64Image(filesf);
+                var newImgbase = data.split(",")[1];  //通过逗号分割到新的编码
+                var  imgArrayf=[];   
+                imgArrayf.push(newImgbase);            //放到imgArray数组里面
+                img(imgArrayf,2);
+                wt.close();
+               }else{
+//             	alert("请上传名片反面");
+               	mui.alert("请上传名片反面", '提示', function(){});
+               }
+            } 
+             function getBase64Image(img) {
+			    var canvas = document.createElement("canvas");   //创建canvas DOM元素，并设置其宽高和图片一样
+			    canvas.width = img.width;
+			    canvas.height = img.height;
+			    var ctx = canvas.getContext("2d");
+			    ctx.drawImage(img, 0, 0, img.width, img.height); //使用画布画图
+			    var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();  //动态截取图片的格式
+			    var dataURL = canvas.toDataURL("image/" + ext);  //返回的是一串Base64编码的URL并指定格式
+			    return dataURL;
+			}
+
+             //判断点击的是上传的第几个li             
+             function liIndex(){
+                var lis = $(".list").children();
+                console.log(lis.length)
+                for(var i = 0; i < lis.length;i++){ 
+                    console.log($(lis[i]).attr("class"))
+                    var lisClass = $(lis[i]).attr("class").split(" ");
+                    if(lisClass[2] == "selectLi"){
+                        console.log(i);
+                        return i;
+                    }
+                }
+             }
+             
+             
+          //扩展API是否准备好，如果没有准备好则监听plusReady 
+         if(window.plus){
+                plusReady();
+            }else{
+                document.addEventListener("plusready",plusReady,false);
+            }
+            
+            function img(img_path,state){
+            	mui.ajax(Interface_url+"/yhcms/web/jcsj/uploadPic.do",{
+            		data:{
+            			"parameters":{
+            				"smallPic":JSON.stringify(img_path),
+            				"suffix":".jpeg"
+            			},
+            			"foreEndType":2,
+            			"code":"300000084"
+            		},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					//服务器返回响应，根据响应结果，分析是否登录成功；
+					if(data.success){
+						if(state==1){
+							var l1=mptp1.length;
+							var h={"id":"","isdelete":"","url":""};
+								h.url=data.data;
+								h.isdelete=0;
+								h.id="";
+							if(l1>0){
+								for(var i=0;i<l1;i++){
+									mptp1[i].isdelete=1;
+								}
+							}
+							mptp1.push(h);
+							ys=2;
+						}else if(state==2){
+							var l1=mptp2.length;
+							var h={"id":"","isdelete":"","url":""};
+								h.url=data.data;
+								h.isdelete=0;
+								h.id="";
+							if(l1>0){
+								for(var i=0;i<l1;i++){
+									mptp2[i].isdelete=1;
+								}
+							}
+							mptp2.push(h);
+						}
+						if(ys1==1&&ys2!=1){
+							saveUserImg();
+						}else if(ys1!=1&&ys2==1){
+							saveUserImg();
+						}else if(ys1!=1&&ys2!=1&&state==2){
+							saveUserImg();
+						}
+						
+					}else{
+//						alert("提示信息："+data.message);
+						mui.alert("提示信息："+data.message, '提示', function(){});
+					}
+				   
+				},
+				error:function(xhr,type,errorThrown){
+					//异常处理；
+					console.log(type);
+				}
+			});	
+			
+            }
+            
+            
+            //保存用户信息
+            function save(){
+            	
+            	var f1=$("#headimgf").attr("src");
+				var f2=$("#headimg").attr("src");
+				if(f1!=""&&f2!=""){
+						if(ys1!=1&&ys2==1){
+		            	     upload();
+		            	
+		            	}
+		            	if(ys2!=1&&ys1==1){
+		            	 uploadf();
+		            	
+		            	}
+		            	if(ys1==1&&ys2==1){
+		            		saveUserImg();
+		            	}
+		            	if(ys1!=1&&ys2!=1){
+		            		upload();
+		            		uploadf();
+		            	}
+				}else{
+//					alert("图片不能为空");
+					mui.alert("图片不能为空", '提示', function(){});
+				}
+			}
+            
+            
+            function saveUserImg(){
+            	mui.ajax(Interface_url+'/yhcms/web/qduser/updateAppUser.do',{
+					data:{
+						"parameters":
+						{"card":card,
+						"gsid":gsid,
+						"gsname":gsname,
+						"xmname":xmname,
+						"cookie":JSON.parse(localStorage.getItem('cookxs_yh')),
+						"name":name,
+						"phone":phone,
+						"mptp1":mptp1,
+						"mptp2":mptp2},
+						"foreEndType":2,
+						"code":"2"
+						},
+					dataType:'json',//服务器返回json格式数据
+					type:'post',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						//服务器返回响应，根据响应结果，分析是否登录成功；
+						if(data.success){
+//							mui.alert("上传成功！！");
+							mui.alert("上传成功！！", '提示', function(){});
+							var person = plus.webview.getWebviewById('person0');
+						    // 执行相应的事件
+						    mui.fire(person, 'per_loc', {
+						    	'p_loc':1
+						    });
+							//成功后返回至服务商城页面
+							mui.openWindow({
+								url: 'person.html', 
+								id:"person0"
+							});
+						}else{
+							mui.alert(data.message);
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理；
+						console.log(type);
+					}
+				});
+            }
+          
+        </script> 
+	</body>
+
+</html>

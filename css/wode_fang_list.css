@@ -1,0 +1,69 @@
+.wode_fyblank_display{
+	display: blank;
+	background-color: #ffffff;
+	height: 100%;
+}
+.wode_fyblank_displaynone{
+	/*display: blank;*/
+	display: none;
+}
+.wode_fangneirong_display{
+	/*display: none;*/
+	display: blank;
+}
+.wode_fyimg{
+	height: 1.84rem;
+	margin-top: 3.16rem;
+	background: url(../img/wode/fangyuanblank.png) no-repeat center;
+	background-size: auto 100%;
+}
+.wode_fywenti{
+	line-height: 0.4rem;
+	font-size: 0.4rem;
+	margin-top: 0.733333rem;
+	text-align: center;
+	color: #999999;
+}
+.wode_fyzitinien{
+	line-height: 0.32rem;
+	font-size: 0.32rem;
+	color: #cccccc;
+	text-align: center;
+	margin-top: 0.266666rem;
+}
+.wode_biankongdiv{
+	width: 100%;
+	margin-top: 0.4rem;
+}
+.wode_biankong{
+	display: flex;
+	height: 0.986666rem;
+	width: 3.52rem;
+	justify-content: center;
+	background-color: #2b70d8;
+	font-size: 0.373333rem;
+	color: #ffffff;
+	align-items: center;
+	border-radius: 0.066666rem;
+	margin:  0rem auto;
+}
+.release_date{
+	line-height: 0.893333rem;
+	height: 0.893333rem !important;
+}
+.release_date span{
+	color: #666666;
+	font-size: 0.346666rem;
+}
+.blank_jvli{
+	position: relative;
+	left: -0.4rem;
+	width: 10rem!important;
+	height: 0.266666rem !important;
+	border-bottom: 1px solid #e5e5e5 !important;
+	border-top: 1px solid #e5e5e5 !important;
+	background-color: #f0f0f0;
+	margin-bottom: 0.533333rem;
+	overflow: hidden;
+}
+.sy_ipx_content{top:0px !important;}

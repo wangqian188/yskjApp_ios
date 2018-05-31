@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js" ></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="../css/find_house.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title">我要找房</h1>
+		</header>
+		<div class="mui-content sy_ipx_content" style="bottom: 0;background: #ffffff;overflow: auto;">
+		    <!--头部logo-->
+		    <div class="zf_pic">
+		    	<img src="../img/zf_pic.png" alt="" />
+		    </div>
+		    <div class="zf_tit">定制您的需求,匹配适合您的房子</div>
+		    <!--条件1-->
+		    <div class="zf_box">
+		    	<p class="zf_bt">您想要在哪个地方办公</p>
+		    	<p class="zf_inp">
+		    		<input type="text" placeholder="请输入楼盘、区域、商圈" id="place">
+		    	</p>
+		    </div>
+		    <!--条件2-->
+		    <div class="zf_box">
+		    	<p class="zf_bt">您需要多大面积的房子</p>
+		    	<p class="zf_inp1">
+		    		<input type="text" placeholder="请输入" id="area" autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="6" >
+		    		<span></span>
+		    		<input type="text" placeholder="请输入" id="area1" autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="6" >
+		    		<i>m²</i>
+		    	</p>
+		    </div>
+		    <!--条件3-->
+		    <div class="zf_box">
+		    	<p class="zf_bt">您的租金预算是多少</p>
+		    	<p class="zf_inp1">
+		    		<input type="text" placeholder="请输入" id="fund" autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
+		    		<span></span>
+		    		<input type="text" placeholder="请输入" id="fund1" autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
+		    		<i>元/月</i>
+		    	</p>
+		    </div>
+		    <!--条件4-->
+		    <div class="zf_box">
+		    	<p class="zf_bt">您是否需要注册</p>
+		    	<ul class="zf_zc">
+		    		<li>不限</li>
+		    		<li>是</li>
+		    	</ul>
+		    </div>
+		    <!--底部-->
+		    <div class="wt_bottom">
+		    	<div class="wt_btnbox">
+		    		<button class="wt_btn">确定查找</button>
+		    	</div>
+		    	<div class="wt_yw">
+		    		<p class="wt_tip">如有任何疑问请拨打咨询电话</p>
+		    		<p class="wt_tel"><a href="tel:400-078-8800" class="a_d" style="color: #007aff!important;">400-078-8800</a></p>
+		    	</div>
+		    </div>
+		</div>
+		<script src="../js/lib/app_config.js"></script>
+		<script type="text/javascript" src="../js/lib/find_house.js" ></script>
+	</body>
+	<script>
+		var oli = $('.zf_zc li');
+		for(var i=0; i<oli.length; i++){
+			(function(index){
+				oli[i].onclick = function(){
+					for (var j=0; j<oli.length; j++) {
+						oli[j].className = '';
+					}
+					oli[index].className = 'zf_li_active';
+					//是否注册  -1不限   1是
+					if(index == 0){
+						obj.iszc = index+2;
+					}
+					if(index == 1){
+						obj.iszc = index;
+					}
+				};
+			})(i)
+		}
+		
+	</script>
+</html>

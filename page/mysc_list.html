@@ -1,0 +1,425 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/mycollection.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/sy.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/jxfyList.css"/>
+	</head>
+	<style type="text/css">
+		.list_xs{display: none;}
+		.list_xs .zx:last-child{display: none;}
+		.listtail{position: relative;}
+		.xj_zz{width: 10.4rem;position: absolute;left: -0.4rem;top: -0.4rem;right: 0;bottom: 0;background: rgba(248,248,248,0.5);display: none;}
+		.listtail .fy_pic{position: relative;}
+		.pic_zz{position: absolute;left: 0;top: 0rem;right: 0;bottom: 0;display: flex;align-items: center;justify-content: center;font-size: 0.4rem;color: #fff;font-weight: bold;display: none;}
+		.listtail a{display: inline-block;width: 100%;}
+		.fy_list li a{display: flex;height: 2.666666rem;text-decoration: none;}
+		.kong p:first-child{width: 3.866666rem;height: 2.933333rem;background: url(../img/my_scion.png)no-repeat center;background-size: 100% auto;}
+		.kong{height:7.16rem;}
+		.kong1{display: none;position: absolute;top: 0;bottom: 0;right: 0;left: 0;z-index: 9;background: #fff;}
+		.kong p:last-child{text-align:center;font-size: 0.4rem;color: #999999;margin-top: 0.266666rem;}
+		.kong{display:flex;flex-direction:column;justify-content: flex-end;align-items: center;margin-top: 0.133333rem;}
+		.mui-table-view:after{border: 0;background-color: none!important;}
+		.fy_pic{
+			position: relative;
+		}
+		.qieryun{
+			position: absolute;
+			left: 0.266666rem;
+			bottom: 0.266666rem;
+		}
+	</style>
+	<body>
+		<div class="mui-content">
+		    <!--下拉刷新容器开始-->
+			<div id="pullrefresh" class="mui-content mui-scroll-wrapper list_xs" style="display: block;">
+			    <div class="mui-scroll">
+			        <!--数据列表1-->
+				    <ul class="mui-table-view fy_list listUl" id="list1">
+				    	
+				   </ul>
+			    </div>
+			</div> 
+			<div class="kong1" id="kong1">
+				<div class="kong">
+					<p></p>
+					<p>您还没有收藏任何房源</p>					
+				</div>
+			</div>
+		</div>
+		<script src="../js/lib/app_config.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			var idx = 0;
+			var page = 1;//页数
+			if(idx==0){
+				my_shouc(idx);
+			}
+			window.addEventListener("tabqc", function (e) {
+			    //获得事件参数
+			    idx = e.detail.idx;
+				//子页面tab切换功能
+				for (var i=0; i<$('.list_xs').length; i++) {
+					$('.list_xs').eq(i).css('display','none');
+				}
+				$('.list_xs').eq(idx).css('display','block');
+//				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				my_shouc(idx);
+			});
+			window.addEventListener("bianji", function (e) {
+			    //获得事件参数
+				var bjshow = e.detail.bjshow;
+				if(bjshow==1){
+					$('.selc').css('display','block');
+				}else{
+					$('.selc').css('display','none');
+					for (var j=0; j<$('#list1 input').length; j++) {
+						$('#list1 input').eq(j).prop('checked',false);
+					}
+				}
+			});
+			
+//			mui.plusReady(function() {  
+//	            var self = plus.webview.currentWebview();  
+//	            var txt = self.asd;
+//	        })  
+
+			mui.init({ 
+				pullRefresh : { 
+					container:"#pullrefresh",	
+					down : {
+						contentdown : "下拉可以刷新",
+						contentover : "释放立即刷新",
+						contentrefresh : "正在刷新...",
+						callback : fndown 
+					 } } 
+			});
+			function fndown(){
+				page = 1;
+				setTimeout(function(){
+					$('#list1').html('');
+					my_shouc(idx);			
+//					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				},1000)
+			}
+			mui.init({ 
+			    pullRefresh : { 
+			        container:"#pullrefresh",
+			        up : { 
+			            contentrefresh : "正在加载...",
+			            contentnomore:'没有更多数据了',
+			            callback : fnup 
+			        } 
+			    } 
+			});
+			function fnup(){
+				var _this = this;
+				setTimeout(function(){
+					my_shouc(idx);
+    				_this.endPullupToRefresh(true|false); 
+				},1000)
+			}
+			//我的收藏接口
+			var sc_str = '';
+			function my_shouc(dx){
+				if(dx == 2){
+					dx = dx + 1;//3下架
+				}
+//				var sc_data = [];//全部房源
+//				var sc_data1 = [];//下架房源
+//				var sc_data2 = [];//在租房源
+				mui.ajax(Interface_url + '/yhcms/web/collecthouse/getAppCollect.do',{
+					data:{
+							"parameters":
+							{
+								"cookie":JSON.parse(localStorage.getItem('cookxs_yh')),
+								"search_keywork":"",
+								"curr_page":page,
+								"items_perpage":10,
+								"sid":dx,//0所有，1上架，3下架
+							},
+							"foreEndType":2,
+							"code":"16"
+					},
+					dataType:'json',
+					type:'post',
+					timeout:10000,
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						if(data.success){
+							if(dx == 0){
+								var sc_data = data.data;//全部
+//								if(sc_data.length == 0){
+//									mui.plusReady(function(){
+//										var main = plus.webview.getWebviewById('person1');
+//										mui.fire(main, "yincang",{//隐藏编辑按钮
+//										    yinc: 12
+//										})									
+//									});
+//								}
+								if(data.data.length == 0 && page == 1){
+									mui.plusReady(function(){
+										var main = plus.webview.getWebviewById('person1');
+										mui.fire(main, "yincang",{//隐藏编辑按钮
+										    yinc: 12
+										})									
+									});
+									$('#kong1').css('display','block');
+										$('#kong1').on('touchstart',function(e){
+											mui('#pullrefresh').pullRefresh().setStopped(true);
+											e.preventDefault();
+											return false;
+										});		
+								}else{
+									$('#kong1').css('display','none');
+								}
+								console.log(sc_data);
+								page++;
+								if($('.selc').css('display') == 'block'){
+									mui.plusReady(function(){
+										var main = plus.webview.getWebviewById('person1');
+										mui.fire(main, "dsel_hid",{
+										    delhid: 44
+										})									
+									});
+								}else{
+									mui.plusReady(function(){
+										var main = plus.webview.getWebviewById('person1');
+										mui.fire(main, "dsel_hid",{
+										    delhid: 4
+										})									
+									});									
+								}
+								
+								for (var i=0; i<sc_data.length; i++) {
+									if(sc_data[i].cloudscape == ''){
+										if(sc_data[i].decoration_level == ''){
+											if(sc_data[i].cid == 1){
+												sc_str = '<li id="'+sc_data[i].fyid+'" value="'+sc_data[i].sid+'" class="listtail"><div class="xj_zz"></div><div class="selc"><div class="mui-input-row mui-checkbox selc_ch"><label></label><input name="Checkbox" type="checkbox" value="'+sc_data[i].id+'" onclick="sel(this,'+i+')"></div></div><a href="javascript:void(0)" id="'+sc_data[i].fyid+'" name="'+sc_data[i].sid+'"><div class="fy_pic"><span class="pic_zz">房源已下架</span><img src="'+img_url+sc_data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+sc_data[i].topic+'&nbsp;&nbsp;'+sc_data[i].zdh+''+sc_data[i].fybh+'</p><p class="mjwz">'+sc_data[i].district+'&nbsp;'+sc_data[i].housing_area+'m²</p><p class="jfList"><span class="jzdj">定金</span></p><p class="dj"><span>'+sc_data[i].daily_price+'<i>元/m²/天</i></span></p></div></a></li><li class="zx"></li>';										
+											}else{
+												sc_str = '<li id="'+sc_data[i].fyid+'" value="'+sc_data[i].sid+'"  class="listtail"><div class="xj_zz"></div><div class="selc"><div class="mui-input-row mui-checkbox selc_ch"><label></label><input name="Checkbox" type="checkbox" value="'+sc_data[i].id+'" onclick="sel(this,'+i+')"></div></div><a href="javascript:void(0)" id="'+sc_data[i].fyid+'" name="'+sc_data[i].sid+'"><div class="fy_pic"><span class="pic_zz">房源已下架</span><img src="'+img_url+sc_data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+sc_data[i].topic+'&nbsp;&nbsp;'+sc_data[i].zdh+''+sc_data[i].fybh+'</p><p class="mjwz">'+sc_data[i].district+'&nbsp;'+sc_data[i].housing_area+'m²</p><p class="jfList"> </p><p class="dj"><span>'+sc_data[i].daily_price+'<i>元/m²/天</i></span></p></div></a></li><li class="zx"></li>';
+											}
+										}else{
+											if(sc_data[i].cid == 1){
+												sc_str = '<li id="'+sc_data[i].fyid+'" value="'+sc_data[i].sid+'"  class="listtail"><div class="xj_zz"></div><div class="selc"><div class="mui-input-row mui-checkbox selc_ch"><label></label><input name="Checkbox" type="checkbox" value="'+sc_data[i].id+'" onclick="sel(this,'+i+')"></div></div><a href="javascript:void(0)" id="'+sc_data[i].fyid+'" name="'+sc_data[i].sid+'"><div class="fy_pic"><span class="pic_zz">房源已下架</span><img src="'+img_url+sc_data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+sc_data[i].topic+'&nbsp;&nbsp;'+sc_data[i].zdh+''+sc_data[i].fybh+'</p><p class="mjwz">'+sc_data[i].district+'&nbsp;'+sc_data[i].housing_area+'m²</p><p class="jfList"><span class="jzjf">'+sc_data[i].decoration_level+'</span> <span class="jzdj">定金</span></p><p class="dj"><span>'+sc_data[i].daily_price+'<i>元/m²/天</i></span></p></div></a></li><li class="zx"></li>';										
+											}else{
+												sc_str = '<li id="'+sc_data[i].fyid+'" value="'+sc_data[i].sid+'"  class="listtail"><div class="xj_zz"></div><div class="selc"><div class="mui-input-row mui-checkbox selc_ch"><label></label><input name="Checkbox" type="checkbox" value="'+sc_data[i].id+'" onclick="sel(this,'+i+')"></div></div><a href="javascript:void(0)" id="'+sc_data[i].fyid+'" name="'+sc_data[i].sid+'"><div class="fy_pic"><span class="pic_zz">房源已下架</span><img src="'+img_url+sc_data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+sc_data[i].topic+'&nbsp;&nbsp;'+sc_data[i].zdh+''+sc_data[i].fybh+'</p><p class="mjwz">'+sc_data[i].district+'&nbsp;'+sc_data[i].housing_area+'m²</p><p class="jfList"><span class="jzjf">'+sc_data[i].decoration_level+'</span> </p><p class="dj"><span>'+sc_data[i].daily_price+'<i>元/m²/天</i></span></p></div></a></li><li class="zx"></li>';
+											}
+										}
+									}else{
+										if(sc_data[i].decoration_level == ''){
+											if(sc_data[i].cid == 1){
+												sc_str = '<li id="'+sc_data[i].fyid+'" value="'+sc_data[i].sid+'" class="listtail"><div class="xj_zz"></div><div class="selc"><div class="mui-input-row mui-checkbox selc_ch"><label></label><input name="Checkbox" type="checkbox" value="'+sc_data[i].id+'" onclick="sel(this,'+i+')"></div></div><a href="javascript:void(0)" id="'+sc_data[i].fyid+'" name="'+sc_data[i].sid+'"><div class="fy_pic"><span class="pic_zz">房源已下架</span><img src="'+img_url+sc_data[i].housing_icon+'" alt="" /><div class="qieryun"></div></div><div class="fy_xx"><p class="lp">'+sc_data[i].topic+'&nbsp;&nbsp;'+sc_data[i].zdh+''+sc_data[i].fybh+'</p><p class="mjwz">'+sc_data[i].district+'&nbsp;'+sc_data[i].housing_area+'m²</p><p class="jfList"><span class="jzdj">定金</span></p><p class="dj"><span>'+sc_data[i].daily_price+'<i>元/m²/天</i></span></p></div></a></li><li class="zx"></li>';
+											}else{
+												sc_str = '<li id="'+sc_data[i].fyid+'" value="'+sc_data[i].sid+'"  class="listtail"><div class="xj_zz"></div><div class="selc"><div class="mui-input-row mui-checkbox selc_ch"><label></label><input name="Checkbox" type="checkbox" value="'+sc_data[i].id+'" onclick="sel(this,'+i+')"></div></div><a href="javascript:void(0)" id="'+sc_data[i].fyid+'" name="'+sc_data[i].sid+'"><div class="fy_pic"><span class="pic_zz">房源已下架</span><img src="'+img_url+sc_data[i].housing_icon+'" alt="" /><div class="qieryun"></div></div><div class="fy_xx"><p class="lp">'+sc_data[i].topic+'&nbsp;&nbsp;'+sc_data[i].zdh+''+sc_data[i].fybh+'</p><p class="mjwz">'+sc_data[i].district+'&nbsp;'+sc_data[i].housing_area+'m²</p><p class="jfList"> </p><p class="dj"><span>'+sc_data[i].daily_price+'<i>元/m²/天</i></span></p></div></a></li><li class="zx"></li>';
+											}
+										}else{
+											if(sc_data[i].cid == 1){
+												sc_str = '<li id="'+sc_data[i].fyid+'" value="'+sc_data[i].sid+'"  class="listtail"><div class="xj_zz"></div><div class="selc"><div class="mui-input-row mui-checkbox selc_ch"><label></label><input name="Checkbox" type="checkbox" value="'+sc_data[i].id+'" onclick="sel(this,'+i+')"></div></div><a href="javascript:void(0)" id="'+sc_data[i].fyid+'" name="'+sc_data[i].sid+'"><div class="fy_pic"><span class="pic_zz">房源已下架</span><img src="'+img_url+sc_data[i].housing_icon+'" alt="" /><div class="qieryun"></div></div><div class="fy_xx"><p class="lp">'+sc_data[i].topic+'&nbsp;&nbsp;'+sc_data[i].zdh+''+sc_data[i].fybh+'</p><p class="mjwz">'+sc_data[i].district+'&nbsp;'+sc_data[i].housing_area+'m²</p><p class="jfList"><span class="jzjf">'+sc_data[i].decoration_level+'</span> <span class="jzdj">定金</span></p><p class="dj"><span>'+sc_data[i].daily_price+'<i>元/m²/天</i></span></p></div></a></li><li class="zx"></li>';										
+											}else{
+												sc_str = '<li id="'+sc_data[i].fyid+'" value="'+sc_data[i].sid+'"  class="listtail"><div class="xj_zz"></div><div class="selc"><div class="mui-input-row mui-checkbox selc_ch"><label></label><input name="Checkbox" type="checkbox" value="'+sc_data[i].id+'" onclick="sel(this,'+i+')"></div></div><a href="javascript:void(0)" id="'+sc_data[i].fyid+'" name="'+sc_data[i].sid+'"><div class="fy_pic"><span class="pic_zz">房源已下架</span><img src="'+img_url+sc_data[i].housing_icon+'" alt="" /><div class="qieryun"></div></div><div class="fy_xx"><p class="lp">'+sc_data[i].topic+'&nbsp;&nbsp;'+sc_data[i].zdh+''+sc_data[i].fybh+'</p><p class="mjwz">'+sc_data[i].district+'&nbsp;'+sc_data[i].housing_area+'m²</p><p class="jfList"><span class="jzjf">'+sc_data[i].decoration_level+'</span> </p><p class="dj"><span>'+sc_data[i].daily_price+'<i>元/m²/天</i></span></p></div></a></li><li class="zx"></li>';
+											}
+										}
+									}
+									if(dx == 0){//全部
+										$('#list1').append(sc_str);							
+										if(sc_data[i].sid == 3){
+											$('.xj_zz').eq(i).css('display','block');
+											$('.pic_zz').eq(i).css('display','flex');
+										}
+										mui("#list1").on("tap","a",function(){
+											if(this.name == 3){
+												return;
+											}else{
+											 	mui.openWindow({ 
+													url:'./fyTail.html',
+													id:'fyTail',
+													extras:{ 
+														fyid:this.id,
+													}
+												});
+											}
+										})
+										
+									}
+//									else if(dx == 3){//下架
+//										$('#list2').append(sc_str);
+//									}else{//再租房源
+//										$('#list3').append(sc_str);
+//									}
+								}
+								mui('#pullrefresh').pullRefresh().endPulldownToRefresh((data.data.length<10));
+//								mui('#pullrefresh').pullRefresh().refresh(true);
+							}
+//							else if(dx == 3){
+//								var datas1 = datas1.concat(data.data);//下架房源	
+//								console.log(datas1);
+//							}else{
+//								var datas2 = datas1.concat(data.data);//在租房源
+//								console.log(datas2);
+//							}
+							
+						}else{
+							//数据获取不成功
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type);
+					}
+				});
+			}
+//			function linktodetail(id,sid){
+//				if(sid == 3){
+//					return;
+//				}else{
+//					mui.openWindow({ 
+//						url:'./fyTail.html', //需要打开页面的url地址 
+//						id:'fyTail',
+//						extras:{
+//					      fyid:id
+//					    },
+//					});
+////					mui.plusReady(function(){
+////						var main1 = plus.webview.getWebviewById('fyTail');
+////						mui.fire(main1, "fyyuadeqx",{
+////						    fyid:id
+////						})									
+////					});					
+//				}
+//			}
+			//判断登陆状态
+//			denglu_zt(JSON.parse(localStorage.getItem('cookxs_yh')));
+			var check_xz = true;
+			var str_fyid = '';
+			var arr = [];
+			function sel(t){
+				arr.push(t.value);
+//				str_fyid = arr.join(',');
+				if($("#list1 input[type='checkbox']:checked").length == $('#list1 input[type="checkbox"]').length){
+					check_xz = true;
+					str_fyid = $("#list1 input:checked").map(function(index,elem) {
+			            return $(elem).val();
+			        }).get().join(',');
+				}
+				if($("#list1 input[type='checkbox']:checked").length != $('#list1 input[type="checkbox"]').length){
+					check_xz = false;
+					str_fyid = $("#list1 input:checked").map(function(index,elem) {
+			            return $(elem).val();
+			        }).get().join(',');
+				}
+				var main = plus.webview.getWebviewById('person1');
+				mui.fire(main, "all_dsel",{
+				    dsel: check_xz
+				})
+			}
+			//全选
+			window.addEventListener("all_cek", function (e) {
+			    //获得事件参数
+				var cek = e.detail.cek;
+				if(cek==2){
+					sel_list1();
+				}
+				if(cek==3){
+					qxsel_list1();
+				}
+			});
+			function sel_list1(){//全选1
+				for (var i=0; i<$('#list1 input').length; i++) {
+					$('#list1 input').eq(i).prop('checked',true);
+				}
+				str_fyid = $("#list1 input:checked").map(function(index,elem) {
+		            return $(elem).val();
+		        }).get().join(',');
+			}
+			function qxsel_list1(){//取消全选1
+				for (var j=0; j<$('#list1 input').length; j++) {
+					$('#list1 input').eq(j).prop('checked',false);
+				}
+				str_fyid = '';
+			}
+			//删除收藏/yskjApp/appYskj/V1/delCollect.do
+			function del_sc(){
+				var status = 1;
+				for (var i=0; i<$('#list1 input').length; i++) {
+					if($('#list1 input').eq(i).prop('checked')){
+						status = 2;
+					}
+				}
+				if($('#list1 input').length != 0 && status == 1){
+					mui.alert("您还没有选中任何房源", '提示',function(){
+						var wobj = plus.webview.getWebviewById("mysc_list");
+						wobj.reload(true);
+						return;
+					});
+					return;
+				}
+				if($('#list1 input').length == 0){
+					mui.alert("您还没有收藏任何房源", '提示',function(){});
+					return;
+				}
+				 var btnArray = ['取消', '确认'];
+				 mui.confirm('确定删除吗?', '提示', btnArray, function(e) {
+				 	 if (e.index == 0) {
+				 	 	var wobj = plus.webview.getWebviewById("mysc_list");
+						wobj.reload(true);
+				 	 	return false;
+				 	 }
+				 	 if(e.index == 1){
+//				 	 	var wobj = plus.webview.getWebviewById("mysc_list");
+//						wobj.reload(true);
+				 	 }
+//				alert(str_fyid);
+					mui.ajax(url + '/yskjApp/appYskj/V1/delCollect.do',{
+						data:{
+							"ids":str_fyid
+						},
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							if(data.success){
+								mui.toast(data.message,{ duration:'2000', type:'div' });
+								var wobj = plus.webview.getWebviewById("mysc_list");
+								wobj.reload(true);
+							}else{
+								
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});
+				})
+			}
+			
+			window.addEventListener("del_selsc", function (e) {
+			    //获得事件参数
+				var selsc = e.detail.selsc;
+				del_sc();
+			});
+			//取消收藏刷新收藏列表
+			window.addEventListener("shoucang", function (e) {
+			    //获得事件参数
+			    idx = e.detail.idx;
+				if(idx==888){
+					var wobj = plus.webview.getWebviewById("mysc_list");
+					wobj.reload(true);					
+				}
+			});
+			
+			
+		</script>
+		
+	</body>
+
+</html>

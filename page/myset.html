@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js" ></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="../css/person.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+		<script src="../js/lib/sy.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		.per_news{
+			padding-left: 0;
+			background: none;
+			border: none;
+		}
+		.per_news li{
+			padding-left: 0.4rem;
+			margin-bottom: 0.266666rem;
+			background: #fff;
+			border-bottom: 1px solid #e5e5e5;
+			border-top: 1px solid #e5e5e5;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title">设置</h1> 
+		</header>
+		<div class="mui-content per_zt ipx_per_zt" style="bottom: 0;">
+			<ul class="per_news">
+		    	<li class="tolink loClass">
+		    		<span class="p_nane">修改密码</span>
+		    		<span class="mui-icon mui-icon-arrowright p_con"></span>
+		    	</li>
+		    	<!--<li class="version">-->
+		    		<!--<span class="p_nane" id="version"></span>-->
+		    		<!--<span class="mui-icon mui-icon-arrowright p_con"></span>-->
+		    	<!--</li>-->
+		    	<li class="tolink">
+		    		<span class="p_nane">免责声明</span>
+		    		<span class="mui-icon mui-icon-arrowright p_con"></span>
+		    	</li>
+		    	<li class="signout loClass">
+		    		<span class="p_nane">退出登录</span>
+		    		<span class="mui-icon mui-icon-arrowright p_con"></span>
+		    	</li>
+		    </ul>
+		    <p id="version" style="width: 10rem;text-align: center;position: absolute;bottom: 0.8rem;"></p>
+		</div>
+		<script type="text/javascript" src="../js/lib/app_config.js" ></script>
+		<script type="text/javascript">
+			var cookie=JSON.parse(localStorage.getItem('cookxs_yh'));
+			(function(){
+				
+			   checkSubmit();
+			})();
+			mui.init();
+			var old_back = mui.back;
+			mui.back = function() {
+			    // 获取目标口窗口对象
+			    var target = plus.webview.getWebviewById('wd.html');
+			    // 执行相应的事件
+			    mui.fire(target, 'customEvent', {
+			    	'ttt':1
+			    });
+			    // 执行关闭
+			    old_back();
+			};
+			var toUrl = ['./setpwd.html','./disclaimer.html','./userexit.html'];
+			//判断用户登录
+			
+				function checkSubmit(){
+				if(cookie){
+						mui.ajax(url + '/yskjApp/appYskj/V1/landState.do',{
+						data:{
+							"cookie":cookie
+						},
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							console.log("用户登录状态： "+data.success);
+							if(data.success){
+								//已登录
+							}else{
+								//未登录
+								$(".loClass").css("display","none");
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});     
+					
+				}else{
+					$(".loClass").css("display","none");
+				}
+			}
+			
+			//跳转页面地址
+			
+			for(var i=0; i<$('.tolink').length; i++){
+				(function(index){
+					$('.tolink').eq(index).click(function(){
+						mui.openWindow({ 
+						url:toUrl[index], //需要打开页面的url地址 
+						id:'setperson'+index,  //需要打开页面的url页面id
+						styles:{ 
+							top:'0px',//新页面顶部位置 
+							bottom:'0px',//新页面底部位置 
+		//					width:newpage-width,//新页面宽度，默认为100% 
+		//					height:newpage-height,//新页面高度，默认为100% ...... 
+						}, 
+						extras:{ 
+	
+		//					.....//自定义扩展参数，可以用来处理页面间传值 
+						},show:{ //控制打开页面的类型
+							autoShow:true,
+		//					//页面loaded事件发生后自动显示，默认为true 
+							aniShow:'slide-in-right',//页面显示动画，默认为”slide-in-right“；  页面出现的方式 左右上下
+							duration:''//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒； 
+						}, waiting:{ // 控制 弹出转圈框的信息
+							autoShow:true,//自动显示等待框，默认为true 
+							title:'加载中...',//等待对话框上显示的提示内容 
+							options:{ 
+								width:'100px',//等待框背景区域宽度，默认根据内容自动计算合适宽度 
+								height:'100px',//等待框背景区域高度，默认根据内容自动计算合适高度 ...... 
+							} 
+						}
+					});
+					})
+				})(i)		
+			}
+			//退出登录
+			function signout(){
+				mui.ajax(url + '/yskjApp/appYskj/V1/loginOut.do',{
+					data:{
+						"cookie":JSON.parse(localStorage.getItem('cookxs_yh'))
+					},
+					dataType:'json',
+					type:'post',
+					timeout:10000,
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){						
+						if(data.success){
+							mui.toast('已退出',{ duration:'3000', type:'div' }) 
+							localStorage.removeItem('cookxs_yh');
+							localStorage.removeItem('userInfos');
+							localStorage.removeItem('weinxin_shouquan');
+							localStorage.removeItem('lostate');
+							localStorage.removeItem('user_type');
+							localStorage.removeItem('user_id');
+//							var main12 = plus.webview.getWebviewById('wechat_log');
+//							mui.fire(main12, "zhuxiao_weixin",{
+//							    idxsxfh:1//1位置
+//							});
+							if(JSON.parse(localStorage.getItem('cookxs_yh'))){
+								localStorage.removeItem('cookxs_yh');
+							}else{
+								//退出成功后跳转'我的'页面
+								mui.back();
+//								mui.openWindow({
+//									url: '../wd.html', 
+//									id:'wd2'
+//								});
+								return;
+							}
+						}else{
+							mui.toast(data.message,{ duration:'2000', type:'div' }) 
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type);
+					}
+				});
+			}
+			$('.signout').click(function(){
+				signout();//退出登录方法调用
+			});	
+			window.addEventListener('login_back', function(event) {
+			    // mui.fire()传过来的额外的参数，在event.detail中；
+			    var detail = event.detail;
+			    var param = detail.login_b;
+			    if(param == 1){
+			    	mui.back();
+			    }
+			});
+			
+			var wgtVer=null; 
+			function plusReady(){ // 获取本地应用资源版本号 
+			    plus.runtime.getProperty(plus.runtime.appid,function(inf){ 
+			        wgtVer=inf.version;
+//			        $('#version').html(wgtVer+'版本');
+			        $('#version').html('版本&nbsp;&nbsp;'+wgtVer);
+			    }); 
+			} 
+			mui.plusReady(function(){
+				plusReady();	
+			});
+		</script>
+	</body>
+
+</html>

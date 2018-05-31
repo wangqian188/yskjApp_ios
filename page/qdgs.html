@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js" ></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="../css/person.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+	</head>
+	<style>
+		.save{
+			position: absolute;
+		    right: 0;
+		    height: 44px;
+		    line-height: 44px;
+			font-size: 0.453333rem;
+			color: #FFF;
+			padding-right: 0.4rem;
+		}
+		.per_news li{
+			position: relative;
+		}
+		.gsclass{
+			position: relative;
+			left: -0.4rem;
+			width: 10rem;
+			padding-left: 0.666666rem;
+			background: #fff;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title">渠道公司</h1>
+		    <span class="save" onclick="saveGsname()">保存</span>
+		</header>
+		<div class="mui-content per_zt ipx_per_zt">
+		   <ul class="per_news">
+		    	<li>
+		    		<div class="mui-input-row" style="width: 100%;">
+				        <input type="text" class="mui-input-clear add_n add_gsname" oninput="checkGsname()" placeholder="请输入渠道公司名称" id="gsname">
+				    </div>
+		    	</li>
+		    	<div class="gsclass"></div>
+		    	<li>
+		    		<div class="mui-input-row" style="width: 100%;">
+				        <input type="text" class="mui-input-clear add_n add_xmname" placeholder="请输入项目名称">
+				    </div>
+		    	</li>
+		    	
+		    </ul>
+		</div>
+		
+		  <script src="../js/lib/app_config.js"></script>
+		<script type="text/javascript">
+			var name="";
+			var card="";
+			var gsid="";
+			var gsname="";
+			var xmname="";
+			var phone="";
+			var mptp1=[];
+			var mptp2=[];
+		(function(){
+			   checkSubmit();
+			})();
+			   
+			mui.init()
+			function checkSubmit(){
+				if(JSON.parse(localStorage.getItem('cookxs_yh'))){
+						mui.ajax(url + '/yskjApp/appYskj/V1/getCookieInfo.do',{
+						data:{
+							"cookie":JSON.parse(localStorage.getItem('cookxs_yh'))
+						},
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							if(data.success){
+								var userData = data.data;
+								//将手机号中间加密
+								 name=userData.name;
+								 phone=userData.phone;
+								 gsid=userData.gsid;
+								 gsname=userData.gsname;
+								 if(gsname!=null){
+								 	$(".add_gsname").val(gsname);
+								 }
+								 xmname=userData.xmname;
+								  if(xmname!=null){
+								 	$(".add_xmname").val(xmname);
+								 }
+								 card=userData.card;
+								
+							}else{
+								mui.alert(data.message);
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});
+					
+				}else{
+					//登录页面
+					mui.openWindow({
+						url: 'login.html',
+						id:"login"
+					});
+				}
+			}
+			
+			//模糊搜索   渠道公司信息
+			function checkGsname(){
+				if($('#gsname').val()!=''){
+					$('.gsclass').css('display','block');
+				}else{
+					$('.gsclass').css('display','none');
+				}
+				gsid="";
+				gsname="";
+				xmname="";
+				$(".add_xmname").val("");
+				var gs=$(".add_gsname").val();
+				if(gs!=""){
+				mui.ajax(Interface_url + '/yhcms/web/qduser/getQdCompany.do',{
+						data:{
+							"companyName":gs
+							},
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							if(data.success){
+								//获取模糊搜索得到的   公司列表
+								var gsData = data.data;
+								var op="";
+								if(gsData.length>0){
+									for(var i=0;i<gsData.length;i++){
+										var did=gsData[i].id;
+										var dname=gsData[i].gsname;
+										var dxmname=gsData[i].xmname;
+										op+="</br>";
+										op+="<p class='p_class mui-input-row'>"
+										op+="<span class='mui-input-clear add_n aclass'>"
+										op+=dname;
+										op+="</span>";
+										op+="<span>  |  </span>";
+										op+="<span class='mui-input-clear add_n bclass'>"
+										op+=dxmname;
+										op+="</span>";
+										op+="</p>"
+										
+									}
+									
+								}
+								$(".gsclass").html(op);
+								//[{"id": "string","xmname": "string","gsname": "string"}]
+								$(".p_class").click(function(){
+									var f1=$(this).find(".aclass").html();
+									var f2=$(this).find(".bclass").html();
+								 	$(".add_gsname").val(f1);
+								 	$(".add_xmname").val(f2);
+								 	$(".gsclass").html("");  
+								})
+								
+							}else{
+								mui.alert(data.message);
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});
+				}
+			}
+			
+			//如果没有搜索到公司   则新增渠道公司
+			function saveGsname(){
+				var gs=$(".add_gsname").val();
+				var xm=$(".add_xmname").val();
+				if(gs!=""&&xm!=""){
+					$(".gsclass").html("");
+				mui.ajax(Interface_url + '/yhcms/web/qduser/addCompany.do',{
+						data:{
+							"gsname":gs,
+							"xmname":xm
+							},
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							if(data.success){
+								//新增公司的ID
+								var gsData = data.companyId;
+								gsid=gsData;
+								gsname=gs;
+								xmname=xm;
+								save();
+							}else{
+								mui.alert(data.message);
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});
+				}else{
+//					alert("渠道公司或项目名称不能为空")
+					mui.alert("渠道公司或项目名称不能为空", '提示',function(){});
+				}
+			}
+			//所有数据加载处理完之后   保存数据   保存数据之前  要确定 渠道公司的ID ，如果没有则新增渠道公司
+			function save(){
+				var add_name=$(".add_gsname").val();
+				var a_xmname=$(".add_xmname").val();
+				if(add_name!=""&&a_xmname!=""){
+					/*if(gsid==""||gsid!=""){
+					//新增渠道公司
+					saveGsname();
+					return false;*/
+				/*}*/
+					gsname=add_name;
+					xmname=a_xmname;
+				mui.ajax(Interface_url+'/yhcms/web/qduser/updateAppUserName.do',{
+					data:{
+						"parameters":
+						{"card":card,
+						"gsid":gsid,
+						"gsname":gsname,
+						"xmname":xmname,
+						"cookie":JSON.parse(localStorage.getItem('cookxs_yh')),
+						"name":name,
+						"phone":phone
+						},
+						"foreEndType":2,
+						"code":"2"
+						},
+					dataType:'json',//服务器返回json格式数据
+					type:'post',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						//服务器返回响应，根据响应结果，分析是否登录成功；
+						if(data.success){
+							mui.alert(data.message);
+							var person = plus.webview.getWebviewById('person0');
+						    // 执行相应的事件
+						    mui.fire(person, 'per_loc', {
+						    	'p_loc':1
+						    });
+							//成功后返回至服务商城页面
+							mui.openWindow({
+								url: 'person.html', 
+								id:"person0"
+							});
+						}else{
+							mui.alert(data.message);
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理；
+						console.log(type);
+					}
+				});
+				}else{
+					alert("项目名称或渠道公司不能为空");
+				}
+				
+			}
+		</script>
+	</body>
+
+</html>

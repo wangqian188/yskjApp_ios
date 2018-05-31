@@ -1,0 +1,467 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js"></script>
+		<script src="../js/lib/jquery-1.10.2.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="../css/login.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+	</head>
+	<style>
+		.mui-bar-nav~.mui-content{padding-top: 0;}
+		.thied_dl{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 0.5rem;
+		}
+		.thied_dl_tit{
+			display: flex;
+			width: 8.8rem;
+			align-items: center;
+			justify-content: space-between;
+			text-align: center;
+			font-size: 0.346666rem;
+			color: #999999;
+			margin-bottom: 0.266666rem;
+		}
+		.thied_dl_tit span{
+			display: inline-block;
+		}
+		.thied_dl_tit span:first-child,.thied_dl_tit span:last-child{
+			width: 1.733333rem;
+			border-bottom: 1px solid #999;
+		}
+		.thied_dl_ion{
+			width: 0.72rem;
+			height: 0.586666rem;
+			background: url(../img/third_dl_ion.png) no-repeat center;
+			background-size: 98% auto;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav" style="height: 1.733333rem;background: rgba(0,0,0,0);padding-top: 0.666666rem;box-shadow: none;">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d" style="color: #fff;"></a>
+		    <h1 class="mui-title"></h1>
+		</header>
+		<div class="mui-content con_zt">
+		    <div class="login_pic">
+		    	<img src="../img/login_pic.png" alt="" />
+		    </div>
+	    	<ul class="dl_box" style="margin-top: 0;">
+	    		<li>
+	    			<span class="acti">验证码登录</span>
+	    		</li>
+	    		<li>
+	    			<span>密码登录</span>
+	    		</li>
+	    	</ul>
+	    	<!--切换1-->
+	    	<div class="box_q" style="display: block;">
+	    		<div class="mui-input-row inp">
+	    		    <input type="text" class="mui-input-clear" placeholder="请输入手机号" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" autocomplete="off" maxlength="11" id="tel">
+    		    	<span class="hqyzm">获取验证码</span>
+	    		</div>
+	    		<div class="mui-input-row inp">
+	    		    <input type="text" class="mui-input-clear" placeholder="请输入验证码" autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="6" id="hqyzm">
+	    		</div>
+	    		<p class="wj_pwd" id="fast_zc" style="text-align: left;padding-left: 0.533333rem;color: #2b70d8;">快速注册</p>
+	    		<div class="btn_box">
+		    		<button class="btn">登录</button>	    	
+		    	</div>
+	    	</div>
+	    	<!--切换2-->
+	    	<div class="box_q">
+	    		<div class="mui-input-row inp">
+	    		    <input type="text" class="mui-input-clear" placeholder="请输入手机号" autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"  id="phone"  maxlength="11" >
+	    		</div>
+	    		<div class="mui-input-row inp">
+	    		    <input type="password" class="mui-input-clear" placeholder="请输入密码" autocomplete="off" id="yinc">
+	    		    <span class="ycmm" id="ycmm"></span>
+	    		</div>
+	    		<div style="display: flex;justify-content: space-between;">
+					<p class="wj_pwd" id="fast_zc1" style="text-align: left;padding-left: 0.533333rem;color: #2b70d8;">快速注册</p>	    			
+					<p class="wj_pwd" id="wj_mm">忘记密码？</p>
+	    		</div>
+	    		<div class="btn_box">
+		    		<button class="btn1">登录</button>	
+		    	</div>
+	    	</div>
+	    	<!--<div class="fast_zc" id="fast_zc">快速注册</div>-->
+	    	<div class="thied_dl">
+	    		<p class="thied_dl_tit">
+	    			<span></span>
+	    			<span>您可以通过以下方式登录</span>
+	    			<span></span>
+	    		</p>
+	    		<p class="thied_dl_ion" id="weixin"></p>
+	    	</div>
+		</div>
+		<script type="text/javascript">
+			mui.init()
+			var old_back = mui.back;
+			mui.back = function() {
+			    // 获取目标口窗口对象
+			    var target = plus.webview.getWebviewById('wd.html');
+			    // 执行相应的事件
+			    mui.fire(target, 'customEvent', {
+			    	'ttt':1,
+			    });
+			    var fyxq = plus.webview.getWebviewById('fyTail');
+			    // 执行相应的事件
+			    mui.fire(fyxq, 'fanhuidaofxqq', {
+			    	'ttt':1
+			    });
+			    // 执行关闭
+			    old_back();
+			};
+			var lostate=2;
+			//tab切换
+			var tabNav = $('.dl_box');
+			var tabSp = $('.dl_box li span');
+			var boxq = $('.box_q');
+			for (var i=0; i<tabSp.length; i++) {
+				(function(index){
+					tabSp[i].onclick = function(){
+						for (var j=0; j<boxq.length; j++) {
+							tabSp[j].className = '';
+							boxq[j].style.display = 'none';
+						}
+						tabSp[index].className = 'acti';							
+						boxq[index].style.display = 'block';
+					}
+				})(i)
+			}
+			$('#ycmm').click(function(){
+				//显示隐藏密码
+				if($('#yinc').attr('type') == 'password'){
+					$('#ycmm').removeClass('ycmm');
+					$('#ycmm').addClass('ycmm1');
+					$('#yinc').attr('type','text');
+				}else{
+					$('#ycmm').removeClass('ycmm1');
+					$('#ycmm').addClass('ycmm');
+					$('#yinc').attr('type','password');
+				}
+			})
+			//立即注册
+			document.getElementById('fast_zc').addEventListener('tap', function() {
+			  mui.openWindow({
+			    url: 'fast_zc.html', 
+			    id:'fast_zc'
+			  });
+			});
+			//立即注册
+			document.getElementById('fast_zc1').addEventListener('tap', function() {
+			  mui.openWindow({
+			    url: 'fast_zc.html', 
+			    id:'fast_zc'
+			  });
+			});
+			//忘记密码
+			document.getElementById('wj_mm').addEventListener('tap', function() {
+			  mui.openWindow({
+			    url: 'wj_pwd.html', 
+			    id:'wj_pwd'
+			  });
+			});
+			window.addEventListener('login_back', function(event) {
+			    // mui.fire()传过来的额外的参数，在event.detail中；
+			    var detail = event.detail;
+			    var param = detail.login_b;
+			    if(param == 1){
+			    	mui.back();
+			    }
+			});
+			document.getElementById('weixin').addEventListener('tap',function() {
+//	            mui.back();
+				var auths = null;
+//				document.addEventListener( "plusready", function(){  
+	            plus.oauth.getServices(function(services) { 
+	                auths = services;
+	                authLogin('weixin');
+	            }, function(e) {
+	                alert("获取登录服务列表失败：" + e.message + " - " + e.code); 
+	            }); 
+//		        });
+				
+				
+						
+		//		//微信登陆
+		//      document.getElementById('weixin').addEventListener('tap',function() { 
+		//          console.log("微信"); 
+		//          authLogin('weixin'); 
+		//      }) 
+		//      document.getElementById('qq').addEventListener('tap',function() { 
+		//          console.log("QQ"); 
+		//          authLogin('qq'); 
+		//      }) 
+		//      document.getElementById('sinaweibo').addEventListener('tap',function() { 
+		//          console.log("微博"); 
+		//          authLogin('sinaweibo'); 
+		//      }) 
+		 
+		        // 登录操作 
+		        function authLogin(type) {
+		            var s; 
+		            for (var i = 0; i < auths.length; i++) { 
+		                if (auths[i].id == type) { 
+		                    s = auths[i]; 
+		                    break; 
+		                } 
+		            }
+		
+		            if (!s.authResult) { 
+		                s.login(function(e) {
+		                    mui.toast("登录认证成功！");
+		                    authUserInfo(type); 
+		//                  mui.openWindow({
+		//						url: 'login.html', 
+		//						id:'login',
+		//					});
+		                }, function(e) {
+		                	console.log("微信"+ e.message + " - " + e.code); 
+		                    mui.toast("登录认证失败！" + e.message + " - " + e.code); 
+		                }); 
+		            } else { 
+		                mui.toast("已经登录认证！");
+		                authUserInfo(type);
+		            } 
+		        } 
+		
+		        //注销的监听
+		//      window.addEventListener("zhuxiao_weixin", function (e) {
+		//		    //获得事件参数
+		//			alert(222222);
+		//		    var idxjiaggge = e.detail.idxsxfh;
+		//			authLogout();
+		//		});
+				var signout_monitor = localStorage.getItem('signout_monitor');
+				if(localStorage.getItem('signout_monitor')){
+					authLogout();
+				}else{
+					
+				}
+		        //注销 
+		        function authLogout() { 
+		            for (var i in auths) {
+		                var s = auths[i]; 
+		                if (s.authResult) { 
+		                    s.logout(function(e) { 
+		                        console.log("注销登录认证成功！"); 
+		                    }, function(e) { 
+		                        console.log("注销登录认证失败！"); 
+		                    }); 
+		                } 
+		            } 
+		        } 
+		        // 微信登录认证信息 
+		        function authUserInfo(type) { 
+		            var s; 
+		            for (var i = 0; i < auths.length; i++) { 
+		                if (auths[i].id == type) { 
+		                    s = auths[i]; 
+		                    break; 
+		                } 
+		            } 
+		            if (!s.authResult) { 
+		                mui.toast("未授权登录！");
+		            } else {
+		                s.getUserInfo(function(e) { 
+		                    var josnStr = JSON.stringify(s.userInfo); 
+		                    var jsonObj = s.userInfo;
+		                    console.log("获取用户信息成功：" + josnStr); 
+		                    //存储用户信息
+		                    localStorage.setItem('userInfos',josnStr);
+		                    //刚进入这个页面就去验证是否微信授权成功
+							yanzha_weinshouquan();
+		//                  showData(type,jsonObj); 
+		//                  authLogout(); 
+		                }, function(e) { 
+		                    alert("获取用户信息失败：" + e.message + " - " + e.code); 
+		                }); 
+		            } 
+		        } 
+		        // 显示用户头像信息 
+		//      function showData(type,data) { 
+		//          switch (type){ 
+		//              case 'weixin': 
+		//                  headImage.src = data.headimgurl; 
+		//                  break; 
+		//              case 'qq': 
+		//                  headImage.src = data.figureurl_qq_2; 
+		//                  break; 
+		//              case 'sinaweibo': 
+		//                  headImage.src = data.avatar_large; 
+		//                  break; 
+		//              default: 
+		//                  break; 
+		//          } 
+		//      } 
+		        
+		        // 添加用户手机号信息
+				function addPhoneNumber(){
+					var s = auths[0].id;
+					alert(s);
+					if (!s.authResult) {
+						alert("未登录授权！");
+					} else {
+						s.addPhoneNumber( function(e){
+							alert( "添加用户手机号信息成功！" );
+						}, function(e){
+							alert( "添加用户手机号信息失败："+e.message+" - "+e.code );
+						} );
+					}
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
+		
+				//yskjApp/appYskj/V1/getOpenid.do这个接口是验证是否第三方微信授权登录
+				function yanzha_weinshouquan(){
+					var opendd = JSON.parse(localStorage.getItem('userInfos'));
+					mui.ajax(url + '/yskjApp/appYskj/V1/getOpenid.do',{
+						data:{"openid":opendd.openid,"cookie":createcookie_yh()},
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							if(data.success == true && data.flag == 2){
+								//直接登录
+								localStorage.setItem('weinxin_shouquan',1);								
+								huoqv_yonghuxix();
+								
+							}else if(data.success == true && data.flag == 1){
+								//弹出绑定手机号页面
+								mui.openWindow({
+								    url: 'wechat_log.html', 
+								    id:'wechat_log'
+							  	});
+							}else{
+								mui.toast(data.message);
+								mui.openWindow({
+									url: 'login.html', 
+									id:'login',
+								});
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});	
+				}
+				
+				//点击绑定事件调用判断用户存不存的的接口，不存在去强制注册（后台已经写了），存在去绑定
+				function check_tel(){
+					telnumber = $('#tel').val();
+					var opendd = JSON.parse(localStorage.getItem('userInfos'));
+					mui.ajax(url + '/yskjApp/appYskj/V1/authBind.do',{
+						data:{"phone":telnumber,"openid":opendd.openid,"cookie":createcookie_yh()},
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							if(data.success){
+								localStorage.setItem('signout_monitor',1);
+								signin();//登陆
+							}else{
+								mui.toast(data.message);
+								return;
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});	
+				}
+				
+				//登录成功之后存到缓存里lostate\user_id\user_type
+				function huoqv_yonghuxix(){
+					var cookie=JSON.parse(localStorage.getItem('cookxs_yh'));
+					mui.ajax(url + '/yskjApp/appYskj/V1/landState.do',{
+						data:{
+							"cookie":cookie
+						},
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							console.log("用户登录状态： "+data.success);
+							if(data.success){
+								lostate=1;
+								localStorage.setItem('lostate', lostate);
+								mui.ajax(url + '/yskjApp/appYskj/V1/getCookieInfo.do',{
+									data:{
+										"cookie":cookie
+									},
+									dataType:'json',
+									type:'post',
+									timeout:10000,
+									headers:{'Content-Type':'application/json'},	              
+									success:function(data){
+										if(data.success){
+											var userData = data.data;
+											localStorage.setItem('user_id',userData.id);//1 渠道用户 2 业主用户 3 客户用户
+											//将手机号中间加密
+											var type = userData.typeid;
+											localStorage.setItem('user_type',type);//1 渠道用户 2 业主用户 3 客户用户
+				//							var ifsoifo = localStorage.getItem('user_type');
+											//登陆成功后跳转'我的'页面
+											mui.back();
+											var main = plus.webview.getWebviewById('login');
+											mui.fire(main, "wixinshouqian",{
+											    idxsxfh:1//1位置
+											})
+										}else{
+				//							mui.toast(data.message,{ duration:'2000', type:'div' }) 
+											return;
+										}
+									},
+									error:function(xhr,type,errorThrown){
+										console.log(type);
+									}
+								});
+								//已登录
+								
+							}else{
+								//未登录
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});
+				}
+	        });
+	        
+	        //
+	        window.addEventListener("wixinshouqian", function (e) {
+			    //获得事件参数
+			    var wixinshouq = e.detail.idxsxfh;
+				mui.back();
+			});
+		
+		</script>
+		<script src="../js/lib/sha1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/md5.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/app_config.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/form_yz.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

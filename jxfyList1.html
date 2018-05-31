@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html>
+
+	<head  class="mui-bar mui-bar-nav bg-color jxfy-bg-color">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>Hello MUI</title>
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/jxfyList.css"/>
+		<link rel="stylesheet" type="text/css" href="css/sy.css"/>
+		<script type="text/javascript" src="js/lib/flexible.js"></script>
+		<script type="text/javascript" src="js/lib/flexible_css.js"></script>
+		<script type="text/javascript" src="js/lib/jquery-1.10.2.min.js"></script>
+	</head>
+	<style type="text/css">
+		/*#sel1 li{border: 1px solid red;}*/
+		.xuanxing .xiaokuai,.xiaokchuaqzhuce,.xuanxing .xiaokzujin,.xuanxing .xiaokchuaq{font-size: 0.346666rem;}
+		.house_box{position: absolute;z-index: 10;left: 0;top: 0;right: 0;bottom: 0;background: #fff;display: none;}
+		.house_ion{width: 3.426666rem;height: 2.733333rem;background: url(img/house_kong.png)no-repeat center;background-size: 100% auto;}
+		.house_tit{display: flex;flex-direction: column;font-size: 0.4rem;color: #999999;}
+		.house_tit span{display: inline-block;width: 100%;text-align: center;margin-top: 0.266666rem;}
+		.house_pic{display: flex;flex-direction: column;align-items: center;margin-top: 2.333333rem;}
+	</style>
+	<body>
+		<div class="house_box">
+			<div class="house_pic">
+				<div class="house_ion"></div>
+				<p class="house_tit">
+					<span>未找到符合条件的房源</span>
+					<span>换个条件试试吧</span>
+				</p>
+			</div>
+		</div>
+		<!--遮罩层1-->
+		<div class="zhezhaoceshx zhezhaocdisplayshx">
+			<div class="zzcnershx">
+				<div class="mianjilag">
+					<div class="mjqyfm">
+						面积区域（㎡）
+					</div>
+					<div class="xuanxing">
+						<div class="xuanxingshuzi">
+							<div class="xiaokuai">0-99</div>
+							<div class="xiaokuai">100-299</div>
+							<div class="xiaokuai">300-499</div>
+							<div class="xiaokuai">500-999</div>
+						</div>
+						<div class="xuanxingshuzi">
+							<div class="xiaokuai">1000-1499</div>
+							<div class="xiaokuai">1500以上</div>
+						</div>
+						<div class="xuanxingshuzi">
+							<div class="xiaokuaiyishang pingangm lpmianjiaru"><input type="number" onfocus="lphuoqvjiadian()" placeholder="㎡" /></div>
+							<div class="xiaokuaiyishang pingangm lpmianjiachu"><input type="number" onfocus="lphuoqvjiadian()" placeholder="㎡" /></div>
+						</div>
+					</div>
+					<div class="mjqyfm zjqy">
+						租金区域（元）
+					</div>
+					<div class="xuanxing">
+						<div class="xuanxingshuzi">
+							<div class="xiaokzujin">0-2.9</div>
+							<div class="xiaokzujin">3-4.9</div>
+							<div class="xiaokzujin">5-7.9</div>
+							<div class="xiaokzujin">8-9.9</div>
+						</div>
+						<div class="xuanxingshuzi">
+							<div class="xiaokzujin">10-14.9</div>
+							<div class="xiaokzujin">15以上</div>
+						</div>
+						<div class="xuanxingshuzi">
+							<div class="xiaokuaiyishang pingangm lpzujinru"><input type="number" onfocus="lpzujinhuoqvjiadian()" placeholder="元" /></div>
+							<div class="xiaokuaiyishang pingangm lpzujinchu"><input type="number" onfocus="lpzujinhuoqvjiadian()" placeholder="元" /></div>
+						</div>
+					</div>
+					<div class="mjqyfm">
+						产权性质
+					</div>
+					<div class="xuanxing chanqxz">
+						<div class="xuanxingshuzi">
+							<div class="xiaokchuaq">写字楼</div>
+							<div class="xiaokchuaq">公寓</div>
+							<div class="xiaokchuaq">商务楼</div>
+							<div class="xiaokchuaq">商业</div>
+						</div>
+					</div>
+					<div class="mjqyfm">
+						注册
+					</div>
+					<div class="xuanxing chanqxz">
+						<div class="xuanxingshuzi">
+							<div class="xiaokchuaqzhuce">可注册</div>
+							<div class="xiaokchuaqzhuce">不可注册</div>
+						</div>
+					</div>
+					<div class="mjqyfm">
+						装修状态
+					</div>
+					<div class="xuanxing zhuxiusatashang">
+						<div class="">
+							<span class="zhuxiustatus">精装交付</span>
+							<span class="zhuxiustatus">未到期可看</span>
+							<span class="zhuxiustatus">未到期不可看</span>
+							<span class="zhuxiustatus">空房装修中</span>
+							<span class="zhuxiustatus">预租房</span>
+						</div>
+					</div>
+					
+					
+					
+					
+					
+					
+					
+				</div>
+				
+				<div class="czqddig">
+					<div class="dibuceng">
+						<span class="chuongzhi czsyhk">重置</span>
+						<span class="chuongzhi quding">确定</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="zhezhaoce zhezhaocdisplay">
+			<div class="zzcner">
+				<ul class="zzcqy" id="sel1">
+					<!--<li onclick="selsx(0)" style="background: #fff;color:#2c71d8">不限</li>-->
+					<li onclick="selsx(1)" style="background: #fff;color:#2c71d8">区域</li>
+					<li onclick="selsx(2)">地铁</li>
+				</ul>
+				<ul class="zzcdcq" id="sel2">
+					<li onclick="subway1(0,-1,this)"></li>
+				</ul>
+				<ul class="zzcdcq" id="sel3">
+					<li onclick="subway2(0,-1,this)"></li>
+				</ul>
+			</div>
+		</div>
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<!--<ul class="mui-table-view mui-table-view-chevron">-->
+					<!--特价房源-->
+					<div class="mui-table-view mui-table-view-chevron">
+						 <ul class="fy_list listUl" id="ulId">
+						 	<!--<li class="listtail">
+						 		<div class="fy_pic">
+						 			<img src="img/fypic.png" alt="" />
+						 		</div>
+						 		<div class="qieryun">1212</div>
+						 		<div class="fy_xx">
+						 			<p class="lp">建外SOHO</p>
+						 			<p class="mjwz">朝阳区-国贸 101.5m2</p>
+						 			<p class="jfList">
+						 				<span class="jzjf">精装交付</span>
+						 				<span class="jzdj">定金</span>
+						 			</p>
+						 			<p class="dj">
+						 				<span>6.5<i>元/m2/天</i></span>
+						 			</p>
+						 		</div>
+						 	</li>
+						 	<li class="zx"></li>-->
+						 </ul>
+					</div>
+					
+				<!--</ul>-->
+			</div>
+			<!--<div class="yvzufdangy">
+				<div class="yvzufdangyneiceng">
+					预租房源	
+				</div>
+			</div>-->
+		</div> 
+		<!--<div class="sy_kfion">
+			<p><a href="tel:400-078-8800"></a></p>
+		</div>-->
+		
+		<script src="js/lib/app_config.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script>
+			mui.init({ 
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh,
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh,
+						contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
+      					contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+					}
+				}
+			});
+			var xial = 1;//上拉加载的次数
+			var area = '';//面积条件参数
+			var price_dj = '';//价格条件参数
+			var price_zj = '';//总价格条件参数
+			var chqxz = '';//产权性质条件参数
+			var jiangejt = "D";//价格/面积条件参数
+			var search = '';//关键字搜索条件参数
+			var district = '';//行政区域条件参数
+			var fdcode = '';//行政区域下的商圈条件参数
+			var lineid = '';//地铁下的线路条件参数
+			var station = '';//站点条件参数
+			var fjzt = '';//装修状态（）
+			var zc = 2;//是否注册的条件（1可注册 0不可注册 2没有条件）
+			var text1 = '';//位置条件显示的文字
+			var text2 = '';//位置条件显示的文字
+			var text3 = '';//位置条件显示的文字
+			var mijdianjstatus = 1;//筛选中输入input框的条件的状态
+			var zujindianjstatus = 1;//筛选中输入input框的条件的状态
+			var house_kongzt = false;//搜索为空的显示状态
+			//我要找房条件监听查找
+//			window.addEventListener("find_house1", function (e) {
+//				alert('监听！！！！！！！！！！！！')
+//			    //获得事件参数
+//			    var find_houseObj = e.detail.find_houseObj;
+//				console.log(find_houseObj);
+//				area = JSON.parse(find_houseObj).house_mj;//面积
+//				price_zj = JSON.parse(find_houseObj).house_fund;//资金预算
+//				zc = JSON.parse(find_houseObj).iszc;//是否注册
+//				search = JSON.parse(find_houseObj).place;//搜索区域、商圈
+////				dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+//			});
+			(function(){
+				var find_houseObj = localStorage.getItem('find_houseObj');
+				area = JSON.parse(find_houseObj).house_mj;//面积
+				price_zj = JSON.parse(find_houseObj).house_fund;//资金预算
+				zc = JSON.parse(find_houseObj).iszc;//是否注册
+				search = JSON.parse(find_houseObj).place;//搜索区域、商圈
+			})()
+			
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				mui('#pullrefresh').pullRefresh().setStopped(true);
+				xial = 1;
+				setTimeout(function() {
+					$('.listUl').html('');
+					dthqdatashuxin(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+					//解决频繁、一直下拉刷新xial没有置为1
+					xial = 1;
+					
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					//这块是下拉刷新添加数据
+					/*for (var i = cells.length, len = i + 3; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
+						//下拉刷新，新纪录插到最前面；
+						table.insertBefore(li, table.firstChild);
+					}*/
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				 	mui('#pullrefresh').pullRefresh().refresh(true);
+				}, 2500);
+			}
+
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			
+			function pullupRefresh() {
+				setTimeout(function() {
+					dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					/*for (var i = cells.length, len = i + 20; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
+						table.appendChild(li);
+					}*/
+				}, 1500);
+			}
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					}, 1000);
+
+				});
+			} else {
+				mui.ready(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				});
+			}
+			
+			//筛选下面的改变时的样式(闭包)
+			var lirm = $('.xiaokuai');
+			var tag = "mianjiqv";
+			for(var i=0;i<lirm.length;i++){
+				(function(index){
+					//color: #2a72d8;background-color: #d9effd;
+					lirm[i].onclick = function(){
+						
+						//筛选中输入input框的条件
+						$('.lpmianjiaru input').val('');
+						$('.lpmianjiachu input').val('');
+						mijdianjstatus = 2;
+						
+						for(var j=0;j<lirm.length;j++){
+							lirm[j].className = 'xiaokuai';
+						}
+						if(tag == "mianjiqv"){
+							lirm[index].className = "xiaokuaisss xiaokuai";
+							if(index == 5){
+								area = [1500,10000];
+							}else{
+								var strs = lirm[index].innerText.split("-");
+								area = [parseInt(strs[0]),parseInt(strs[1])];
+							}
+							tag = index;
+						}else{
+							if(tag == index){
+								lirm[index].className = "xiaokuai";
+								area = '';
+								tag = "mianjiqv";
+							}else{
+								lirm[index].className = "xiaokuaisss xiaokuai";
+								if(index == 5){
+									area = [1500,10000];
+								}else{
+									var strs = lirm[index].innerText.split("-");
+									area = [parseInt(strs[0]),parseInt(strs[1])];
+								}
+								tag = index;
+							}
+						
+						}
+					}
+				})(i)
+			}
+			
+			//面积区域获取焦点事件
+			function lphuoqvjiadian(){
+				tag = "mianjiqv";
+				area = '';
+				mijdianjstatus = 1;
+				for(var i=0;i<lirm.length;i++){
+					lirm[i].className = 'xiaokzujin';
+				}
+				
+			}
+			
+			var zujin = $('.xiaokzujin');
+			var tagzj = 'zujinxx';
+			for(var i=0;i<zujin.length;i++){
+				(function(index){
+					zujin[i].onclick = function(){
+						
+						//筛选中输入input框的条件
+						$('.lpzujinru input').val('');
+						$('.lpzujinchu input').val('');
+						zujindianjstatus = 2;
+						
+						for(var j=0;j<zujin.length;j++){
+							zujin[j].className = 'xiaokzujin';
+						}
+						
+						if(tagzj == "zujinxx"){
+							zujin[index].className = "xiaokuaisss xiaokzujin";
+							if(index == 5){
+								price_dj = [15,10000];
+							}else{
+								var strs = zujin[index].innerText.split("-");
+								price_dj = [parseInt(strs[0]),parseFloat(strs[1])];
+							}
+							tagzj = index;
+						}else{
+							if(tagzj == index){
+								zujin[index].className = "xiaokuai";
+								price_dj = '';
+								tagzj = "zujinxx";
+							}else{
+								zujin[index].className = "xiaokuaisss xiaokzujin";
+								if(index == 5){
+									price_dj = [15,10000];
+								}else{
+									var strs = zujin[index].innerText.split("-");
+									price_dj = [parseInt(strs[0]),parseFloat(strs[1])];
+								}
+								tagzj = index;
+							}
+						
+						}
+					}
+				})(i)
+			}
+			
+			//租金区域获取焦点事件
+			function lpzujinhuoqvjiadian(){
+				tagzj = 'zujinxx';
+				price_dj = '';
+				zujindianjstatus = 1;
+				for(var i=0;i<zujin.length;i++){
+					zujin[i].className = 'xiaokuai';
+				}
+				
+			}
+			
+			//产权性质的多选和取消选中状态
+			var cq = $('.xiaokchuaq');
+			var tagcq = "cqss";
+			var chaqshuz = [];
+			for(var i=0;i<cq.length;i++){
+				(function(index){
+					cq[i].onclick = function(){
+						/*for(var j=0;j<cq.length;j++){
+							cq[j].className = 'xiaokchuaq';
+						}*/
+						if(tagcq == 'cqss'){
+							cq[index].className = "xiaokuaisss xiaokchuaq";
+							var strs = cq[index].innerText;
+							chqxz = strs;
+							tagcq = index;
+							chaqshuz.push(strs);
+						}else{
+							if(tagcq == index){
+								cq[index].className = "xiaokchuaq";
+								if(chaqshuz.length<1){
+									tagcq = 'cqss';
+									chqxz = '';
+								}else{
+									tagcq = 'ziji';
+									for(var i=0;i<chaqshuz.length;i++){
+										if(chaqshuz[i] == cq[index].innerText){
+											cq[index].className = "xiaokchuaq";
+											var strs = cq[index].innerText;
+											chaqshuz.splice(i,1);
+											chqxz = '';
+											for(var i=0;i<chaqshuz.length;i++){
+												if(i == chaqshuz.length-1){
+													chqxz += chaqshuz[i];
+												}else{
+													chqxz += chaqshuz[i]+'、';
+												}
+											}
+										}
+									}
+								}
+							}else{
+								var ss = 1;
+								for(var i=0;i<chaqshuz.length;i++){
+									if(chaqshuz[i] == cq[index].innerText){
+										ss = 2;
+										tagcq = 'ziji';
+										cq[index].className = "xiaokchuaq";
+										var strs = cq[index].innerText;
+										chqxz = '';
+										chaqshuz.splice(i,1);
+										for(var i=0;i<chaqshuz.length;i++){
+											if(i == chaqshuz.length-1){
+												chqxz += chaqshuz[i];
+											}else{
+												chqxz += chaqshuz[i]+'、';
+											}
+										}
+									}
+								}
+								if(ss == 1){
+									chqxz = '';
+									tagcq = index;
+									cq[index].className = "xiaokuaisss xiaokchuaq";
+									var strs = cq[index].innerText;
+									chaqshuz.push(strs);
+									for(var i=0;i<chaqshuz.length;i++){
+										if(i == chaqshuz.length-1){
+											chqxz += chaqshuz[i];
+										}else{
+											chqxz += chaqshuz[i]+'、';
+										}
+									}
+								}
+							}
+						}
+					}
+				})(i)
+			}
+			
+			//注册的选择和取消状态
+			var zconj = $('.xiaokchuaqzhuce');
+			var tagzc = 'zhucexx';
+			for(var i=0;i<zconj.length;i++){
+				(function(index){
+					zconj[i].onclick = function(){
+						for(var j=0;j<zconj.length;j++){
+							zconj[j].className = 'xiaokzujin';
+						}
+						
+						if(tagzc == "zhucexx"){
+							zconj[index].className = "xiaokuaisss xiaokzujin";
+//							if(index == 5){
+//								price_dj = [15,10000];
+//							}else{
+								var strs = zconj[index].innerText;
+								if(strs == '可注册'){
+									zc = 1;
+								}
+								if(strs == '不可注册'){
+									zc = 0;
+								}
+//							}
+							tagzc = index;
+						}else{
+							if(tagzc == index){
+								zconj[index].className = "xiaokuai";
+								zc = 2;
+								tagzc = "zhucexx";
+							}else{
+								zconj[index].className = "xiaokuaisss xiaokzujin";
+//								if(index == 5){
+//									price_dj = [15,10000];
+//								}else{
+									var strs = zconj[index].innerText;
+									if(strs == '可注册'){
+										zc = 1;
+									}
+									if(strs == '不可注册'){
+										zc = 0;
+									}
+//								}
+								tagzc = index;
+							}
+						
+						}
+					}
+				})(i)
+			}
+			
+			//装修状态选择和取消状态
+			var zhxiu = $('.zhuxiustatus');
+			var tagzhxiu = 'zhxiuxx';
+			for(var i=0;i<zhxiu.length;i++){
+				(function(index){
+					zhxiu[i].onclick = function(){
+						for(var j=0;j<zhxiu.length;j++){
+							zhxiu[j].className = 'zhuxiustatus';
+						}
+						
+						if(tagzhxiu == "zhxiuxx"){
+							zhxiu[index].className = "xiaokuaisss zhuxiustatus";
+//							if(index == 5){
+//								price_dj = [15,10000];
+//							}else{
+								var strs = zhxiu[index].innerText;
+								fjzt = strs;
+//							}
+							tagzhxiu = index;
+						}else{
+							if(tagzhxiu == index){
+								zhxiu[index].className = "zhuxiustatus";
+								zc = 2;
+								tagzhxiu = "zhxiuxx";
+							}else{
+								zhxiu[index].className = "xiaokuaisss zhuxiustatus";
+//								if(index == 5){
+//									price_dj = [15,10000];
+//								}else{
+									var strs = zhxiu[index].innerText;
+									fjzt = strs;
+//								}
+								tagzhxiu = index;
+							}
+						
+						}
+						if(fjzt == '精装交付'){
+							fjzt = 1;
+						}else if(fjzt == '未到期可看'){
+							fjzt = 2;
+						}else if(fjzt == '未到期不可看'){
+							fjzt = 4;
+						}else if(fjzt == '空房装修中'){
+							fjzt = 3;
+						}else if(fjzt == '预租房'){
+							fjzt = 5;
+						}
+					}
+				})(i)
+			}
+			
+			//确定事件
+			$('.quding').click(function(){
+				xial = 1;
+				jiangejt = 'D';
+				
+				//筛选中输入input框的条件
+				var start = $('.lpmianjiaru input').val();
+				var end = $('.lpmianjiachu input').val();
+				if((start == '' || end == '') && mijdianjstatus == 1){
+					area = '';
+					$('.lpmianjiaru input').val('');
+					$('.lpmianjiachu input').val('');
+				}
+				if(start != '' && end != ''){
+					area = [parseFloat(start),parseFloat(end)];
+				}
+				
+				//筛选租金区域中输入input框的条件
+				var startzujin = $('.lpzujinru input').val();
+				var endzujin = $('.lpzujinchu input').val();
+				if((startzujin == '' || endzujin == '') && zujindianjstatus == 1){
+					price_dj = '';
+					$('.lpzujinru input').val('');
+					$('.lpzujinchu input').val('');
+				}
+				if(startzujin != '' && endzujin != ''){
+					price_dj = [parseFloat(startzujin),parseFloat(endzujin)];
+				}
+				
+				$('.listUl').html('');
+				huifuupjiazaidata();
+				dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+			});
+			//重置事件
+			$('.czsyhk').click(function(){
+				xial = 1;
+				jiangejt = 'D';
+				chaqshuz = [];
+				tag = "mianjiqv";
+				tagzj = 'zujinxx';
+				tagcq = "cqss";
+				tagzc = 'zhucexx';
+				tagzhxiu = 'zhxiuxx';
+				
+				
+				//筛选中输入input框的条件
+				mijdianjstatus = 1;
+				$('.lpmianjiaru input').val('');
+				$('.lpmianjiachu input').val('');
+					
+				//筛选中租金区域输入input框的条件
+				zujindianjstatus = 1;
+				$('.lpzujinru input').val('');
+				$('.lpzujinchu input').val('');
+				
+				qcqitades();
+				chushishij();
+				/*$('.listUl').html('');
+				dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search);*/
+			});
+			
+			//筛选的重置条件
+			function chushishij(){
+				area = '';
+				price_dj = '';
+				chqxz = '';
+				zc = 2;
+				fjzt = '';
+			}
+			
+	/*		动态数据*/
+			function dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiagesanshu,search,price_zj){
+				console.log('---------------------------------------分割线--------------------------------------');
+				console.log(district);
+				console.log(fdcode);
+				console.log(lineid);
+				console.log(station);
+				console.log(area);
+				console.log(price_dj);
+				console.log(chqxz);
+				console.log(jiagesanshu);
+				console.log(search);
+				console.log(xial);
+				console.log(fjzt);
+				console.log(zc);
+//				mui.ajax(Interface_url+'/yhcms/web/lpjbxx/getWxLbFyxx1.do',{
+				mui.ajax(Interface_url+'/yhcms/web/lpjbxx/getAppIntelHouse.do',{
+				data:{
+					"parameters":
+						{
+							"search_keywork":search,
+							"district":"",
+							"business":"",
+							"district1":district,
+							"business1":fdcode,
+							"line_id":lineid,
+							"station_id":station,
+							"area":area,
+							"price_dj":price_dj,
+							"price_zj":price_zj,
+							"label":"",
+							"chqxz":chqxz,
+							"orderby":jiagesanshu,
+							"curr_page":xial,
+							"zc":zc,
+							"fjzt":fjzt,
+							"items_perpage":10
+						},"foreEndType":2,"code":"30000001"},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					//服务器返回响应，根据响应结果，分析是否登录成功；
+					if(data.success){
+						if(data.data.length == 0){
+							$(".zhezhaoceshx").addClass("zhezhaocdisplayshx");
+							$(".zhezhaoceshx").removeClass("zhezhaocdisbaloshx");
+							mui('#pullrefresh').pullRefresh().setStopped(false);
+							var index = plus.webview.getWebviewById('index');
+							zhezhaoxiaoshi();
+							mui.fire(index, "weizhi1",{
+							    idxid:4//1位置
+							})
+							//点击位置遮罩层取消遮罩层要改变样式
+							var main = plus.webview.getWebviewById('jxfy1.html');
+							mui.fire(main, "saixuanfh",{
+							    idxsxfh:1//1位置
+							})
+							if(xial == 1 && data.data.length == 0){
+								$('.house_box').css('display','block');
+								$('.house_box').on('touchstart',function(e){
+									mui('#pullrefresh').pullRefresh().setStopped(true);
+									e.preventDefault();
+									return false;
+								});
+//								mui.alert('抱歉，暂无符合条件的房源！');								
+							}
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh((data.data.length < 1)); //参数为true代表没有更多数据了。
+						}else{
+							$(".zhezhaoceshx").addClass("zhezhaocdisplayshx");
+							$(".zhezhaoceshx").removeClass("zhezhaocdisbaloshx");
+							var index = plus.webview.getWebviewById('index');
+							zhezhaoxiaoshi();
+							mui.fire(index, "weizhi1",{
+							    idxid:4//1位置
+							})
+							//点击位置遮罩层取消遮罩层要改变样式
+							var main = plus.webview.getWebviewById('jxfy1.html');
+							mui.fire(main, "saixuanfh",{
+							    idxsxfh:1//1位置
+							})
+							xial++;
+							var data = data.data;
+							var string = '';//
+							for(var i=0;i<data.length;i++){
+								if(data[i].cloudscape == ''){
+									if(data[i].decoration_level == ''){
+										if(data[i].djbsh == 1){
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+										}else{
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}
+		
+									}else{
+										if(data[i].djbsh == 1){
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span><span class="jzjf">'+data[i].decoration_level+'</span><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzjf">'+data[i].decoration_level+'</span><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}else{
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span><span class="jzjf">'+data[i].decoration_level+'</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzjf">'+data[i].decoration_level+'</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}
+		
+									}
+								}else{
+									if(data[i].decoration_level == ''){
+										if(data[i].djbsh == 1){
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}else{
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}
+		
+									}else{
+										if(data[i].djbsh == 1){
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span><span class="jzjf">'+data[i].decoration_level+'</span><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzjf">'+data[i].decoration_level+'</span><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}else{
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span><span class="jzjf">'+data[i].decoration_level+'</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzjf">'+data[i].decoration_level+'</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}
+		
+									}
+								}
+								
+								
+								/*document.querySelector('.fypics').innerHTML=string;*/
+								$('.listUl').append(string);
+							}
+							mui('#pullrefresh').pullRefresh().setStopped(false);
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh((data.length < 10)); //参数为true代表没有更多数据了。
+						}
+//						//首页数据
+//						var main = plus.webview.getWebviewById('sy.html');
+//						mui.fire(main, "sy_jz",{
+//						    sy_jz:1//1位置
+//						});
+//						
+//						var main = plus.webview.getWebviewById('fwsc.html');
+//						mui.fire(main, "fwsc_jz",{
+//						    fwsc_jz:2//1位置
+//						});
+//						
+//						var main = plus.webview.getWebviewById('qyhl.html');
+//						mui.fire(main, "qyhl_jz",{
+//						    qyhl_jz:3//1位置
+//						});
+						
+						
+						
+					}else{
+						mui.alert(data.msg);
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					//异常处理；
+					console.log(type);
+				}
+				});
+			}
+			
+			//下拉刷新的方法
+			function dthqdatashuxin(district,fdcode,lineid,station,area,price_dj,chqxz,jiagesanshu,search,price_zj){
+				console.log('---------------------------------------分割线--------------------------------------');
+				console.log(district);
+				console.log(fdcode);
+				console.log(lineid);
+				console.log(station);
+				console.log(area);
+				console.log(price_dj);
+				console.log(chqxz);
+				console.log(jiagesanshu);
+				console.log(search);
+				console.log(xial);
+				console.log(fjzt);
+				console.log(zc);
+//				mui.ajax(Interface_url+'/yhcms/web/lpjbxx/getWxLbFyxx1.do',{
+				mui.ajax(Interface_url+'/yhcms/web/lpjbxx/getAppIntelHouse.do',{
+				data:{
+					"parameters":
+						{
+							"search_keywork":search,
+							"district":"",
+							"business":"",
+							"district1":district,
+							"business1":fdcode,
+							"line_id":lineid,
+							"station_id":station,
+							"area":area,
+							"price_dj":price_dj,
+							"price_zj":price_zj,
+							"label":"",
+							"chqxz":chqxz,
+							"orderby":jiagesanshu,
+							"curr_page":1,
+							"zc":zc,
+							"fjzt":fjzt,
+							"items_perpage":10
+						},"foreEndType":2,"code":"30000001"},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					//服务器返回响应，根据响应结果，分析是否登录成功；
+					if(data.success){
+						if(data.data.length == 0){
+							$(".zhezhaoceshx").addClass("zhezhaocdisplayshx");
+							$(".zhezhaoceshx").removeClass("zhezhaocdisbaloshx");
+							mui('#pullrefresh').pullRefresh().setStopped(false);
+							var index = plus.webview.getWebviewById('index');
+							zhezhaoxiaoshi();
+							mui.fire(index, "weizhi1",{
+							    idxid:4//1位置
+							})
+							//点击位置遮罩层取消遮罩层要改变样式
+							var main = plus.webview.getWebviewById('jxfy1.html');
+							mui.fire(main, "saixuanfh",{
+							    idxsxfh:1//1位置
+							})
+							if(xial == 1 && data.data.length == 0){
+								$('.house_box').css('display','block');
+								$('.house_box').on('touchstart',function(e){
+									mui('#pullrefresh').pullRefresh().setStopped(true);
+									e.preventDefault();
+									return false;
+								});
+//								mui.alert('抱歉，暂无符合条件的房源！');								
+							}
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh((data.data.length < 1)); //参数为true代表没有更多数据了。
+						}else{
+							$(".zhezhaoceshx").addClass("zhezhaocdisplayshx");
+							$(".zhezhaoceshx").removeClass("zhezhaocdisbaloshx");
+							var index = plus.webview.getWebviewById('index');
+							zhezhaoxiaoshi();
+							mui.fire(index, "weizhi1",{
+							    idxid:4//1位置
+							})
+							//点击位置遮罩层取消遮罩层要改变样式
+							var main = plus.webview.getWebviewById('jxfy1.html');
+							mui.fire(main, "saixuanfh",{
+							    idxsxfh:1//1位置
+							})
+							xial = 2;
+							var data = data.data;
+							var string = '';
+							$('.listUl').html('');
+							for(var i=0;i<data.length;i++){
+								if(data[i].cloudscape == ''){
+									if(data[i].decoration_level == ''){
+										if(data[i].djbsh == 1){
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+										}else{
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}
+		
+									}else{
+										if(data[i].djbsh == 1){
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span><span class="jzjf">'+data[i].decoration_level+'</span><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzjf">'+data[i].decoration_level+'</span><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}else{
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span><span class="jzjf">'+data[i].decoration_level+'</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzjf">'+data[i].decoration_level+'</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}
+		
+									}
+								}else{
+									if(data[i].decoration_level == ''){
+										if(data[i].djbsh == 1){
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}else{
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}
+		
+									}else{
+										if(data[i].djbsh == 1){
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span><span class="jzjf">'+data[i].decoration_level+'</span><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzjf">'+data[i].decoration_level+'</span><span class="jzdj">定金</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}else{
+											if(data[i].zc == 1){
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzdj lpkezhuce">可注册</span><span class="jzjf">'+data[i].decoration_level+'</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}else{
+												string = '<li class="listtail" id="'+data[i].id+'"><div id="fyid">'+data[i].id+'</div><div class="fy_pic"><img src="'+img_url+data[i].housing_icon+'" alt="" /></div><div class="qieryun"></div><div class="fy_xx"><p class="lp">'+data[i].topic+'&nbsp;&nbsp;'+data[i].zdh+'-'+data[i].fybh+'</p><p class="mjwz">'+data[i].district+'&nbsp;'+data[i].housing_area+'㎡'+'</p><p class="jfList"><span class="jzjf">'+data[i].decoration_level+'</span></p><p class="dj"><span>'+data[i].daily_price+'<i>元/㎡/天</i></span></p></div></li><li class="zx"></li>';
+											}
+
+										}
+		
+									}
+								}
+								
+								
+								/*document.querySelector('.fypics').innerHTML=string;*/
+								$('.listUl').append(string);
+							}
+							mui('#pullrefresh').pullRefresh().setStopped(false);
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh((data.length < 10)); //参数为true代表没有更多数据了。
+						}
+//						//首页数据
+//						var main = plus.webview.getWebviewById('sy.html');
+//						mui.fire(main, "sy_jz",{
+//						    sy_jz:1//1位置
+//						});
+//						
+//						var main = plus.webview.getWebviewById('fwsc.html');
+//						mui.fire(main, "fwsc_jz",{
+//						    fwsc_jz:2//1位置
+//						});
+//						
+//						var main = plus.webview.getWebviewById('qyhl.html');
+//						mui.fire(main, "qyhl_jz",{
+//						    qyhl_jz:3//1位置
+//						});
+						
+						
+						
+					}else{
+						mui.alert(data.msg);
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					//异常处理；
+					console.log(type);
+				}
+				});
+			}
+			
+			//清除筛选选中的样式
+			function qcqitades(){
+				var xk = $('.xiaokuai');
+				var zj = $('.xiaokzujin');
+				var cq = $('.xiaokchuaq');
+				var zhuxiu = $('.zhuxiustatus');
+				for(var i=0;i<xk.length;i++){
+					xk[i].className = 'xiaokzujin';
+				}
+				for(var i=0;i<zj.length;i++){
+					zj[i].className = 'xiaokzujin';
+				}
+				for(var i=0;i<cq.length;i++){
+					cq[i].className = 'xiaokzujin';
+				}
+				for(var i=0;i<zhuxiu.length;i++){
+					zhuxiu[i].className = 'zhuxiustatus';
+				}
+			}
+			/*for(var i=0;i<zujin.length;i++){
+				(function(index){
+					//color: #2a72d8;background-color: #d9effd;
+					zujin[i].onclick = function(){
+						for(var j=0;j<zujin.length;j++){
+							zujin[j].className = 'xiaokzujin';
+						}
+						zujin[index].className = "xiaokuaisss xiaokzujin";
+						var strs = zujin[index].innerText.split("-");
+						price_dj = [parseInt(strs[0]),parseFloat(strs[1])];
+					}
+				})(i)
+			}*/
+
+			/*点击出现遮罩层*/
+			window.addEventListener("weizhi", function (e) {
+			    //获得事件参数
+			    var idx = e.detail.idx;
+				var hegh = window.screen.availHeight - 160;
+				/*var scroll = mui('.mui-scroll-wrapper').scroll();
+				document.querySelector('.mui-scroll-wrapper').addEventListener('scroll',function (e) {
+				　　console.log(scroll.y);
+				})*/
+				if(idx == 1){
+					$(".zhezhaoce").removeClass("zhezhaocdisplay");
+					$(".zhezhaoce").addClass("zhezhaocdisbalo");
+					mui('#pullrefresh').pullRefresh().setStopped(true);
+					$(".zhezhaoce").on('touchmove',function(e){
+	                   /* e.preventDefault();  //阻止默认行为
+						return false;*/
+	                })
+				}
+				/*出现筛选遮罩层*/
+				if(idx == 3){
+					$(".zhezhaoceshx").removeClass("zhezhaocdisplayshx");
+					$(".zhezhaoceshx").addClass("zhezhaocdisbaloshx");
+					mui('#pullrefresh').pullRefresh().setStopped(true);
+					$(".zhezhaoceshx").on('touchmove',function(e){
+	                   /* e.preventDefault();  //阻止默认行为
+						return false;*/
+	                })
+					
+				}
+				$('html').css({
+		            'overflow':'hidden',
+		            'height': '100%',
+		        });
+		        $('body').css({
+		            'overflow':'hidden',
+		            'height': '100%',
+		        });
+		        $(".mui-content").css({
+		            'overflow':'hidden',
+		            'height': hegh+'px',
+		        });
+		        $(".listUl").css({
+		            'height': hegh+'px',
+		        });
+			});
+
+			//遮罩层消失恢复滚动
+			function zhezhaoxiaoshi(){
+				$('html').css({
+		            'overflow':'visible',
+		            'height': '100%',
+		        });
+		        $('body').css({
+		            'overflow':'visible',
+		            'height': '100%',
+		        });
+		        $(".mui-content").css({
+		            'overflow':'visible',
+		        });
+		        $(".listUl").css({
+		            'height': 'auto',
+		        });
+			}
+			//遮罩层消失恢复滚动
+			function zhezhaoxiaoshiww(){
+				$('html').css({
+		            'overflow':'visible',
+		            'height': '100%',
+		        });
+		        $('body').css({
+		            'overflow':'visible',
+		            'height': '100%',
+		        });
+			}
+			
+/*			点击位置遮罩层取消遮罩层*/
+			$('.zhezhaoce').click(function(){
+				$(".zhezhaoce").addClass("zhezhaocdisplay");
+				$(".zhezhaoce").removeClass("zhezhaocdisbalo");
+				mui('#pullrefresh').pullRefresh().setStopped(false);
+				zhezhaoxiaoshi();
+				var index = plus.webview.getWebviewById('index');
+				mui.fire(index, "weizhi1",{
+				    idxid:2//1位置
+				})
+				//点击位置遮罩层取消遮罩层要改变样式
+				var main = plus.webview.getWebviewById('jxfy1.html');
+				mui.fire(main, "weizhifh",{
+				    idxfh:1//1位置
+				})
+			});
+			
+			//取消位置遮罩层的方法
+			function qxzzcdff(){
+				$(".zhezhaoce").addClass("zhezhaocdisplay");
+				$(".zhezhaoce").removeClass("zhezhaocdisbalo");
+				zhezhaoxiaoshiww();
+				//点击位置遮罩层取消遮罩层要改变样式
+				var main = plus.webview.getWebviewById('jxfy1.html');
+				mui.fire(main, "weizhifh",{
+				    idxfh:1//1位置
+				})
+			}
+			
+			//取消筛选遮罩层的方法
+			function qxsuxzzcdff(){
+				$(".zhezhaoceshx").addClass("zhezhaocdisplayshx");
+				$(".zhezhaoceshx").removeClass("zhezhaocdisbaloshx");
+				zhezhaoxiaoshiww();
+				//点击位置遮罩层取消遮罩层要改变样式
+				var main = plus.webview.getWebviewById('jxfy1.html');
+				mui.fire(main, "saixuanfh",{
+				    idxsxfh:1//1位置
+				})
+			}
+			
+			//点击价格取消位置的遮罩层的监听方法
+			window.addEventListener("jiagekzqt", function (e) {
+			    //获得事件参数
+			    var idxjiage = e.detail.idxjiage;
+				qxzzcdff();
+			});
+			
+			//点击价格取消筛选遮罩层的监听方法
+			window.addEventListener("saixuankzqt", function (e) {
+			    //获得事件参数
+			    var idxsaixuan = e.detail.idxsaixuan;
+				qxsuxzzcdff();
+			});
+			
+			//点击价格取消筛选遮罩层的监听方法
+			window.addEventListener("jagggkzqt", function (e) {
+			    //获得事件参数
+			    var idxjiaggge = e.detail.idxjiaggge;
+				var index = plus.webview.getWebviewById('index');
+				mui.fire(index, "weizhi1",{
+				    idxid:2//1位置
+				})
+				mui('#pullrefresh').pullRefresh().setStopped(false);
+				qxsuxzzcdff();
+				qxzzcdff();
+				zhezhaoxiaoshi();
+			});
+			
+/*			点击筛选遮罩层取消遮罩层*/
+			$('.zhezhaoceshx').click(function(){
+				$(".zhezhaoceshx").addClass("zhezhaocdisplayshx");
+				$(".zhezhaoceshx").removeClass("zhezhaocdisbaloshx");
+				mui('#pullrefresh').pullRefresh().setStopped(false);
+				var index = plus.webview.getWebviewById('index');
+				zhezhaoxiaoshi();
+				mui.fire(index, "weizhi1",{
+				    idxid:4//1位置
+				})
+				//点击位置遮罩层取消遮罩层要改变样式
+				var main = plus.webview.getWebviewById('jxfy1.html');
+				mui.fire(main, "saixuanfh",{
+				    idxsxfh:1//1位置
+				})
+			});
+/*			阻止穿透*/
+			$('.zzcnershx').click(function(){
+				return false;
+			});
+			$('.zzcner').click(function(){
+				return false;
+			});
+			
+			mui("#ulId").on("tap","li",function(){
+				
+			    // 逻辑代码，例如跳转详情页、ajax
+			 	mui.openWindow({ 
+					url:'page/fyTail.html', //需要打开页面的url地址 
+					id:'fyTail',  //需要打开页面的url页面id
+					styles:{ 
+						top:'0px',//新页面顶部位置 
+						bottom:'0px',//新页面底部位置 
+	//					width:newpage-width,//新页面宽度，默认为100% 
+	//					height:newpage-height,//新页面高度，默认为100% ...... 
+					}, 
+					extras:{ 
+						fyid:this.id,
+	//					.....//自定义扩展参数，可以用来处理页面间传值 
+					},show:{ //控制打开页面的类型
+						autoShow:true,
+	//					//页面loaded事件发生后自动显示，默认为true 
+						aniShow:'slide-in-right',//页面显示动画，默认为”slide-in-right“；  页面出现的方式 左右上下
+						duration:''//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒； 
+					}, waiting:{ // 控制 弹出转圈框的信息
+						autoShow:true,//自动显示等待框，默认为true 
+						title:'加载中...',//等待对话框上显示的提示内容 
+						options:{ 
+							width:'100px',//等待框背景区域宽度，默认根据内容自动计算合适宽度 
+							height:'100px',//等待框背景区域高度，默认根据内容自动计算合适高度 ...... 
+						} 
+					}
+				});
+				var main = plus.webview.getWebviewById('fyTail');
+				mui.fire(main, "fyyuadeqx",{
+				    fyid:this.id
+				})
+			});
+
+			//价格的监听事件
+			window.addEventListener("jiage", function (e) {
+			    //获得事件参数
+			    var idx = e.detail.idx;
+				xial = 1;
+				/*area = '';*/
+				/*price_dj = '';*/
+				/*chqxz = '';*/
+				$('.listUl').html('');
+				huifuupjiazaidata();
+				/*qcqitades();*/
+				if(idx == 5){
+					jiangejt = 'P1';
+					dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+				}else{
+					jiangejt = 'P2';
+					dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+				}
+			});
+			
+			//面积的监听事件
+			window.addEventListener("area", function (e) {
+			    //获得事件参数
+			    var idx = e.detail.idx;
+				xial = 1;
+				/*area = '';*/
+				/*price_dj = '';*/
+				/*chqxz = '';*/
+				$('.listUl').html('');
+				huifuupjiazaidata();
+				/*qcqitades();*/
+				if(idx == 7){
+					jiangejt = 'A1';
+					dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+				}else{
+					jiangejt = 'A2';
+					dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+				}
+			});
+			
+			//监听搜索页面的返回事件
+			window.addEventListener("sousuochuac", function (e) {
+			    //获得事件参数
+			    var lpname = e.detail.lpname;
+				search = lpname;
+				$('.listUl').html('');
+				huifuupjiazaidata();
+				xial = 1;
+				dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+			});
+			
+			//监听搜索页面的取消事件
+			window.addEventListener("ssqvxiaofanhui", function (e) {
+			    //获得事件参数
+			    var qvx = e.detail.qvx;
+				search = '';
+				xial = 1;
+				$('.listUl').html('');
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+			 	mui('#pullrefresh').pullRefresh().refresh(true);
+				dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+			});
+			
+			//恢复上拉加载更多数据的方法
+			function huifuupjiazaidata(){
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+			 	mui('#pullrefresh').pullRefresh().refresh(true);
+			}
+			
+			sel_qy();
+			function selsx(sel){
+				$('#sel1 li').css({
+					'background':'none',
+					'color':'#666666'
+				});
+				xial = 1;
+				if(sel == 0){
+					text1 = '不限';
+					district = '';
+					fdcode = '';
+					lineid = '';
+					station = '';
+					$('#sel1 li').eq(0).css({
+						'background':'#fff',
+						'color':'#2c71d8'
+					});
+					$('#sel2').html('');
+					$('#sel3').html('');
+					var main = plus.webview.getWebviewById('jxfy1.html');
+					mui.fire(main, "weizhineirong",{
+					    text3:this.text1
+					})
+					qxzzcdff();
+					huifuupjiazaidata();
+					dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+				}
+				if(sel == 1){
+					text1 = '位置';
+					lineid = '';
+					station = '';
+					$('#sel1 li').eq(0).css({
+						'background':'#fff',
+						'color':'#2c71d8'
+					});
+					sel_qy();
+				}
+				if(sel == 2){
+					text1 = '位置';
+					lineid = '';
+					station = '';
+					$('#sel1 li').eq(1).css({
+						'background':'#fff',
+						'color':'#2c71d8'
+					});
+					subway();
+				}
+			}
+			//区域的一级接口
+			var quyu = '';
+			function sel_qy(){
+				$('#sel3').html('');
+				$('#sel2').html('<li onclick="clk_qy(0,-1,this)" style="color: #2c71d8;">不限</li>');
+				mui.ajax(Interface_url + '/yhcms/web/lpjbxx/getLpcity.do',{
+					data:{},
+					dataType:'json',
+					type:'post',
+					timeout:10000,
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						if(data.success){
+							var xzqyData = data.data.xzqy;
+							for (var i=0; i<xzqyData.length; i++) {
+								quyu = '<li onclick="clk_qy('+xzqyData[i].fdcode+','+i+',this)">'+xzqyData[i].fdname+'</li>';
+								$('#sel2').append(quyu);
+							}
+
+						}else{
+							
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type);
+					}
+				});
+			}
+			function clk_qy(district,q,e){
+				$('#sel2 li').css({'color':'#666666'});
+				$('#sel2 li').eq(q+1).css({'color':'#2c71d8'});
+				xzqy_erji(district,e);
+			}
+			//行政区域二级
+			var xzqy_str = '';
+			function xzqy_erji(id,e){
+				$('#sel3').html('');
+				huifuupjiazaidata();
+				text2 = e.innerText;
+				district = id;
+				if(id == 0){
+					$('.listUl').html('');
+					xial = 1;
+					id = '';
+					district ='';
+					fdcode = '';
+					text1 = '位置';
+					var main = plus.webview.getWebviewById('jxfy1.html');
+					mui.fire(main, "weizhineirong",{
+					    text3:this.text1
+					})
+					qxzzcdff();
+					dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+				}else{
+					$('#sel3').html('<li onclick="clk_xz2(0,-1,this)">不限</li>');
+					mui.ajax(Interface_url + '/yhcms/web/lpjbxx/getLpXzqyFq.do',{
+						data:{
+							"parameters":{
+								"district":id
+							},
+							"foreEndType":2,
+							"code":"300000010"
+						},
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						headers:{'Content-Type':'application/json'},       
+						success:function(data){
+							if(data.success){
+								var xzqy_Data = data.data.xzfq;
+								for (var i=0; i<xzqy_Data.length; i++) {
+									xzqy_str = '<li onclick="clk_xz2('+xzqy_Data[i].fdcode+','+i+',this)">'+xzqy_Data[i].fdname+'</li>';
+									$('#sel3').append(xzqy_str);
+								}
+							}else{
+								
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});
+				}
+				
+			}
+			//行政区域三级
+			var districtages = '';
+			function clk_xz2(id,q,e){
+				xial = 1;
+				$('.listUl').html('');
+				huifuupjiazaidata();
+				fdcode = id;
+				text3 = e.innerText;
+				if(q == -1){
+					if(district == ''){
+						district = districtages;
+					}
+					fdcode = '';
+					var main = plus.webview.getWebviewById('jxfy1.html');
+					mui.fire(main, "weizhineirong",{
+					    text3:this.text2
+					})
+					dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+				}else{
+					districtages = district;
+					district = '';
+					fdcode = id;
+					var main = plus.webview.getWebviewById('jxfy1.html');
+					mui.fire(main, "weizhineirong",{
+					    text3:this.text3
+					})
+					dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+				}
+				qxzzcdff();
+				$('#sel3 li').css({'color':'#666666'});
+				$('#sel3 li').eq(q+1).css({'color':'#2c71d8'});
+			}
+
+			//地铁接口（一级请求接口数据）
+			var subway_str = '';
+			function subway(){
+				$('#sel3').html('');
+				$('#sel2').html('<li onclick="subway1(0,-1,this)">不限</li>');
+				mui.ajax(Interface_url + '/yhcms/web/lpjbxx/lpsubway.do',{
+					data:{},
+					dataType:'json',
+					type:'post',
+					timeout:10000,
+					headers:{'Content-Type':'application/json'},       
+					success:function(data){
+						if(data.success){
+							var subway_Data = data.data.subway;
+							for (var i=0; i<subway_Data.length; i++) {
+								subway_str = '<li onclick="subway1('+subway_Data[i].id+','+i+',this)">'+subway_Data[i].fdname+'</li>';
+								$('#sel2').append(subway_str);
+							}
+						}else{
+							
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type);
+					}
+				});
+			}
+			//位置中地铁的二级点击事件
+			function subway1(id,q,e){
+				lineid = id;
+				text2 = e.innerText;
+				$('#sel3').html('');
+				huifuupjiazaidata();
+				$('#sel2 li').css({'color':'#666666'});
+				$('#sel2 li').eq(q+1).css({'color':'#2c71d8'});
+				subway_erji(id);
+			}
+			//地铁二级接口（第二级）
+			var subway_str2 = '';
+			function subway_erji(id){
+				if(id == 0){
+					$('.listUl').html('');
+					xial = 1;
+					id = '';
+					lineid = '';
+					station = '';
+					district = '';
+					fdcode = '';
+					var main = plus.webview.getWebviewById('jxfy1.html');
+					mui.fire(main, "weizhineirong",{
+					    text3:this.text1
+					})
+					qxzzcdff();
+					dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+				}else{
+					$('#sel3').html('<li onclick="subway2(0,-1,this)">不限</li>');
+					mui.ajax(Interface_url + '/yhcms/web/lpjbxx/getLpSubwaystation.do',{
+						data:{
+							"parameters":{
+								"line_id":id
+							},
+							"foreEndType":2,
+							"code":"30000008"
+						},
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						headers:{'Content-Type':'application/json'},       
+						success:function(data){
+							if(data.success){
+								var subway_Data2 = data.data.subway_station;
+								for (var i=0; i<subway_Data2.length; i++) {
+									subway_str2 = '<li onclick="subway2('+subway_Data2[i].id+','+i+',this)">'+subway_Data2[i].fdname+'</li>';
+									$('#sel3').append(subway_str2);
+								}
+							}else{
+								
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});
+				}
+				
+			}
+			var lineageg = '';
+			//地铁的三级
+			function subway2(id,q,e){//控制最后一级变色及参数传递
+				xial = 1;
+				$('.listUl').html('');
+				huifuupjiazaidata();
+				text3 = e.innerText;
+				district = '';
+				fdcode = '';
+				if(q == -1){
+					if(lineid == ''){
+						lineid = lineageg;
+					}
+					station = '';
+					var main = plus.webview.getWebviewById('jxfy1.html');
+					mui.fire(main, "weizhineirong",{
+					    text3:this.text2
+					})
+					dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+				}else{
+					lineageg = lineid;
+					lineid = '';
+					station = id;
+					var main = plus.webview.getWebviewById('jxf1y.html');
+					mui.fire(main, "weizhineirong",{
+					    text3:this.text3
+					})
+					dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiangejt,search,price_zj);
+				}
+				qxzzcdff();
+				$('#sel3 li').css({'color':'#666666'});
+				$('#sel3 li').eq(q+1).css({'color':'#2c71d8'});
+			}
+			
+			//监听首页底部选项卡的事件(隐藏选项卡)
+			function jiantingindex(){
+				var index = plus.webview.getWebviewById('index');
+				mui.fire(index, "jiantingishoyeindex",{
+				    text3:this.text1
+				})
+			}
+			//监听首页底部选项卡的事件(显示选项卡)
+			function jiantingindexxianshi(){
+				var index = plus.webview.getWebviewById('index');
+				mui.fire(index, "jiantingishoyeindexxianshi",{
+				    text3:this.text1
+				})
+			}
+			
+			
+		</script>
+	</body>
+
+</html>

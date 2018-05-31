@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+	<head  class="mui-bar mui-bar-nav bg-color jxfy-bg-color">
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link href="css/jxfy.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<script type="text/javascript" src="js/lib/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="js/lib/flexible.js"></script>
+		<script type="text/javascript" src="js/lib/flexible_css.js"></script>
+		<script src="js/mui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/a_fringe.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav jxfy-bg-color ipx_h" id="jxfyhead">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d" style="color: #fff;position: absolute;line-height: 0.32rem"></a>
+			<div class="sousu">
+				<span class="mui-icon mui-icon-search sousudubiao"></span>
+				<span class="sousuwenzi">请输入楼盘、区域、商圈</span>
+			</div>
+		</header>
+		<div class="mui-content jxfytjxz">
+			<div class="jxfytjweizhi">
+				<ul>
+					<li class="shuixuanweizhi" onclick="weizjihanshu()">位置<span class="mui-icon mui-icon-arrowdown jxfyzxtubiao"></span></li>
+					<li class="shaxuandejiage" onclick="jiageclick()">价格<span class="mui-icon mui-icon-arrowdown jxfyzxtubiao"></span></li>
+					<li class="shiaxuanarea" onclick="miajiclick()">面积<span class="mui-icon mui-icon-arrowdown jxfyzxtubiao"></span></li>
+					<li class="shuxinshux" onclick="siaxuansy()">筛选<span class="mui-icon mui-icon-arrowdown jxfyzxtubiao"></span></li>
+				</ul>
+			</div>
+			
+			
+		</div>
+
+		<script type="text/javascript">
+			var topHeight = '115px';
+	      	if(window.screen.width == 375 && window.screen.height == 812){
+				topHeight = '139px';
+			}else{
+				topHeight = '115px';
+			}
+			
+			
+			
+			mui.init({
+			    subpages:[{
+			      url:'jxfyList1.html',//子页面HTML地址，支持本地地址和网络地址
+			      id:'jxfyList1',//子页面标志1
+			      styles:{
+			        top:topHeight,//子页面顶部位置
+			        bottom:'0px',//子页面底部位置
+			        /*width:subpage-width,//子页面宽度，默认为100%
+			        height:subpage-height,//子页面高度，默认为100%
+			        ......*/
+			      },
+			      extras:{}//额外扩展参数
+			    }]
+		  	});
+		  	
+		  	
+		  	
+		  	//页面的跳转12
+		  	mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+		  	$('.sousu').click(function(){
+		  		//精选房源上面搜索框的值传到搜索页面
+				var jxfsszhi = '';
+				if($('.sousuwenzi').html() == '请输入楼盘、区域、商圈'){
+					jxfsszhi = '';
+				}else{
+					jxfsszhi = $('.sousuwenzi').html();
+					var main = plus.webview.getWebviewById('search1');
+					mui.fire(main,"jxfychudezhiwed",{
+					    lpname:jxfsszhi
+					})
+				}
+				mui.openWindow({ 
+					url:'page/search1.html', //需要打开页面的url地址 
+					id:'search1',  //需要打开页面的url页面id
+					styles:{ 
+						top:'0px',//新页面顶部位置 
+						bottom:'0px',//新页面底部位置 
+	//					width:newpage-width,//新页面宽度，默认为100% 
+	//					height:newpage-height,//新页面高度，默认为100% ...... 
+					}, 
+					extras:{ 
+						lpname:jxfsszhi,
+	//					.....//自定义扩展参数，可以用来处理页面间传值 
+					},show:{ //控制打开页面的类型
+						autoShow:true,
+	//					//页面loaded事件发生后自动显示，默认为true 
+						aniShow:'slide-in-right',//页面显示动画，默认为”slide-in-right“；  页面出现的方式 左右上下
+						duration:'300'//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒； 
+					}, waiting:{ // 控制 弹出转圈框的信息
+						autoShow:true,//自动显示等待框，默认为true 
+						title:'加载中...',//等待对话框上显示的提示内容 
+						options:{ 
+							width:'100px',//等待框背景区域宽度，默认根据内容自动计算合适宽度 
+							height:'100px',//等待框背景区域高度，默认根据内容自动计算合适高度 ...... 
+						} 
+					}
+				});
+				
+				
+			});
+
+			var jiage = 1;
+			var area = 1;
+			var wz = 1;//位置
+			var sx = 1;//筛选
+			console.log(45645645645645465456172);
+			/*筛选点击事件*/
+			function siaxuansy(){
+				chushiweizhi2();
+				chushiweizhi3();
+				chushiweizhi1();
+				$('.shuxinshux span').removeClass('mui-icon-arrowdown');
+				$('.shuxinshux span').addClass('mui-icon-arrowup muiJiage');
+				$('.shuxinshux').addClass('jiage');
+				var main = plus.webview.getWebviewById('jxfyList1');
+				mui.fire(main, "weizhi",{
+				    idx:3//1位置
+				})
+				var index = plus.webview.getWebviewById('index');
+				mui.fire(index, "weizhi1",{
+				    idxid:3//1位置
+				})
+				var main = plus.webview.getWebviewById('jxfyList1');
+				mui.fire(main, "jiagekzqt",{
+				    idxjiage:1//1
+				})
+			}
+			window.addEventListener("saixuanfh", function (e) {
+			    //获得事件参数
+			    var idxsxfh = e.detail.idxsxfh;
+				chushiweizhi4();
+			});
+
+/*			位置的点击出现遮罩层*/
+			function weizjihanshu(){
+				chushiweizhi2();
+				chushiweizhi3();
+				chushiweizhi4();
+				$('.shuixuanweizhi span').removeClass('mui-icon-arrowdown');
+				$('.shuixuanweizhi span').addClass('mui-icon-arrowup muiJiage');
+				$('.shuixuanweizhi').addClass('jiage');
+				var main = plus.webview.getWebviewById('jxfyList1');
+				mui.fire(main, "weizhi",{
+				    idx:1//1位置
+				})
+				mui.fire(main, "saixuankzqt",{
+				    idxsaixuan:1//1位置
+				})
+				var index = plus.webview.getWebviewById('index');
+				mui.fire(index, "weizhi1",{
+				    idxid:1//1位置
+				})
+			}
+			//恢复位置的样式
+			window.addEventListener("weizhifh", function (e) {
+			    //获得事件参数
+			    var idxfh = e.detail.idxfh;
+				chushiweizhi1();
+			});
+			//恢复筛选的样式
+			window.addEventListener("saixuanfh", function (e) {
+			    //获得事件参数
+			    var idxsxfh = e.detail.idxsxfh;
+				chushiweizhi4();
+			});
+			
+			$('.shaxuandejiage').click(function(){
+				chushiweizhi1();
+				chushiweizhi3();
+				chushiweizhi4();
+				var main = plus.webview.getWebviewById('jxfyList1');
+				mui.fire(main, "jagggkzqt",{
+				    idxjiaggge:1//1
+				})
+				if(jiage == 1){
+					$('.shaxuandejiage span').removeClass('mui-icon-arrowdown');
+					$('.shaxuandejiage span').addClass('mui-icon-arrowup muiJiage');
+					$('.shaxuandejiage').addClass('jiage');
+					jiage = 2;
+				}else{
+					$('.shaxuandejiage span').addClass('mui-icon-arrowdown');
+					$('.shaxuandejiage span').removeClass('mui-icon-arrowup');
+					/*$('.shaxuandejiage').removeClass('jiage');*/
+					jiage = 1;
+				}
+			});
+			$('.shiaxuanarea').click(function(){
+				chushiweizhi1();
+				chushiweizhi2();
+				chushiweizhi4();
+				var main = plus.webview.getWebviewById('jxfyList1');
+				mui.fire(main, "jagggkzqt",{
+				    idxjiaggge:1//1
+				})
+				if(area == 1){
+					$('.shiaxuanarea span').removeClass('mui-icon-arrowdown');
+					$('.shiaxuanarea span').addClass('mui-icon-arrowup muiJiage');
+					$('.shiaxuanarea').addClass('jiage');
+					area = 2;
+				}else{
+					$('.shiaxuanarea span').addClass('mui-icon-arrowdown');
+					$('.shiaxuanarea span').removeClass('mui-icon-arrowup');
+					area = 1;
+				}
+				
+			});
+			
+			//初始条件
+			//位置条件
+			function chushiweizhi1(){
+				$('.shuixuanweizhi span').addClass('mui-icon-arrowdown');
+				$('.shuixuanweizhi span').removeClass('mui-icon-arrowup muiJiage');
+				$('.shuixuanweizhi').removeClass('jiage');
+				wz = 1;
+			}
+			//价格条件
+			function chushiweizhi2(){
+				$('.shaxuandejiage span').addClass('mui-icon-arrowdown');
+				$('.shaxuandejiage span').removeClass('mui-icon-arrowup muiJiage');
+				$('.shaxuandejiage').removeClass('jiage');
+				jiage = 1;
+			}
+			//面积条件
+			function chushiweizhi3(){
+				$('.shiaxuanarea span').addClass('mui-icon-arrowdown');
+				$('.shiaxuanarea span').removeClass('mui-icon-arrowup muiJiage');
+				$('.shiaxuanarea').removeClass('jiage');
+				area = 1;
+			}
+			//筛选条件
+			function chushiweizhi4(){
+				$('.shuxinshux span').addClass('mui-icon-arrowdown');
+				$('.shuxinshux span').removeClass('mui-icon-arrowup muiJiage');
+				$('.shuxinshux').removeClass('jiage');
+				sx = 1;
+			}
+			
+/*			价格的点击*/
+			function jiageclick(){
+				var main = plus.webview.getWebviewById('jxfyList1');
+				if(jiage == 1){
+					mui.fire(main, "jiage",{
+					    idx:5//5价格
+					})
+				}else{
+					mui.fire(main, "jiage",{
+					    idx:6//6价格
+					})
+				}
+				
+			}
+/*			面积的点击*/
+			function miajiclick(){
+				var main = plus.webview.getWebviewById('jxfyList1');
+				if(area == 1){
+					mui.fire(main, "area",{
+					    idx:7//7面积
+					})
+				}else{
+					mui.fire(main, "area",{
+					    idx:8//8面积
+					})
+				}
+				
+			}
+			
+			//监听搜索页面的返回事件
+			window.addEventListener("sousuochuac", function (e) {
+			    //获得事件参数
+			    var lpname = e.detail.lpname;
+				$('.sousuwenzi').html(lpname);
+			});
+			
+			//监听搜索页面的取消事件
+			window.addEventListener("ssqvxiaofanhui", function (e) {
+			    //获得事件参数
+			    var qvx = e.detail.qvx;
+				$('.sousuwenzi').html('请输入楼盘、区域、商圈');
+			});
+			
+			//位置内容的改变
+			window.addEventListener("weizhineirong", function (e) {
+			    //获得事件参数
+			    var text3 = e.detail.text3;
+				var leng = $('.shuixuanweizhi').text().length;
+				var wez = $('.shuixuanweizhi').html().substring(leng);
+				$('.shuixuanweizhi').html(text3 + wez);
+			});
+			mui.plusReady(function(){
+                var self = plus.webview.currentWebview();
+                var find_houseObj = self.find_houseObj;
+                localStorage.setItem('find_houseObj',find_houseObj);
+//              alert(localStorage.getItem('find_houseObj'));
+//              console.log(name);
+//              //关闭等待框
+//              plus.nativeUI.closeWaiting();
+//              //显示当前页面
+//              mui.currentWebview.show();
+//              var main = plus.webview.getWebviewById('jxfyList1');
+//				mui.fire(main, "find_house1",{
+//				    find_houseObj:find_houseObj
+//				})
+            });
+            
+            window.addEventListener("find_house", function (e) {
+			    //获得事件参数
+			    var find_houseObj = e.detail.find_houseObj;
+				var main = plus.webview.getWebviewById('jxfyList1');
+				mui.fire(main, "find_house1",{
+				    find_houseObj:find_houseObj
+				})
+			});
+		</script>
+	</body>
+
+</html>

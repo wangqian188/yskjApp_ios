@@ -1,0 +1,46 @@
+.notice_fyblank_display{
+	display: blank;
+	background-color: #ffffff;
+	height: 100%;
+}
+.notice_fyblank_displaynone{
+	/*display: blank;*/
+	display: none;
+	
+}
+.notice_fangneirong_display{
+	/*display: none;*/
+	display: blank;
+}
+.notice_img{
+	margin-top: 3.066666rem;
+	height: 2.373333rem;
+	background: url(../img/notice_ceter/kongbai_img.png) no-repeat center;
+	background-size: auto 100%;
+}
+.zhanwudongz{margin-top: 0.506666rem;text-align: center;}
+.zhanwudongz span{font-size: 0.4rem;color: #9a9a9a;}
+.notice_ul{padding-right: 0.4rem;padding-left: 0.4rem;}
+.notice_list{border: 1px solid #e5e5e5;border-radius: 5px;height: 3.36rem !important;background-color: #ffffff;padding: 0.373333rem 0.293333rem 0rem;margin-bottom: 0.306666rem;}
+.list_repair{border-bottom: 1px solid #e5e5e5;height: 0.826666rem;width: 100%;display: flex;justify-content: space-between;}
+.repair_p{display: flex;}
+.repair_cssstyle{width: 0.493333rem;height: 0.493333rem;}
+.repair_img{background: url(../img/notice_ceter/repair.png) no-repeat;background-size: 100% auto;}
+.repair_img1{background: url(../img/notice_ceter/repair1.png) no-repeat;background-size: 100% auto;}
+.repair_img2{background: url(../img/notice_ceter/repair2.png) no-repeat;background-size: 100% auto;}
+.repair_img3{background: url(../img/notice_ceter/repair3.png) no-repeat;background-size: 100% auto;}
+.repair_img4{background: url(../img/notice_ceter/repair4.png) no-repeat;background-size: 100% auto;}
+.repair_img5{background: url(../img/notice_ceter/repair5.png) no-repeat;background-size: 100% auto;}
+.repair_img6{background: url(../img/notice_ceter/repair6.png) no-repeat;background-size: 100% auto;}
+.repair_img7{background: url(../img/notice_ceter/repair7.png) no-repeat;background-size: 100% auto;}
+.repair_font{margin-left: 0.213333rem;font-size: 0.4rem;color: #333333;line-height: 0.493333rem;}
+.repair_djd{font-size: 0.373333rem;line-height: 0.493333rem;}
+.repair_clor_compelte{color: #14ae64;}
+.repair_clor_danjiedan{color: #efb23c;}
+.repair_clor_pass{color: #2b70d8;}
+.repair_clor_refused{color: #f04c4c;}
+.repair_clor_exipirde{color: #999999;}
+.server_items{margin-top: 0.533333rem;height: 0.373333rem;}
+.server_items_span{font-size: 0.373333rem;color: #999999;}
+.server_items_nr{font-size: 0.373333rem;color: #333333;}
+.sumbi{margin-top: 0.32rem;}

@@ -1,0 +1,41 @@
+.detail_lag{border: 1px solid #d9d9d9;position: relative;box-shadow:0px 0px 4px #d9d9d9;border-radius: 5px;overflow: hidden;position: relative !important;}
+.detail_lag h1{background-color: #eeeeee;box-shadow:0px 2px 4px #d9d9d9;font-size: 0.4rem;color: #333333;padding-left: 0.466666rem;display: flex;align-items: center;height: 1.253333rem;font-weight: 700;position: relative;z-index: 2;}
+.xycontent{padding: 0.64rem 0rem 0rem 0.466666rem;background-color: #ffffff;height: 100%;}
+.xycontent p{display: flex;margin-bottom: 0.48rem;}
+.xxingmspan{font-size: 0.4rem;color: #999999;}
+.sansspan{font-size: 0.4rem;color: #333333;}
+.xinmgwid{width: 1.213333rem;}
+.shoujihwid{width: 1.64rem;}
+.fangywidt{width: 2rem;}
+.compete{position: absolute;z-index:5;top: 0.44rem;right: 0.4rem;width: 1.946666rem;height: 1.946666rem;}
+.fangwumiashu{margin-top: 0.48rem;margin-bottom:1.253333rem;border: 1px solid red;min-height: 5.066666rem;border: 1px solid #d9d9d9;box-shadow:0px 0px 4px #d9d9d9;border-radius: 5px;overflow: hidden;}
+.fangwumiashu h1{background-color: #eeeeee;box-shadow:0px 2px 4px #d9d9d9;font-size: 0.4rem;color: #333333;padding-left: 0.466666rem;display: flex;align-items: center;height: 1.253333rem;font-weight: 700;position: relative;z-index: 2;}
+.fangwufont{min-height: 3.813333rem;padding-right: 0.466666rem !important;display: flex;flex-direction: column;}
+.fangdewnzi{font-size: 0.4rem;color: #333333;line-height: 0.72rem;}
+.fangwufont p{font-size: 0.4rem;color: #333333;line-height: 0.72rem;}
+.qiyehul{border-top: 1px solid #e4e4e4;height: 2.333333rem;}
+.qiyehuldis{display: none !important;}
+.qiehul_p{margin-top: 0.493333rem;}
+.qiyehulxqfb{border-top: 1px solid #e4e4e4;height:4.066666rem;margin-bottom: 0.613333rem;}
+.menchwei_img{width: 2.053333rem;height: 2.053333rem;margin-bottom: 0.293333rem;margin-right: 0.293333rem;}
+.menchwei_p{display: flex;flex-wrap: wrap;}
+.qy_mes {
+    display: flex;
+    padding: 0 0rem !important;
+    margin-top: 0.4rem;
+}
+.qy_intro h3 {
+    height: 1.2rem;
+    line-height: 1.2rem;
+    font-size: 0.4rem;
+    color: #333333;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0 0rem !important;
+    font-weight: bold;
+}
+.intro_detail {
+    padding: 0.533333rem 0.4rem 0.533333rem 0rem !important;
+    font-size: 0.373333rem;
+    color: #666666;
+    line-height: 0.6rem;
+}
