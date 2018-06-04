@@ -142,7 +142,7 @@
 				<h1>原因说明</h1>
 				<div class="xycontent fangwufont">
 					<p class="content_class">
-						法就是疯狂就开始对方就开始打房间爱开始交付带看上级大方块房间爱卡圣诞节疯
+						
 					</p>
 					<p class="menchwei_p">
 						<!--<span class="menchwei_img"><img src="../img/notice_ceter/menchwei_img.jpg" width="100%"/>123</span>
@@ -307,7 +307,7 @@
 				            	}else{
 				//          		在线报修   物业对接   房屋凭证      房屋费用是一个页面
 //				            		alert('设备报修///在线报修');
-				            		if(data[0].pic == null){
+				            		if(data[0].pic == null || data[0].pic == ""){
 				            			
 				            		}else{
 				            			var array = data[0].pic.split(";");
@@ -321,10 +321,10 @@
 									$(".sub_time").html(data[0].createTime==null?"无":data[0].createTime);
 					            	$(".fangjian_xinxi").html(data[0].repairHouse==''?"无":data[0].repairHouse);
 					            	$(".content_class").html(data[0].memo==''?"无":data[0].memo);
-					            	if(array.length == 1 && data[0].pic != null){
+					            	if(array.length == 1 && data[0].pic != null && data[0].pic != ""){
 										var str = '<span class="menchwei_img"><img src="'+data[0].pic+'" width="100%" height="100%"/></span>';
 					            		$('.menchwei_p').append(str);
-									}else if(array.length > 1 && data[0].pic != null){
+									}else if(array.length > 1 && data[0].pic != null && data[0].pic != ""){
 										var array = data[0].pic.split(";");
 										for(var i=0;i<array.length;i++){
 											var str = '<span class="menchwei_img"><img src="'+array[i]+'" width="100%" height="100%"/></span>';

@@ -540,51 +540,129 @@
 			
 			//加入会员跳转
 			$('.add_vip').click(function(){
-				if(localStorage.getItem('lostate')){
-					if(localStorage.getItem('user_type') == '2' || localStorage.getItem('user_type') == '3'){
-						cx_hy_zt();						
-					}else{
-						mui.alert('您还不是我们的业主或租户','提示','确定',function(){},'div');
-						return;
+				var cookie=JSON.parse(localStorage.getItem('cookxs_yh'));
+				mui.ajax(url + '/yskjApp/appYskj/V1/landState.do',{
+					data:{
+						"cookie":cookie
+					},
+					dataType:'json',
+					type:'post',
+					timeout:10000,
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						console.log("用户登录状态： "+data.success);
+						if(data.success){
+							lostate=1;
+							localStorage.setItem('lostate', lostate);
+							if(localStorage.getItem('user_type') == '2' || localStorage.getItem('user_type') == '3'){
+								cx_hy_zt();						
+							}else{
+								mui.alert('您还不是我们的业主或租户','提示','确定',function(){},'div');
+								return;
+							}
+						}else{
+							//未登录
+							localStorage.removeItem('lostate');
+							localStorage.removeItem('cookxs_yh');
+							localStorage.removeItem('userInfos');
+							localStorage.removeItem('weinxin_shouquan');
+							localStorage.removeItem('user_type');
+							localStorage.removeItem('user_id');
+							mui.openWindow({
+							  url: './page/login.html', 
+							  id:'login'
+							});	
+							return;
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type);
 					}
-				}else{
-					mui.openWindow({
-					  url: './page/login.html', 
-					  id:'login'
-					});					
-				}
+				});
 			});
 			//发布服务跳转
 			$('#fb_ser').click(function(){
-				if(localStorage.getItem('lostate')){
-					if(localStorage.getItem('user_type') == '2' || localStorage.getItem('user_type') == '3'){//业主和租户
-						mui.openWindow({ 
-							url:'page/fb_ser.html',
-							id:'fb_ser',
-						})						
-					}else{
-						mui.alert('您还不是我们的业主或租户','提示','确定',function(){},'div');
+				var cookie=JSON.parse(localStorage.getItem('cookxs_yh'));
+				mui.ajax(url + '/yskjApp/appYskj/V1/landState.do',{
+					data:{
+						"cookie":cookie
+					},
+					dataType:'json',
+					type:'post',
+					timeout:10000,
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						console.log("用户登录状态： "+data.success);
+						if(data.success){
+							lostate=1;
+							localStorage.setItem('lostate', lostate);
+							if(localStorage.getItem('user_type') == '2' || localStorage.getItem('user_type') == '3'){//业主和租户
+								mui.openWindow({ 
+									url:'page/fb_ser.html',
+									id:'fb_ser',
+								});					
+							}else{
+								mui.alert('您还不是我们的业主或租户','提示','确定',function(){},'div');
+							}
+						}else{
+							//未登录
+							localStorage.removeItem('lostate');
+							localStorage.removeItem('cookxs_yh');
+							localStorage.removeItem('userInfos');
+							localStorage.removeItem('weinxin_shouquan');
+							localStorage.removeItem('user_type');
+							localStorage.removeItem('user_id');
+							mui.openWindow({
+							  url: './page/login.html', 
+							  id:'login'
+							});	
+							return;
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type);
 					}
-				}else{
-					mui.openWindow({
-					  url: './page/login.html', 
-					  id:'login'
-					});					
-				}
+				});
 			});
 			//发布需求跳转
 			$('#fb_need').click(function(){
-				if(localStorage.getItem('lostate')){
-					mui.openWindow({ 
-						url:'page/fb_need.html',
-						id:'fb_need',
-					})	
-				}else{
-					mui.openWindow({
-					  url: './page/login.html', 
-					  id:'login'
-					});					
-				}
+				var cookie=JSON.parse(localStorage.getItem('cookxs_yh'));
+				mui.ajax(url + '/yskjApp/appYskj/V1/landState.do',{
+					data:{
+						"cookie":cookie
+					},
+					dataType:'json',
+					type:'post',
+					timeout:10000,
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						console.log("用户登录状态： "+data.success);
+						if(data.success){
+							lostate=1;
+							localStorage.setItem('lostate', lostate);
+							mui.openWindow({ 
+								url:'page/fb_need.html',
+								id:'fb_need',
+							})
+						}else{
+							//未登录
+							localStorage.removeItem('lostate');
+							localStorage.removeItem('cookxs_yh');
+							localStorage.removeItem('userInfos');
+							localStorage.removeItem('weinxin_shouquan');
+							localStorage.removeItem('user_type');
+							localStorage.removeItem('user_id');
+							mui.openWindow({
+							  url: './page/login.html', 
+							  id:'login'
+							});
+							return;
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type);
+					}
+				});
 			});
 			//更多企业
 			$('#more_qy').click(function(){
@@ -603,6 +681,7 @@
 				    }
 				})
 			}
+		
 			//下拉刷新
 			window.onload = function(){
 			    window.addEventListener('touchstart', touchstart, false);

@@ -62,7 +62,8 @@
 			"page/qy_detail.html",
 			"page/fb_ser.html",
 			"page/add_vip.html",
-			"page/more_qy.html"
+			"page/more_qy.html",
+			"page/login.html"
 		]
 	},
 	"page/mycollection.html": {
@@ -150,6 +151,23 @@
 	"page/more_qy.html": {
 		"refer": [
 			"page/qy_detail.html"
+		]
+	},
+	"page/tax.html": {
+		"refer": [
+			"page/wYaoZhuCe.html",
+			"page/login.html"
+		]
+	},
+	"page/fitup.html": {
+		"refer": [
+			"page/liJiShenQing.html",
+			"page/login.html"
+		]
+	},
+	"page/added.html": {
+		"refer": [
+			"page/login.html"
 		]
 	}
 }
