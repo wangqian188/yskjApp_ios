@@ -1,7 +1,8 @@
 #slider{
 	/*轮播图高度*/
 	/*height: 5.813333rem;*/
-	height: 7.133333rem;
+	max-height: 7.133333rem;
+	height: auto;
 }
 .zxsj_box{
 	/*最新数据*/
@@ -33,7 +34,10 @@
 	padding-top: 0.026666rem;
 }
 .tt_news li{
+	/*border: 1px solid aquamarine;*/
+	box-sizing: border-box;
 	height: 1.013333rem;
+	/*height: 100%;*/
 }
 .tt_news li p:first-child{
 	font-size: 0.346666rem;

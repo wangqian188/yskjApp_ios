@@ -14,10 +14,11 @@
 		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
 	</head>
 		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
-		    <div class="">
+		    <div class="" style="display: flex;justify-content: space-between;">
 		    	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
 		    	<!--<span class="titlezi topic" ></span>-->
 		    	<h1 class="mui-title topic"></h1>
+		    	<span class="mui-icon mui-icon-redo" id="share" style="color: white;"></span>
 		    </div>
 		</header>
 		<div class="mui-content fyzhuti">
@@ -119,7 +120,12 @@
 										<span class="neirong wygs"></span>
 									</p>
 								</li>
-								
+								<div style="display: none;">
+									<p>链接地址：</p>
+	            					<input id="sharehref" type="url" value="" />
+						            <p>链接描述：</p>
+						            <input id="sharehrefDes"  type="text" value="test"/></br>
+								</div>
 							</ul>
 						</div>
 					</div>
@@ -230,6 +236,7 @@
 								$(".chx").html(data[i].chx==""?"暂无数据":data[i].chx);
 								$(".kprq").html(data[i].kprq==""?"暂无数据":data[i].kprq);
 								$(".fjzt").html(data[i].fjzt==""?"暂无数据":data[i].fjzt);
+								$("#sharehref").val("http://omc.urskongjian.com/share/fy_tail.html?fyid="+fyid);
 								if(data[i].zglc == ''){
 									$(".lc").html(data[i].lc==""?"暂无数据":data[i].lc+'/暂无数据');
 								}else{
@@ -451,6 +458,8 @@
 				}
 			})
 			
+			
+			
 			//取消收藏 收藏房源Id
 			function cancleCollect(){
 				mui.ajax(url+'/yskjApp/appYskj/V1/cancelCollect.do',{
@@ -515,12 +524,133 @@
 			  $('.imglunbo').html(event.detail.slideNumber+1+'/'+le);
 			  /*alert("你正在看第"+(event.detail.slideNumber+1)+"张图片");*/
 			});
+			
             });
 			/*window.addEventListener("fyyuadeqx", function (e) {
 			    //获得事件参数
 			
 			});*/
-            
+
+			//微信分享
+			$('#share').click(function(){
+				var shareBts=[];
+				var shareLink = 'http://omc.urskongjian.com/repairs/page/repairs_bx.html?houseId=45774';
+				var shareTitle = '亮狮App';
+//				var shareLink = '';
+	            // 更新分享列表
+	            var ss=shares['weixin'];
+	            ss&&ss.nativeClient&&(shareBts.push({title:'微信朋友圈',s:ss,x:'WXSceneTimeline'}),
+	            shareBts.push({title:'微信好友',s:ss,x:'WXSceneSession'}));
+//	            ss=shares['qq'];
+//	            ss&&ss.nativeClient&&shareBts.push({title:'QQ',s:ss});
+	            // 弹出分享列表
+	            shareBts.length>0?plus.nativeUI.actionSheet({title:'分享链接',cancel:'取消',buttons:shareBts},function(e){
+	                (e.index>0)&&shareAction(shareBts[e.index-1],true);
+	            }):plus.nativeUI.alert('当前环境无法支持分享链接操作!');
+			});
+			var shares=null;
+	        var Intent=null,File=null,Uri=null,main=null;
+	        // H5 plus事件处理
+	        function plusReady(){
+	            updateSerivces();
+	            if(plus.os.name=="Android"){
+	                main = plus.android.runtimeMainActivity();
+	                Intent = plus.android.importClass("android.content.Intent");
+	                File = plus.android.importClass("java.io.File");
+	                Uri = plus.android.importClass("android.net.Uri");
+	            }
+	        }
+	        if(window.plus){
+	            plusReady();
+	        }else{
+	            document.addEventListener("plusready",plusReady,false);
+	        }
+	        
+	        /**
+	         * 
+	         * 更新分享服务
+	         */
+	        function updateSerivces(){
+	            plus.share.getServices( function(s){
+	                shares={};
+	                for(var i in s){
+	                    var t=s[i];
+	                    shares[t.id]=t;
+	                }
+	            }, function(e){
+	                alert("获取分享服务列表失败："+e.message );
+	            } );
+	        }
+	        
+	        
+	        
+	        /**
+	           * 分享操作
+	           * @param {JSON} sb 分享操作对象s.s为分享通道对象(plus.share.ShareService)
+	           * @param {Boolean} bh 是否分享链接
+	           */
+	        function shareAction(sb,bh) {
+	            if(!sb||!sb.s){
+	                alert("无效的分享服务！");
+	                return;
+	            }
+	            
+	            var msg={content:sharehrefDes.value,extra:{scene:sb.x}};
+	            if(bh){
+	                msg.href=sharehref.value;
+	                var topocs=$('.topic').html() +"  " + $('.fybh').html();
+	                var contenthtml='面积:' + $('.fjmj').html()+"     " + '月租金:' + $('.yzj').html();
+	                if(topocs&&topocs!=""){
+//	                    msg.title=sharehrefTitle.value;
+	                    msg.title=topocs;
+	                }
+	                if(contenthtml&&contenthtml!=""){
+//	                    msg.content=sharehrefDes.value;
+	                    msg.content=contenthtml;
+	                }
+	                msg.thumbs=["http://omc.urskongjian.com:81/yskjapp/shi_ion.png"];
+	                msg.pictures=[""];
+	            }else{
+	                if(pic&&pic.realUrl){
+	                    msg.pictures=[pic.realUrl];
+	                }
+	            }
+	            // 发送分享
+	            if ( sb.s.authenticated ) {
+//	                alert("---已授权---");
+	                shareMessage(msg,sb.s);
+	            } else {
+//	                alert("---未授权---");
+	                sb.s.authorize( function(){
+	                        shareMessage(msg,sb.s);
+	                    },function(e){
+	                        alert("认证授权失败："+e.code+" - "+e.message );
+	                    
+	                });
+	            }
+	        }
+	        /**
+	           * 发送分享消息
+	           * @param {JSON} msg
+	           * @param {plus.share.ShareService} s
+	           */
+	        function shareMessage(msg,s){
+	            
+//	            alert(JSON.stringify(msg));
+	            s.send( msg, function(){
+//	                alert("分享到\""+s.description+"\"成功！ " );
+	                mui.alert("分享到\""+s.description+"\"成功！ ");
+	                
+	            }, function(e){
+//	                alert( "分享到\""+s.description+"\"失败: "+JSON.stringify(e) );
+//	                mui.alert( "分享到\""+s.description+"\"失败: "+JSON.stringify(e) );
+	            
+	            } );
+	        }
+//	        // 分析链接
+//	        function shareHref(){
+//	            
+//	        }
 			
 		</script>
 	</body>

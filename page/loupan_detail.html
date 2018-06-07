@@ -30,9 +30,10 @@
 		.lptaldubiao{display: flex;justify-content: center;height: 0.933333rem;margin-top: 0.266666rem;}
 	</style>
 		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
-		    <div class="">
+		    <div class="" style="display: flex;justify-content: space-between;">
 		    	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
 		    	<h1 class="mui-title building_name"></h1>
+		    	<span class="mui-icon mui-icon-redo" id="share" style="color: white;"></span>
 		    </div>
 		</header>
 		<div class="mui-content fyzhuti">
@@ -50,6 +51,7 @@
 					<p class="lp_wz">
 						<span class="wz_ion"></span>
 						<span class="wz_text address"></span>
+						<span class="dsdsaddress" style="display: none;"></span>
 					</p>
 					<ul class="lp_nav">
 						<li>市场均价<i class="price"></i>元/m²/天</li>
@@ -175,6 +177,12 @@
             <span class="db">银行</span>
           </li>
         </ul>
+        <div style="display: none;">
+			<p>链接地址：</p>
+			<input id="sharehref" type="url" value="" />
+	        <p>链接描述：</p>
+	        <input id="sharehrefDes"  type="text" value="test"/></br>
+		</div>
       </div>
 		</div>
 	<body>
@@ -223,9 +231,10 @@
                 lp_id = self.lpid;
                 localStorage.setItem('lp_id',self.lpid);
                 detailData(lp_id);
+                $("#sharehref").val("http://omc.urskongjian.com/share/lup_defal.html?lp_id="+lp_id);
                 detailDataHousesmore(lp_id,page,lp_leibie,lp_leib);
             });
-			
+
 			//tab切换
 			var tabNav = $('.scmenu');
 			var tabSp = $('.scmenu li');
@@ -323,9 +332,9 @@
 									}
 								}else{
 									if(lp_data[i].fjzt == ''){
-										lp_str = '<li class="listtail" onclick="linktodetail('+lp_data[i].id+')"><div class="fy_pic"><img src="'+img_url+lp_data[i].housing_icon+'" alt="" /></div><div class="qieryun lpxiqgdqierl"></div><div class="fy_xx"><p class="zdh">'+lp_data[i].zdh+"-"+lp_data[i].fybh+'</p><p class="md_price"><span class="d_price"><i>'+lp_data[i].daily_price+'</i>元/m²/天</span><span class="m_price"><i>'+lp_data[i].monthly_price+'</i>元/月</span></p><p class="qt"><span>'+lp_data[i].housing_area+'m²</span><span>'+lp_data[i].workstation+'个工位</span><span style="color:#2b70d8;">'+lp_data[i].fjzt+'</span></p></div></li><li class="zx"></li>';
+										lp_str = '<li class="listtail" onclick="linktodetail('+lp_data[i].id+')"><div class="fy_pic"><img src="'+img_url+lp_data[i].housing_icon+'" alt="" /></div><div class="qieryun lpxiqgdqierl" style="left: 0.133333rem !important;"></div><div class="fy_xx"><p class="zdh">'+lp_data[i].zdh+"-"+lp_data[i].fybh+'</p><p class="md_price"><span class="d_price"><i>'+lp_data[i].daily_price+'</i>元/m²/天</span><span class="m_price"><i>'+lp_data[i].monthly_price+'</i>元/月</span></p><p class="qt"><span>'+lp_data[i].housing_area+'m²</span><span>'+lp_data[i].workstation+'个工位</span><span style="color:#2b70d8;">'+lp_data[i].fjzt+'</span></p></div></li><li class="zx"></li>';
 									}else{
-										lp_str = '<li class="listtail" onclick="linktodetail('+lp_data[i].id+')"><div class="fy_pic"><img src="'+img_url+lp_data[i].housing_icon+'" alt="" /></div><div class="qieryun lpxiqgdqierl"></div><div class="fy_xx"><p class="zdh">'+lp_data[i].zdh+"-"+lp_data[i].fybh+'</p><p class="md_price"><span class="d_price"><i>'+lp_data[i].daily_price+'</i>元/m²/天</span><span class="m_price"><i>'+lp_data[i].monthly_price+'</i>元/月</span></p><p class="qt"><span>'+lp_data[i].housing_area+'m²</span><span>'+lp_data[i].workstation+'个工位</span><span style="color:#2b70d8;">'+lp_data[i].fjzt+'</span></p></div></li><li class="zx"></li>';
+										lp_str = '<li class="listtail" onclick="linktodetail('+lp_data[i].id+')"><div class="fy_pic"><img src="'+img_url+lp_data[i].housing_icon+'" alt="" /></div><div class="qieryun lpxiqgdqierl" style="left: 0.133333rem !important;"></div><div class="fy_xx"><p class="zdh">'+lp_data[i].zdh+"-"+lp_data[i].fybh+'</p><p class="md_price"><span class="d_price"><i>'+lp_data[i].daily_price+'</i>元/m²/天</span><span class="m_price"><i>'+lp_data[i].monthly_price+'</i>元/月</span></p><p class="qt"><span>'+lp_data[i].housing_area+'m²</span><span>'+lp_data[i].workstation+'个工位</span><span style="color:#2b70d8;">'+lp_data[i].fjzt+'</span></p></div></li><li class="zx"></li>';
 									}
 								}
 								$('.ss_bt').append(lp_str);
@@ -377,9 +386,9 @@
 									}
 								}else{
 									if(lp_data[i].fjzt == ''){
-										lp_str = '<li class="listtail" onclick="linktodetail('+lp_data[i].id+')"><div class="fy_pic"><img src="'+img_url+lp_data[i].housing_icon+'" alt="" /></div><div class="qieryun lpxiqgdqierl"></div><div class="fy_xx"><p class="zdh">'+lp_data[i].zdh+"-"+lp_data[i].fybh+'</p><p class="md_price"><span class="d_price"><i>'+lp_data[i].daily_price+'</i>元/m²/天</span><span class="m_price"><i>'+lp_data[i].monthly_price+'</i>元/月</span></p><p class="qt"><span>'+lp_data[i].housing_area+'m²</span><span>'+lp_data[i].workstation+'个工位</span><span style="color:#2b70d8;">'+lp_data[i].fjzt+'</span></p></div></li><li class="zx"></li>';
+										lp_str = '<li class="listtail" onclick="linktodetail('+lp_data[i].id+')"><div class="fy_pic"><img src="'+img_url+lp_data[i].housing_icon+'" alt="" /></div><div class="qieryun lpxiqgdqierl" style="left: 0.133333rem !important;"></div><div class="fy_xx"><p class="zdh">'+lp_data[i].zdh+"-"+lp_data[i].fybh+'</p><p class="md_price"><span class="d_price"><i>'+lp_data[i].daily_price+'</i>元/m²/天</span><span class="m_price"><i>'+lp_data[i].monthly_price+'</i>元/月</span></p><p class="qt"><span>'+lp_data[i].housing_area+'m²</span><span>'+lp_data[i].workstation+'个工位</span><span style="color:#2b70d8;">'+lp_data[i].fjzt+'</span></p></div></li><li class="zx"></li>';
 									}else{
-										lp_str = '<li class="listtail" onclick="linktodetail('+lp_data[i].id+')"><div class="fy_pic"><img src="'+img_url+lp_data[i].housing_icon+'" alt="" /></div><div class="qieryun lpxiqgdqierl"></div><div class="fy_xx"><p class="zdh">'+lp_data[i].zdh+"-"+lp_data[i].fybh+'</p><p class="md_price"><span class="d_price"><i>'+lp_data[i].daily_price+'</i>元/m²/天</span><span class="m_price"><i>'+lp_data[i].monthly_price+'</i>元/月</span></p><p class="qt"><span>'+lp_data[i].housing_area+'m²</span><span>'+lp_data[i].workstation+'个工位</span><span style="color:#2b70d8;">'+lp_data[i].fjzt+'</span></p></div></li><li class="zx"></li>';
+										lp_str = '<li class="listtail" onclick="linktodetail('+lp_data[i].id+')"><div class="fy_pic"><img src="'+img_url+lp_data[i].housing_icon+'" alt="" /></div><div class="qieryun lpxiqgdqierl" style="left: 0.133333rem !important;"></div><div class="fy_xx"><p class="zdh">'+lp_data[i].zdh+"-"+lp_data[i].fybh+'</p><p class="md_price"><span class="d_price"><i>'+lp_data[i].daily_price+'</i>元/m²/天</span><span class="m_price"><i>'+lp_data[i].monthly_price+'</i>元/月</span></p><p class="qt"><span>'+lp_data[i].housing_area+'m²</span><span>'+lp_data[i].workstation+'个工位</span><span style="color:#2b70d8;">'+lp_data[i].fjzt+'</span></p></div></li><li class="zx"></li>';
 									}
 								}
 								$('.ss_bt').append(lp_str);
@@ -454,6 +463,7 @@
 							$(".chqxz").html(chs);
 							}
 							$(".address").html(lpdata.district+" "+lpdata.address);
+							$(".dsdsaddress").html(lpdata.district);
 							//图片轮播信息
 							var housing_icon=lpdata.building_images;
 									if(housing_icon!=""){
@@ -613,6 +623,125 @@
 
         });
           }
+     
+    //
+    //微信分享
+	$('#share').click(function(){
+		var shareBts=[];
+		var shareLink = 'http://omc.urskongjian.com/repairs/page/repairs_bx.html?houseId=45774';
+		var shareTitle = '亮狮App';
+//				var shareLink = '';
+        // 更新分享列表
+        var ss=shares['weixin'];
+        ss&&ss.nativeClient&&(shareBts.push({title:'微信朋友圈',s:ss,x:'WXSceneTimeline'}),
+        shareBts.push({title:'微信好友',s:ss,x:'WXSceneSession'}));
+//      ss=shares['qq'];
+//      ss&&ss.nativeClient&&shareBts.push({title:'QQ',s:ss});
+        // 弹出分享列表
+        shareBts.length>0?plus.nativeUI.actionSheet({title:'分享链接',cancel:'取消',buttons:shareBts},function(e){
+            (e.index>0)&&shareAction(shareBts[e.index-1],true);
+        }):plus.nativeUI.alert('当前环境无法支持分享链接操作!');
+	});
+	var shares=null;
+    var Intent=null,File=null,Uri=null,main=null;
+    // H5 plus事件处理
+    function plusReady(){
+        updateSerivces();
+        if(plus.os.name=="Android"){
+            main = plus.android.runtimeMainActivity();
+            Intent = plus.android.importClass("android.content.Intent");
+            File = plus.android.importClass("java.io.File");
+            Uri = plus.android.importClass("android.net.Uri");
+        }
+    }
+    if(window.plus){
+        plusReady();
+    }else{
+        document.addEventListener("plusready",plusReady,false);
+    }
+    
+    /**
+     * 
+     * 更新分享服务
+     */
+    function updateSerivces(){
+        plus.share.getServices( function(s){
+            shares={};
+            for(var i in s){
+                var t=s[i];
+                shares[t.id]=t;
+            }
+        }, function(e){
+            alert("获取分享服务列表失败："+e.message );
+        } );
+    }
+    
+    
+    
+    /**
+       * 分享操作
+       * @param {JSON} sb 分享操作对象s.s为分享通道对象(plus.share.ShareService)
+       * @param {Boolean} bh 是否分享链接
+       */
+    function shareAction(sb,bh) {
+        if(!sb||!sb.s){
+            alert("无效的分享服务！");
+            return;
+        }
+        
+        var msg={content:sharehrefDes.value,extra:{scene:sb.x}};
+        if(bh){
+            msg.href=sharehref.value;
+            var topocs=$('.building_name').html();
+            var contenthtml="均价:" + $('.price').html()+'元/㎡/天' + '     '+ $('.kzfyS').html()+'套可租房源';
+            if(topocs&&topocs!=""){
+//	                    msg.title=sharehrefTitle.value;
+                msg.title=topocs;
+            }
+            if(contenthtml&&contenthtml!=""){
+//	                    msg.content=sharehrefDes.value;
+                msg.content=contenthtml;
+            }
+            msg.thumbs=["http://omc.urskongjian.com:81/yskjapp/shi_ion.png"];
+            msg.pictures=[""];
+        }else{
+            if(pic&&pic.realUrl){
+                msg.pictures=[pic.realUrl];
+            }
+        }
+        // 发送分享
+        if ( sb.s.authenticated ) {
+//	                alert("---已授权---");
+            shareMessage(msg,sb.s);
+        } else {
+//	                alert("---未授权---");
+            sb.s.authorize( function(){
+                    shareMessage(msg,sb.s);
+                },function(e){
+                    alert("认证授权失败："+e.code+" - "+e.message );
+                
+            });
+        }
+    }
+    /**
+       * 发送分享消息
+       * @param {JSON} msg
+       * @param {plus.share.ShareService} s
+       */
+    function shareMessage(msg,s){
+        
+//	            alert(JSON.stringify(msg));
+        s.send( msg, function(){
+//	                alert("分享到\""+s.description+"\"成功！ " );
+            mui.alert("分享到\""+s.description+"\"成功！ ");
+            
+        }, function(e){
+//	                alert( "分享到\""+s.description+"\"失败: "+JSON.stringify(e) );
+//	                mui.alert( "分享到\""+s.description+"\"失败: "+JSON.stringify(e) );
+        
+        } );
+    }
+
       
 //   function   getPoi(keyword, bind){
 //        const that = this;

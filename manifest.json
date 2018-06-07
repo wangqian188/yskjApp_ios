@@ -7,8 +7,8 @@
 	"id": "YSKJ",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "亮狮",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "2.0.0",/*应用版本名称*/
-		"code": "2"
+		"name": "2.0.1",/*应用版本名称*/
+		"code": "3"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -105,7 +105,7 @@
 		},
 		"NativeObj": {
 			"description": "原生对象"
-		},"OAuth":{}
+		},"OAuth":{},"Share":{}
 	},
 	"plus": {
 		"splashscreen": {
@@ -115,7 +115,7 @@
 		},
 		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
-		"distribute": {"plugins":{"oauth":{"weixin":{"appid":"wx7f158aec5dcedfd4","appsecret":"eb3958dcb9e1738839619a600f36b4c7"}}},
+		"distribute": {"plugins":{"share":{"weixin":{"appid":"wx0071d36adda001ec","appsecret":"883da840f29fed60591f28b3b6f569f3","description":"可选，微信分享"}},"oauth":{"weixin":{"appid":"wx0071d36adda001ec","appsecret":"883da840f29fed60591f28b3b6f569f3"}}},
 			"apple": {
 				"appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
 				"mobileprovision": "",/*iOS应用打包配置文件*/
