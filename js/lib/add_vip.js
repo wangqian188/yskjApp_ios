@@ -148,6 +148,10 @@ $('.wt_btn').click(function(){
 			if(telnumber==''){
 				mui.alert('手机号不能为空', '提示', function(){},'div');
 				return;
+			}else{
+				if(!checkPhone('tel')){
+					return;
+				}
 			}
 			if(qy_name == ''){
 				mui.alert('企业名称不能为空', '提示', function(){},'div');
