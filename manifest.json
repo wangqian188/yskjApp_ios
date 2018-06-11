@@ -226,7 +226,7 @@
 					"xxhdpi": "C:/Users/yuan/Desktop/app配置文件正式/welcome1.png"
 				}
 			}
-		},"ads":{"rp":false,"splash":false,"push":false}
+		},"ads":{"rp":false,"splash":false,"push":false},"adid":""
 	},
 	"dependencies": {
 		"pages": {

@@ -155,7 +155,7 @@ $('.wt_btn').click(function(){
 				mui.alert('预算不能为空', '提示', function(){},'div');
 				return;
 			}
-			if(yxq_date == ''){
+			if(yxq_date == '' || yxq_date = null){
 				mui.alert('有效期不能为空', '提示', function(){},'div');
 				return;
 			}else{
