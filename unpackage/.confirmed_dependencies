@@ -175,5 +175,18 @@
 		"refer": [
 			"page/qierlyun.html"
 		]
+	},
+	"jxfy1.html": {
+		"resources": [
+			"jxfyList1.html"
+		],
+		"refer": [
+			"jxfyList1.html"
+		]
+	},
+	"page/find_house.html": {
+		"refer": [
+			"jxfy1.html"
+		]
 	}
 }
