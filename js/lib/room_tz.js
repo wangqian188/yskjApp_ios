@@ -304,3 +304,34 @@ function yz_house_wt(){
 		}
 	});
 }
+function hq_yhxx(){//用户信息关联
+	mui.ajax(url + '/yskjApp/appYskj/V1/getCookieInfo.do',{
+		data:{
+			"cookie":JSON.parse(localStorage.getItem('cookxs_yh'))
+		},
+		dataType:'json',
+		type:'post',
+		timeout:10000,
+		headers:{'Content-Type':'application/json'},	              
+		success:function(data){
+			if(data.success){
+				var user_data = data.data;
+				$("#user_name").val(user_data.name);
+				$("#tel").val(user_data.phone);
+				user_name = $("#user_name").val();
+				telnumber = $("#tel").val();
+				if(telnumber != ''){
+					$('.hqyzm').css({'color':'#2b70d8'});					
+				}else{
+					$('.hqyzm').css({'color':'#c8c8c8'});					
+				}
+			}else{
+
+			}
+		},
+		error:function(xhr,type,errorThrown){
+			console.log(type);
+		}
+	});
+}
+hq_yhxx();//用户信息关联
