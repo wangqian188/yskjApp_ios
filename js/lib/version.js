@@ -98,7 +98,7 @@ function version(){
 	              },
 	              error:function(xhr,type,errorThrown){
 					  //异常处理；
-					  alert("下载失败！");
+					  alert("服务器开小差了,请稍后再试！");
 				   } 
 	          });
 	    	

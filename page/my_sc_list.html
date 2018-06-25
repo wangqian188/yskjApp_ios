@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的收藏</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<script type="text/javascript" src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/my_sc.css"/>
+	</head>
+
+	<body>
+		<!--下拉刷新容器-->
+		<div class="mui-content">
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul id="OA_task_2" class="mui-table-view">
+					<!--<li class="mui-table-view-cell sc_list">
+						<div class="xj_zz"></div>
+						<div class="mui-slider-right mui-disabled">
+							<a class="mui-btn mui-btn-red mui-icon a_d" style="width: 1.72rem!important;font-size: 0.346666rem;color: #fff;">删除</a>
+						</div>
+						<div class="mui-slider-handle sc_content">
+							<div class="sc_fy_pic">
+								<img src="../img/login_pic.png"/>
+								<div class="qieryun"></div>
+								<span class="pic_zz">房源已下架</span>
+							</div>
+							<div class="sc_right">
+								<p class="zd_fjh">建外SOHO 11-1109-5</p>
+								<p class="quyu"><span>朝阳区-国贸</span><span>101.5m²</span></p>
+								<p class="fy_tag"><span class="jzjf">精装交付</span><span class="dingjin">定金</span></p>
+								<p class="dj_price"><i>7.5</i>元/m²/天</p>
+							</div>
+						</div>
+					</li>-->
+				</ul>
+			</div>
+			<!--收藏为空-->
+			<div class="kong1" id="kong1">
+				<div class="kong">
+					<p></p>
+					<p>您还没有收藏任何房源</p>					
+				</div>
+			</div>
+		</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/lib/app_config.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			mui.init();
+			var page = 1;//页数
+			//删除
+			(function($) {
+				$('#OA_task_2').on('tap', '.mui-btn', function(event) {
+					var elem = this;
+					var li = elem.parentNode.parentNode;
+					var fysc_id = elem.parentNode.getAttribute('id');
+					mui.confirm('确认删除该条记录？', '提示', btnArray, function(e) {
+						if (e.index == 0) {
+							li.parentNode.removeChild(li);
+							mui.ajax(url + '/yskjApp/appYskj/V1/delCollect.do',{
+								data:{
+									"ids":String(fysc_id)
+								},
+								dataType:'json',
+								type:'post',
+								timeout:10000,
+								headers:{'Content-Type':'application/json'},	              
+								success:function(data){
+									if(data.success){
+										pabduan();
+										mui.toast(data.message,{ duration:'2000', type:'div' });
+									}else{
+										
+									}
+								},
+								error:function(xhr,type,errorThrown){
+									console.log(type);
+								}
+							});
+						} else {
+							setTimeout(function() {
+								$.swipeoutClose(li);
+							}, 0);
+						}
+					});
+				});
+				var btnArray = ['确认', '取消'];
+			})(mui);
+
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				page = 1;
+				setTimeout(function() {
+					$('#OA_task_2').html('');
+					my_shouc();
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+					mui('#pullrefresh').pullRefresh().refresh(true);
+				}, 1500);
+			}
+			var count = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+//					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					my_shouc();
+				}, 1500);
+		}
+
+		//我的收藏接口
+		my_shouc();
+		function my_shouc(){
+			mui.ajax(Interface_url + '/yhcms/web/collecthouse/getAppCollect.do',{
+				data:{
+						"parameters":
+						{
+							"cookie":JSON.parse(localStorage.getItem('cookxs_yh')),
+							"search_keywork":"",
+							"curr_page":page,
+							"items_perpage":10,
+							"sid":0,//0所有，1上架，3下架
+						},
+						"foreEndType":2,
+						"code":"16"
+				},
+				dataType:'json',
+				type:'post',
+				timeout:10000,
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					if(data.success){
+						var sc_html = '';
+						var allData = data.data;
+						//空状态
+						if(allData.length == 0 && page == 1){
+							$('#kong1').css('display','block');
+							$('#kong1').on('touchstart',function(e){
+								mui('#pullrefresh').pullRefresh().setStopped(true);
+								e.preventDefault();
+								return false;
+							});		
+						}else{
+							$('#kong1').css('display','none');
+						}							
+						for (var i=0; i<allData.length; i++) {
+							sc_html += '<li class="mui-table-view-cell sc_list">';
+							if(allData[i].sid == 3){
+								sc_html += '<div class="xj_zz"></div>';
+							}
+							sc_html += '<div class="mui-slider-right mui-disabled" id="'+allData[i].id+'">';
+							sc_html += '<a class="mui-btn mui-btn-red mui-icon a_d" style="width: 1.72rem!important;font-size: 0.346666rem;color: #fff;">删除</a></div>';
+							if(allData[i].sid == 1){
+								sc_html += '<div class="mui-slider-handle sc_content" onclick="mysc_detail('+allData[i].fyid+')">';								
+							}else{
+								sc_html += '<div class="mui-slider-handle sc_content">';
+							}
+							sc_html += '<div class="sc_fy_pic">';
+							sc_html += '<img src="'+img_url + allData[i].housing_icon+'"/>';
+							if(allData[i].cloudscape){
+								sc_html += '<div class="qieryun"></div>';								
+							}
+							if(allData[i].sid == 3){
+								sc_html += '<span class="pic_zz">房源已下架</span>';		
+								$('.xj_zz').css('display','none');
+							}
+							sc_html += '</div>';
+							sc_html += '<div class="sc_right">';
+							sc_html += '<p class="zd_fjh">'+allData[i].topic +'&nbsp;&nbsp;'+ allData[i].zdh + '-' + allData[i].fybh +'</p>';
+							sc_html += '<p class="quyu"><span>'+allData[i].district+' </span><span> '+allData[i].housing_area+'m²</span></p>';
+							sc_html += '<p class="fy_tag">';
+							if(allData[i].decoration_level != ''){
+								sc_html += '<span class="jzjf">'+allData[i].decoration_level+'</span>';								
+							}
+							if(allData[i].cid == 1){
+								sc_html += '<span class="dingjin">定金</span>';								
+							}
+							sc_html += '</p>';
+							sc_html += '<p class="dj_price"><i>'+allData[i].daily_price+'</i>元/m²/天</p>';
+							sc_html += '</div>';
+							sc_html += '</div>';
+							sc_html += '</li>';
+						}
+						$('#OA_task_2').append(sc_html);
+//						mui('#pullrefresh').pullRefresh().setStopped(false);
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh((data.data.length<10)); //参数为true代表没有更多数据了。
+						page++;
+					}else{
+						//数据获取不成功
+						
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					console.log(type);
+				}
+			});
+		}
+		function pabduan(){
+			mui.ajax(Interface_url + '/yhcms/web/collecthouse/getAppCollect.do',{
+				data:{
+						"parameters":
+						{
+							"cookie":JSON.parse(localStorage.getItem('cookxs_yh')),
+							"search_keywork":"",
+							"curr_page":1,
+							"items_perpage":10,
+							"sid":0,//0所有，1上架，3下架
+						},
+						"foreEndType":2,
+						"code":"16"
+				},
+				dataType:'json',
+				type:'post',
+				timeout:10000,
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					if(data.success){
+						var allData = data.data;
+						//空状态
+						if(allData.length == 0){
+							$('#kong1').css('display','block');
+							$('#kong1').on('touchstart',function(e){
+								mui('#pullrefresh').pullRefresh().setStopped(true);
+								e.preventDefault();
+								return false;
+							});		
+						}else{
+							$('#kong1').css('display','none');
+							my_shouc();
+						}							
+					}else{
+						//数据获取不成功
+						
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					console.log(type);
+				}
+			});
+		}
+		//跳转查看房源详情
+		function mysc_detail(fyid){
+			mui.openWindow({ 
+				url:'./fyTail.html',
+				id:'fyTail',
+				extras:{ 
+					fyid:fyid,
+				}
+			});
+		}
+		</script>
+	</body>
+
+</html>

@@ -37,9 +37,9 @@
 		    <div class="zf_box">
 		    	<p class="zf_bt">您需要多大面积的房子</p>
 		    	<p class="zf_inp1">
-		    		<input type="text" placeholder="请输入" id="area" autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="6" >
+		    		<input type="text" placeholder="请输入" id="area" autocomplete="off" onkeyup="onlyNumber(this)"  onblur="onlyNumber(this)" maxlength="16" >
 		    		<span></span>
-		    		<input type="text" placeholder="请输入" id="area1" autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="6" >
+		    		<input type="text" placeholder="请输入" id="area1" autocomplete="off" onkeyup="onlyNumber(this)"  onblur="onlyNumber(this)" maxlength="16" >
 		    		<i>m²</i>
 		    	</p>
 		    </div>
@@ -57,9 +57,9 @@
 		    <div class="zf_box">
 		    	<p class="zf_bt">您的期望单价是多少</p>
 		    	<p class="zf_inp1">
-		    		<input type="text" placeholder="请输入" id="dj_price" autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
+		    		<input type="text" placeholder="请输入" id="dj_price" autocomplete="off" onkeyup="onlyNumber(this)"  onblur="onlyNumber(this)" />
 		    		<span></span>
-		    		<input type="text" placeholder="请输入" id="dj_price1" autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
+		    		<input type="text" placeholder="请输入" id="dj_price1" autocomplete="off" onkeyup="onlyNumber(this)"  onblur="onlyNumber(this)" />
 		    		<i>元/m²/天</i>
 		    	</p>
 		    </div>

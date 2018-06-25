@@ -83,10 +83,51 @@
     .zc_box{
     	top: 3.253333rem!important;
     }
+    .ipx_head_h{
+    	height: 89px;
+    }
+    /*我的收藏*/
+    .sc_head_h::before{
+    	content: '';
+    	display: block;
+		height: 24px;
+		width: 100%;
+    }
+    .sc_head_h{
+    	height: 89px!important;
+    }
+    .content_main{
+    	top: 89px!important;
+    }
 }
 .sy_ipx_content{
 	position: absolute;
 	top: 1.733333rem;
 	width: 100%;
+	padding-top: 0!important;
+}
+/*我的收藏头部*/
+.sc_head_h{
+	height: 65px;
+	background: #181b20;
+	padding-top: 25px;
+	box-shadow: initial;
+	border-bottom: none !important;
+}
+.sc_head_h a{
+	color: #FFF;
+}
+.sc_head_h h1{
+	font-size: 0.453333rem;
+	color: #FFF;
+}
+/*px单位*/
+.content_main{
+	position: absolute;
+	left: 0;
+	top: 65px;
+	right: 0;
+	bottom: 0px;
+	background: #fff;
 	padding-top: 0!important;
 }

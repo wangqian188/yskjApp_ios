@@ -33,7 +33,8 @@
 			"page/repairs_bx.html",
 			"page/mycollection.html",
 			"page/person.html",
-			"page/notice_center.html"
+			"page/notice_center.html",
+			"page/my_sc_main.html"
 		]
 	},
 	"page/wode_fangyang.html": {
@@ -187,6 +188,19 @@
 	"page/find_house.html": {
 		"refer": [
 			"jxfy1.html"
+		]
+	},
+	"page/loupan_detail.html": {
+		"refer": [
+			"page/map_dh.html"
+		]
+	},
+	"page/my_sc_main.html": {
+		"resources": [
+			"page/my_sc_list.html"
+		],
+		"refer": [
+			"page/my_sc_list.html"
 		]
 	}
 }

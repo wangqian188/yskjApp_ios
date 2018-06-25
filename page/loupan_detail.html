@@ -48,7 +48,7 @@
 				</div>
 				<!--位置-->
 				<div class="lp_xx">
-					<p class="lp_wz">
+					<p class="lp_wz" id="lp_wz">
 						<span class="wz_ion"></span>
 						<span class="wz_text address"></span>
 						<span class="dsdsaddress" style="display: none;"></span>
@@ -319,7 +319,6 @@
 					success:function(data){
 						if(data.success){
 							var lp_data = data.data.houses;
-							console.log(lp_data);
 							if(lp_data == [] || lp_data == ''){
 //								mui.toast("没有更多数据了",{ duration:'2000', type:'div' });
 							}
@@ -373,7 +372,6 @@
 					success:function(data){
 						if(data.success){
 							var lp_data = data.data.houses;
-							console.log(lp_data);
 							if(lp_data == [] || lp_data == ''){
 								mui.toast("没有更多数据了",{ duration:'2000', type:'div' });
 							}
@@ -754,7 +752,17 @@
 //        var local = new BMap.LocalSearch(this.allmap, options);
 //        local.search(keyword);
 //    }
-		</script>
+	//楼盘位置
+	$('#lp_wz').click(function(){
+		mui.openWindow({ 
+			url:'./map_dh.html', //需要打开页面的url地址 
+			id:'map_dh',  //需要打开页面的url页面id
+			extras:{
+		      
+		    },
+		});
+	});
+</script>
 	</body>
 
 </html>

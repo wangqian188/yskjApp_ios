@@ -8,11 +8,11 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<title>Hello MUI</title>
 		<link rel="stylesheet" href="css/mui.min.css">
+		<script type="text/javascript" src="js/lib/flexible.js"></script>
+		<script type="text/javascript" src="js/lib/flexible_css.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/style.css"/>
 		<link rel="stylesheet" type="text/css" href="css/jxfyList.css"/>
 		<link rel="stylesheet" type="text/css" href="css/sy.css"/>
-		<script type="text/javascript" src="js/lib/flexible.js"></script>
-		<script type="text/javascript" src="js/lib/flexible_css.js"></script>
 		<script type="text/javascript" src="js/lib/jquery-1.10.2.min.js"></script>
 	</head>
 	<style type="text/css">
@@ -307,6 +307,11 @@
 				for(var i=0;i<lirm.length;i++){
 					lirm[i].className = 'xiaokzujin';
 				}
+				//监听首页上面的底部选项卡事件（解决底部选项卡上来的问题）
+				var index = plus.webview.getWebviewById('index');
+				mui.fire(index, "bottomxuanxika",{
+				    idxid:3//1位置
+				})
 				
 			}
 			
@@ -620,19 +625,6 @@
 			
 	/*		动态数据*/
 			function dthqdata(district,fdcode,lineid,station,area,price_dj,chqxz,jiagesanshu,search){
-				console.log('---------------------------------------分割线--------------------------------------');
-				console.log(district);
-				console.log(fdcode);
-				console.log(lineid);
-				console.log(station);
-				console.log(area);
-				console.log(price_dj);
-				console.log(chqxz);
-				console.log(jiagesanshu);
-				console.log(search);
-				console.log(xial);
-				console.log(fjzt);
-				console.log(zc);
 //				mui.ajax(Interface_url+'/yhcms/web/lpjbxx/getWxLbFyxx1.do',{
 				mui.ajax(Interface_url+'/yhcms/web/lpjbxx/getAppLbFyxx.do',{
 				data:{
@@ -808,19 +800,6 @@
 			
 			//下拉刷新的方法
 			function dthqdatashuxin(district,fdcode,lineid,station,area,price_dj,chqxz,jiagesanshu,search){
-				console.log('---------------------------------------分割线--------------------------------------');
-				console.log(district);
-				console.log(fdcode);
-				console.log(lineid);
-				console.log(station);
-				console.log(area);
-				console.log(price_dj);
-				console.log(chqxz);
-				console.log(jiagesanshu);
-				console.log(search);
-				console.log(xial);
-				console.log(fjzt);
-				console.log(zc);
 //				mui.ajax(Interface_url+'/yhcms/web/lpjbxx/getWxLbFyxx1.do',{
 				mui.ajax(Interface_url+'/yhcms/web/lpjbxx/getAppLbFyxx.do',{
 				data:{
@@ -1153,14 +1132,14 @@
 				qxzzcdff();
 			});
 			
-			//点击价格取消筛选遮罩层的监听方法
+			//取消筛选遮罩层的监听方法
 			window.addEventListener("saixuankzqt", function (e) {
 			    //获得事件参数
 			    var idxsaixuan = e.detail.idxsaixuan;
 				qxsuxzzcdff();
 			});
 			
-			//点击价格取消筛选遮罩层的监听方法
+			//点击价格取消筛选和位置遮罩层的监听方法
 			window.addEventListener("jagggkzqt", function (e) {
 			    //获得事件参数
 			    var idxjiaggge = e.detail.idxjiaggge;
@@ -1590,9 +1569,7 @@
 			
 			//监听首页底部选项卡的事件(隐藏选项卡)
 			function jiantingindex(){
-				alert(22222);
 				var index = plus.webview.getWebviewById('index');
-				alert(index);
 				mui.fire(index, "jiantingishoyeindex",{
 				    text3:this.text1
 				})
