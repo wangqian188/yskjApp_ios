@@ -605,7 +605,8 @@
 				],
 				"refer": [
 					"page/login.html",
-					"page/qierlyun.html"
+					"page/qierlyun.html",
+					"page/map_dh.html"
 				],
 				"priority": 0
 			},

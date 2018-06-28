@@ -23,11 +23,11 @@
 				<!--数据列表-->
 				<ul id="OA_task_2" class="mui-table-view">
 					<!--<li class="mui-table-view-cell sc_list">
-						<div class="xj_zz"></div>
 						<div class="mui-slider-right mui-disabled">
 							<a class="mui-btn mui-btn-red mui-icon a_d" style="width: 1.72rem!important;font-size: 0.346666rem;color: #fff;">删除</a>
 						</div>
 						<div class="mui-slider-handle sc_content">
+							<div class="xj_zz"></div>
 							<div class="sc_fy_pic">
 								<img src="../img/login_pic.png"/>
 								<div class="qieryun"></div>
@@ -57,6 +57,7 @@
 		<script>
 			mui.init();
 			var page = 1;//页数
+			my_shouc();
 			//删除
 			(function($) {
 				$('#OA_task_2').on('tap', '.mui-btn', function(event) {
@@ -125,6 +126,7 @@
 			 * 上拉加载具体业务实现
 			 */
 			function pullupRefresh() {
+				page ++;
 				setTimeout(function() {
 //					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
 					my_shouc();
@@ -132,7 +134,7 @@
 		}
 
 		//我的收藏接口
-		my_shouc();
+		
 		function my_shouc(){
 			mui.ajax(Interface_url + '/yhcms/web/collecthouse/getAppCollect.do',{
 				data:{
@@ -167,9 +169,10 @@
 							$('#kong1').css('display','none');
 						}							
 						for (var i=0; i<allData.length; i++) {
-							sc_html += '<li class="mui-table-view-cell sc_list">';
 							if(allData[i].sid == 3){
-								sc_html += '<div class="xj_zz"></div>';
+								sc_html += '<li class="mui-table-view-cell sc_list" style="background:rgba(248,248,248,0.5)">';								
+							}else{
+								sc_html += '<li class="mui-table-view-cell sc_list">';	
 							}
 							sc_html += '<div class="mui-slider-right mui-disabled" id="'+allData[i].id+'">';
 							sc_html += '<a class="mui-btn mui-btn-red mui-icon a_d" style="width: 1.72rem!important;font-size: 0.346666rem;color: #fff;">删除</a></div>';
@@ -177,6 +180,9 @@
 								sc_html += '<div class="mui-slider-handle sc_content" onclick="mysc_detail('+allData[i].fyid+')">';								
 							}else{
 								sc_html += '<div class="mui-slider-handle sc_content">';
+							}
+							if(allData[i].sid == 3){
+								sc_html += '<div class="xj_zz"></div>';
 							}
 							sc_html += '<div class="sc_fy_pic">';
 							sc_html += '<img src="'+img_url + allData[i].housing_icon+'"/>';
@@ -207,7 +213,8 @@
 						$('#OA_task_2').append(sc_html);
 //						mui('#pullrefresh').pullRefresh().setStopped(false);
 						mui('#pullrefresh').pullRefresh().endPullupToRefresh((data.data.length<10)); //参数为true代表没有更多数据了。
-						page++;
+//						page++;
+//						alert(page);
 					}else{
 						//数据获取不成功
 						
@@ -238,9 +245,8 @@
 				headers:{'Content-Type':'application/json'},	              
 				success:function(data){
 					if(data.success){
-						var allData = data.data;
 						//空状态
-						if(allData.length == 0){
+						if(data.data.length == 0){
 							$('#kong1').css('display','block');
 							$('#kong1').on('touchstart',function(e){
 								mui('#pullrefresh').pullRefresh().setStopped(true);
@@ -249,7 +255,7 @@
 							});		
 						}else{
 							$('#kong1').css('display','none');
-							my_shouc();
+//							my_shouc();
 						}							
 					}else{
 						//数据获取不成功

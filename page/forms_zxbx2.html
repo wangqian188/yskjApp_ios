@@ -118,7 +118,7 @@
 		    	</div>
 		    	<div class="wt_yw">
 		    		<p class="wt_tip">如有任何疑问请拨打咨询电话</p>
-		    		<p class="wt_tel"><a href="tel:400-078-8800" class="a_d" style="color: #007aff!important;">400-078-8800</a></p>
+		    		<p class="wt_tel"><a href="tel:400-078-8800" style="color: #007aff!important;" class="a_d">400-078-8800</a></p>
 		    	</div>
 		    </div>
 		</div>
@@ -139,6 +139,7 @@
 	        });  
 	  }); 
 	  var arr = [];//全局数组
+	  var fyid = '';//房源id
 	  var picker = new mui.PopPicker({
 		layer: 1
 	  });
@@ -175,12 +176,13 @@
 							}
 							str = str1 + str2 + str3;
 							obj.text = str;
-//							obj.value = i;
+							obj.value = alldata[i].omcid;
 							arr.push(obj);
 						}
 					    picker.setData(arr);
 						picker.pickers[0].setSelectedIndex(0);
 						$('#house_news').val(str);
+						fyid = obj.value;
 						house_news = $('#house_news').val();
 						btnzt();
 					}else{
@@ -203,6 +205,7 @@
 			picker.show(function(SelectedItem) {
 				var sel_val = picker.getSelectedItems();
 				$('#house_news').val(sel_val[0].text);
+				fyid = sel_val[0].value;
 			});
 		}
 	</script>

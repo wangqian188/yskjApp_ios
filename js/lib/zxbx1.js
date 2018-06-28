@@ -209,7 +209,8 @@ function pic_tijiao(){
 						'memo': house_ms,
 						'repairHouse': house_news,
 						'pic': arr_src.join(",").split(',').join(";"),
-						'uid': localStorage.getItem('user_id')
+						'uid': localStorage.getItem('user_id'),
+						'fyid': fyid
 					},
 					dataType:'json',//服务器返回json格式数据
 					type:'post',//HTTP请求类型

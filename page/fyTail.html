@@ -35,7 +35,13 @@
 					<div class="qieryun qieryundisp"></div>
 					<div class="fuxqxx">
 						<div class="fyxqxxyiu">
-							<p class="fybh"></p>
+							<p class="">
+								<span class="fybh"></span>
+								<span class="qysq_wz" id="fy_wz">
+									<i class="qy_sq"></i>
+									<i class="fy_wz"></i>
+								</span>
+							</span>
 							<p class="qierldetu qierlyundelainjie qierldetudisp">
 								<span></span>
 							</p>
@@ -161,6 +167,7 @@
 		<script src="../js/lib/app_config.js"></script>
 		<script type="text/javascript" src="../js/lib/castapp.js" ></script>
 		<script type="text/javascript">
+			var longitude,latitude,dtwz;
 			mui.plusReady(function(){
 				var collectId="";
 				var le=0;
@@ -198,6 +205,7 @@
 			/*房源数据*/
 			function detailData(){
 			mui.ajax(Interface_url+'/yhcms/web/lpjbxx/getWxFyxx.do',{
+//			mui.ajax('http://yhcms2.tunnel.qydev.com/yhcms/web/lpjbxx/getWxFyxx.do',{
 				data:{
 							"parameters":{"hourse_id":fyid},
 							"foreEndType":2,
@@ -212,6 +220,10 @@
 						var data = data.data;
 							for(var i=0;i<data.length;i++){
 								var housing_icon=data[i].housing_icon;
+								longitude = data[i].longitude;
+								latitude = data[i].latitude;
+								dtwz = data[i].fd_city_code +'  '+ data[i].topic;
+								$('.qy_sq').html(data[i].fd_city_code);
 								var qierlstat = 1;//有无720全景图的状态 1 没有 2是有 
 								if(data[i].cloudscape == ''){
 									if(housing_icon!=""){
@@ -651,7 +663,18 @@
 //	        function shareHref(){
 //	            
 //	        }
-			
+//房源位置
+	$('#fy_wz').click(function(){
+		mui.openWindow({ 
+			url:'./map_dh.html', //需要打开页面的url地址 
+			id:'map_dh',  //需要打开页面的url页面id
+			extras:{
+		      longitude:longitude,
+		      latitude:latitude,
+		      dtwz:dtwz
+		    },
+		});
+	});
 		</script>
 	</body>
 

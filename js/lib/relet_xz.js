@@ -4,6 +4,7 @@ var yzm = '';//验证码
 var house_news = '';//房屋信息
 var house_year = '';//签约年限
 var arr = [];//全局数组
+var fyid = '';//房源id
   var picker = new mui.PopPicker({
 	layer: 1
   });
@@ -40,12 +41,13 @@ var arr = [];//全局数组
 						}
 						str = str1 + str2 + str3;
 						obj.text = str;
-//							obj.value = i;
+						obj.value = alldata[i].omcid;
 						arr.push(obj);
 					}
-				    picker.setData(arr);
+				  picker.setData(arr);
 					picker.pickers[0].setSelectedIndex(0);
 					$('#house_news').val(str);
+					fyid = obj.value;
 					house_news = $('#house_news').val();
 					btnzt();
 				}else{
@@ -68,6 +70,7 @@ function fw_news(){
 	picker.show(function(SelectedItem) {
 		var sel_val = picker.getSelectedItems();
 		$('#house_news').val(sel_val[0].text);
+		fyid = sel_val[0].value;
 	});
 }
 //用户姓名输入
@@ -281,7 +284,8 @@ function yz_house_wt(){
 						"phone":tel,
 						"renewalYears":house_year,//签约年限
 						"repairHouse":house_news,
-						'uid': localStorage.getItem('user_id')
+						'uid': localStorage.getItem('user_id'),
+						'fyid': fyid
 					},
 					dataType:'json',//服务器返回json格式数据
 					type:'post',//HTTP请求类型

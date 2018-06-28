@@ -8,8 +8,44 @@
 }
 .imglunbo{color: #ffffff;font-size: 0.293333rem;text-align: right;padding-right: 0.626666rem !important;}
 .fuxqxx{border-bottom: 1px solid #dbdbdb;height: 9.906666rem;}
-.fyxqxxyiu{height: 1.666666rem;display: flex;}
-.fyxqxxyiu p{border-bottom: 1px solid #e5e5e5;height: 100%;margin-left: 0.506666rem;color: #282828;line-height: 1.666666rem;font-size:0.453333rem;width: 8.92rem;}
+.fyxqxxyiu{height: 1.666666rem;height: 2.266666rem;width:9.2rem;display: flex;justify-content: space-between!important;margin: 0 auto 0;}
+.fyxqxxyiu p{display: flex;display: -webkit-flex;align-items: center;border-bottom: 1px solid #e5e5e5;height: 100%;color: #282828;font-size:0.453333rem;}
+.fyxqxxyiu p:first-child{width: 6.133333rem;justify-content: center;flex-direction: column;-webkit-flex-direction: column;}
+.fyxqxxyiu p:first-child span{
+	width: 100%;
+	display: inline-block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.fyxqxxyiu p:first-child .fybh{margin-bottom: 0.333333rem;}
+.qysq_wz{font-size: 0.346666rem;color: #999999;}
+.qysq_wz i{
+	position: relative;
+	display: inline-block;
+	font-style: normal;
+}
+.qysq_wz .qy_sq:after{
+	content: "";
+	display: inline-block;
+	height: 0.346666rem;
+	width: 0.026666rem;
+	background: #3e3e3e;
+	position: absolute;
+	top: 50%;
+	margin-top: -0.173333rem;
+	right: -0.266666rem;
+}
+.fyxqxxyiu p:first-child span:last-child{position: relative;overflow: initial;}
+.fy_wz{
+	position: absolute;
+	top: 0.06rem;
+	left: 0.466666rem;
+	width: 0.44rem;
+	height: 0.413333rem;
+	background: url(../img/fy_wz.png) no-repeat center;
+	background-size: auto 100%;
+}
 .fyxqxxer{height: 1.533333rem;}
 .fyxqxxer ul{border-bottom: 1px solid #e5e5e5;height: 100%;margin-left: 0.506666rem;width: 8.92rem;display: flex;align-items: center;}
 .fyxqxxer ul li{width: 33.33%;position: relative;padding-left: 0.36rem;}
@@ -53,7 +89,7 @@
 .xmjxlx{background:url(../img/shoucdianhuobg.png) no-repeat;background-size: auto 100%;width:0.533333rem;height:0.533333rem;}
 .qieryun{height: 0.933333rem;width: 0.8rem;position: absolute;left: 0.133333rem;top: 4.9rem;background: url(../img/fyxqdatiqier.png)no-repeat center;background-size: 100% auto;z-index: 13;}
 .qieryundisp{display: none;}
-.qierldetu{display: flex;align-items: center;margin-right: 0.493333rem;justify-content: flex-end;}
+/*.qierldetu{display: flex;align-items: center;margin-right: 0.493333rem;justify-content: flex-end;}*/
 .qierldetudisp{display: none;}
 .qierldetu span{width:2.52rem !important;border-radius:1.3rem;height:0.853333rem;width:100%;display: flex;background: url(../img/fyxqwierlquankf.png)no-repeat center;background-size: auto 100%;box-shadow:0px 0px 5px #333333;}
 .fyxqdebofangan{

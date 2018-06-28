@@ -174,7 +174,8 @@
 	},
 	"page/fyTail.html": {
 		"refer": [
-			"page/qierlyun.html"
+			"page/qierlyun.html",
+			"page/map_dh.html"
 		]
 	},
 	"jxfy1.html": {

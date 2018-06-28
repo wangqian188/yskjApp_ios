@@ -191,6 +191,7 @@
 		<script type="text/javascript" src="http://api.map.baidu.com/api?ak=pTHixzeMKbBbtNwycGsv47DuGjqEOgQw&v=2.0"></script>
 		<script src="../js/lib/app_config.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+		var longitude,latitude,dtwz;
 		(function(){
 			var le=0;
 			var   positionData="";
@@ -430,6 +431,10 @@
 						if(data.success){
 							//如果页数 是 1获取楼盘信息     如果页数不是1  则无需赋值
 							var lpdata=data.data1;
+							console.log(JSON.stringify(lpdata.longitude));
+							longitude = lpdata.longitude;
+							console.log(JSON.stringify(lpdata.latitude));
+							latitude = lpdata.latitude;
 							$(".building_name").html(lpdata.building_name);
 							$(".desp").html(lpdata.desp);
 							$(".gnf").html(lpdata.gnf+"元/㎡/季");
@@ -462,6 +467,7 @@
 							}
 							$(".address").html(lpdata.district+" "+lpdata.address);
 							$(".dsdsaddress").html(lpdata.district);
+							dtwz = lpdata.address;//地图位置显示
 							//图片轮播信息
 							var housing_icon=lpdata.building_images;
 									if(housing_icon!=""){
@@ -758,7 +764,9 @@
 			url:'./map_dh.html', //需要打开页面的url地址 
 			id:'map_dh',  //需要打开页面的url页面id
 			extras:{
-		      
+		      longitude:longitude,
+		      latitude:latitude,
+		      dtwz:dtwz
 		    },
 		});
 	});
