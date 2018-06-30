@@ -698,7 +698,9 @@
 			    _end = ( touch.pageY - _start); 
 			    //下滑才执行操作 
 			    if(_end > 200){     //200即手机下滑屏幕的距离，超过200则执行刷新动作
-			    location.reload();
+//			    	location.reload();
+			    	var wobj = plus.webview.getWebviewById("qyhl.html");
+					wobj.reload(true);
 			    } 
 			}
 		</script>

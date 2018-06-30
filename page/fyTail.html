@@ -222,7 +222,7 @@
 								var housing_icon=data[i].housing_icon;
 								longitude = data[i].longitude;
 								latitude = data[i].latitude;
-								dtwz = data[i].fd_city_code +'  '+ data[i].topic;
+								dtwz = data[i].fd_city_code +'  '+ data[i].topic + "  "+ data[i].zdh;
 								$('.qy_sq').html(data[i].fd_city_code);
 								var qierlstat = 1;//有无720全景图的状态 1 没有 2是有 
 								if(data[i].cloudscape == ''){

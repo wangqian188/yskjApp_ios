@@ -309,7 +309,6 @@
 		<script type="text/javascript">
 			mui.init();
 			var area = document.getElementsByClassName('tt_news')[0];
-			console.log($('.tt_news li').height());
 			var iliHeight = $('.tt_news li').height();//单行滚动的高度  
 			var speed = 50;//滚动的速度  
 			var time;  
@@ -326,7 +325,6 @@
 					if(data.success){
 						//服务器返回响应，根据响应结果，分析是否登录成功；
 						var data = data.data;
-						console.log(data);
 						var string = '';
 						for(var i=0;i<data.length;i++){
 							string = '<li onclick=topNewsInfo(\''+data[i].url+'\')><p>'+data[i].title+'</p><p>'+data[i].content+'</p></li>';
@@ -431,9 +429,7 @@
 				success:function(data){
 					//服务器返回响应，根据响应结果，分析是否登录成功；
 					if(data.success){
-						console.log(data)
 						var data = data.data;
-						console.log(data)
 						var string = '';
 						for(var i=0;i<data.length;i++){
 							if(data[i].cloudscape == ''){
@@ -796,7 +792,6 @@
 					success:function(data){
 						//服务器返回响应，根据响应结果，分析是否登录成功；
 						if(data.success){
-							console.log(JSON.stringify(data));
 							$('.latest_data_tit').html(data.data.memo);
 							$('.latest_data p:last-child').html(data.data.value);
 							latest_data_url = data.data.url;
@@ -827,7 +822,9 @@
 			    _end = ( touch.pageY - _start); 
 			    //下滑才执行操作 
 			    if(_end > 200){     //200即手机下滑屏幕的距离，超过200则执行刷新动作
-			    location.reload();
+//			    	location.reload();
+			    	var wobj = plus.webview.getWebviewById("sy.html");
+					wobj.reload(true);
 			    } 
 			}
 			function huoqv_yonghuxix(){
