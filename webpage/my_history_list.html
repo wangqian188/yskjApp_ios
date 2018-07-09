@@ -160,14 +160,13 @@
 				 	if(e.index == 1){
 				 		console.log(str_fyid);
 				 		if(str_fyid == ''){
-//				 			mui.alert("没有可删除的记录！！！", '提示',function(){
-//								var wobj = plus.webview.getWebviewById("person2");
-//								wobj.reload(true);
-//								return;
-//							},'div');
-							var wobj = plus.webview.getWebviewById("person2");
-							wobj.reload(true);
-							mui.toast('没有可删除的记录!!!',{ duration:'2000', type:'div'})
+				 			mui.alert("没有选中的删除记录！！！", '提示',function(){
+								var wobj = plus.webview.getWebviewById("person2");
+								wobj.reload(true);
+								var wobj1 = plus.webview.getWebviewById("my_history_list.html");
+								wobj1.reload(true);
+								return;
+							},'div');
 				 		}
 				 		var arr_fyid = str_fyid.split(',');
 				 		for (var j=0; j<$('#OA_task_2 input').length; j++) {
