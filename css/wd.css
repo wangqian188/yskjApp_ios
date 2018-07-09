@@ -172,7 +172,7 @@ body{
 }
 .wd_con{
 	position: absolute;
-	right: 0;
+	right: 0.266666rem;
 	font-size: 0.48rem;
 	top: 50%;
 	margin-top: -0.24rem;

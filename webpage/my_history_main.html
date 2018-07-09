@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<script type="text/javascript" src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/my_sc.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/my_history.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav sc_head_h ipx_head_h edit">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title">
+		    	<span class="tit">浏览记录</span>
+		    </h1>
+		    <span id="edit"></span>
+		</header>
+		<div class="mui-content mysc_content">
+		
+			<!--全选 和 删除-->
+			<div class="dibu" style="">
+		    	<div class="mui-input-row mui-checkbox mui-left del">
+		    	  <label>全选</label>
+		    	  <input name="checkbox1" type="checkbox" id="allcheck" onclick="all_sel(this)">
+		    	</div>
+		    	<div class="del" id="del_sc">
+		    		<span class="del_ion"><img src="../img/del_ion.png"/></span>
+		    		删除
+		    	</div>
+		    </div>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript">
+		var tags = false;//控制点击状态
+		var bottomHeight = '60px';//距离底部高度
+		//编辑按钮
+		$('#edit').click(function(){
+			$('.bj_btn input').prop('checked',false);
+			$('.dibu input').prop('checked',false);
+			tags = !tags;//显示
+			if(tags == true){
+				$('#edit').css({
+		  			'background':'none',
+		  		});
+		  		$('#edit').text('完成');
+		  		$('.dibu').css('visibility','initial');
+			}else{
+				$('#edit').css({
+					'background': 'url(../img/bj.png) no-repeat center',
+					'background-size': 'auto 100%'
+				});
+				$('#edit').text('');
+				$('.dibu').css('visibility','hidden');
+			}
+			var main = plus.webview.getWebviewById('my_history_list.html');
+			mui.fire(main, "bianji",{
+			    bjshow: tags
+			})
+		});
+		//全选按钮选中状态
+		window.addEventListener("all_dsel", function (e) {//单项选实现全选
+		    //获得事件参数
+			var dsel = e.detail.dsel;
+			if(dsel){
+				$('.del input').prop('checked',true);
+			}
+			if(!dsel){
+				$('.del input').prop('checked',false);
+			}
+		});
+		//全选按钮点击
+		function all_sel(th){
+			var cek = false;//未选中
+			if(th.checked){
+				cek = true;//选中
+			}else{
+				cek = false//未选中
+			}
+			var mains = plus.webview.getWebviewById('my_history_list.html');
+			mui.fire(mains, "all_cek",{
+			    cek:cek
+			})
+		}
+		//列表数据刷新全选按钮选中状态
+		window.addEventListener("all_dsel_res", function (e) {//单项选实现全选
+		    //获得事件参数
+			var dsel_res = e.detail.dsel_res;
+			if(dsel_res == 'sss'){
+				tags = !tags;
+				$('.del input').prop('checked',false);
+				$('#edit').css({
+					'background': 'url(../img/bj.png) no-repeat center',
+					'background-size': 'auto 100%'
+				});
+				$('#edit').text('');
+				$('.dibu').css('visibility','hidden');
+			}
+		});
+		//删除按钮
+		$('#del_sc').click(function(){
+			var mains = plus.webview.getWebviewById('my_history_list.html');
+			mui.fire(mains, "del_his",{
+			    del_statu:'del'
+			})
+		});
+		
+		var topHeight = '65px';
+      	if(window.screen.width == 375 && window.screen.height == 812){
+			topHeight = '89px';
+		}else{
+			topHeight = '65px';
+		}
+		//启用双击监听
+		mui.init({
+			gestureConfig:{
+				doubletap:true
+			},
+			subpages:[{
+				url:'my_history_list.html',
+				id:'my_history_list.html',
+				styles:{
+					top: topHeight,
+					bottom: bottomHeight,
+				}
+			}]
+		});
+	
+		var contentWebview = null;
+		document.querySelector('header').addEventListener('doubletap',function () {
+			if(contentWebview==null){
+				contentWebview = plus.webview.currentWebview().children()[0];
+			}
+			contentWebview.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
+		});
+	</script>
+
+</html>

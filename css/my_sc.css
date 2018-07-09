@@ -26,7 +26,7 @@ body{
 	background: #fff!important;
 }
 /*#OA_task_2 li{
-	border-bottom: 1px solid #e5e5e5;
+	border-bottom: none!important;
 }*/
 #OA_task_2 li:last-child{
 	border-bottom: none;
@@ -58,6 +58,10 @@ body{
 .zd_fjh{
 	font-size: 0.426666rem;
 	color: #333333;
+	width: 5.6rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .quyu{
 	font-size: 0.306666rem;

@@ -45,6 +45,23 @@
 		.my_type li:last-child::after{
 			display: none;
 		}
+		.top_box{
+			display: flex;
+			display: -webkit-flex;
+			align-items: center;
+			-webkit-align-items: center;
+			padding: 0 0.4rem;
+			position: absolute;
+			top: 0.533333rem;
+			width: 10rem;
+			height: 1.173333rem;
+		}
+		.setting{
+			width: 0.586666rem;
+			height: 0.586666rem;
+			background: url(img/setting_ion.png) no-repeat center;
+			background-size: 100% auto;
+		}
 	</style>
 	<body>
 		<header class="mui-bar mui-bar-transparent bg-color-bg bar-h-s has-topbar-h">
@@ -52,8 +69,12 @@
 		</header>
 		<div class="mui-content wd_zt">
 			<header class="mui-bar mui-bar-nav bg-color1">
+				<div class="top_box">
+					<p class="setting"></p>
+					<p class="news"></p>
+				</div>
 			    <h1 class="mui-title wd_h">
-			    	<p class="head_img">
+			    	<p class="head_img" class="head_img">
 			    		<img src="img/head_img.png" id="headImage"/>
 			    	</p>
 			    	<p class="user_news" id="login">
@@ -79,13 +100,13 @@
 	    		</p>
 	    	</div>
 		    <ul class="wd_list">
-		    	<li id="grxx" class="tolink">
+		    	<!--<li id="grxx" class="tolink">
 		    		<span class="wd_icon">
 		    			<img src="img/per.png" alt="" />
 		    		</span>
 		    		<p>个人信息</p>
 		    		<span class="mui-icon mui-icon-arrowright wd_con"></span>
-		    	</li>
+		    	</li>-->
 		    	<li id="wdsc" class="tolink">
 		    		<span class="wd_icon">
 		    			<img src="img/wode/tongzhi_center.png" alt="" />
@@ -99,6 +120,13 @@
 			    			<img src="img/fav.png" alt="" />
 			    		</span>
 			    		<p>我的收藏</p>
+			    		<span class="mui-icon mui-icon-arrowright wd_con"></span>
+			    	</li>
+			    	<li id="llll" class="tolink">
+			    		<span class="wd_icon">
+			    			<img src="img/llll_ion.png" alt="" />
+			    		</span>
+			    		<p>浏览记录</p>
 			    		<span class="mui-icon mui-icon-arrowright wd_con"></span>
 			    	</li>
 			    	<li id="wdsc" class="tolink">
@@ -116,22 +144,35 @@
 			    		<span class="mui-icon mui-icon-arrowright wd_con"></span>
 			    	</li>
 		    	</ul>
-		    	<li id="sz" class="tolink">
+		    	<!--<li id="sz" class="tolink">
 		    		<span class="wd_icon">
 		    			<img src="img/sz.png" alt="" />
 		    		</span>
 		    		<p>设置</p>
 		    		<span class="mui-icon mui-icon-arrowright wd_con"></span>
-		    	</li>
+		    	</li>-->
 		    </ul>
-		    <p class="wd_tip">如有任何疑问请拨打咨询电话</p>
-		    <p class="wd_tel"><a href="tel:400-078-8800" class="a_d">400-078-8800</a></p>
+		    
+		    
+		    <div class="bottom_box" style="width: 10rem;">		    	
+		    	<p class="wd_tip">如有任何疑问请拨打咨询电话</p>
+		    	<p class="wd_tel"><a href="tel:400-078-8800" class="a_d">400-078-8800</a></p>
+		    </div>
+		    
 		</div>
 		 <!--1<div class="sy_kfion">
 				<p><a href="tel:400-078-8800"></a></p>
 			</div>-->
 		<script type="text/javascript" src="js/lib/app_config.js" ></script>
 		<script type="text/javascript">
+//			$('#histore').click(function(){
+//				mui.openWindow({
+//	  				url: './webpage/my_history_main.html', 
+//	  				id:'my_history_main.html'
+//				});
+//			});
+			
+			
 			var cookie=JSON.parse(localStorage.getItem('cookxs_yh'));
 			var lostate = localStorage.getItem('lostate');
 			if(lostate == null){
@@ -166,38 +207,29 @@
 			
 			
 			//跳转页面地址
-			var toUrl = ['page/person.html','page/notice_center.html','page/my_sc_main.html','page/wode_fangyang.html','page/wode_guanjia.html','page/myset.html'];
+//			var toUrl = ['page/person.html','page/notice_center.html','page/my_sc_main.html','page/wode_fangyang.html','page/wode_guanjia.html','page/myset.html'];
+			var toUrl = ['page/notice_center.html','page/my_sc_main.html','webpage/my_history_main.html','page/wode_fangyang.html','page/wode_guanjia.html'];
 			for(var i=0; i<$('.tolink').length; i++){
 				(function(index){
 					$('.tolink').eq(index).click(function(){
-						if(index == 5){
-							mui.openWindow({
-								url:toUrl[index], //需要打开页面的url地址 
-								id:'person'+index,  //需要打开页面的url页面id
-								styles:{ 
-									top:'0px',//新页面顶部位置 
-									bottom:'0px',//新页面底部位置 
-				//					width:newpage-width,//新页面宽度，默认为100% 
-				//					height:newpage-height,//新页面高度，默认为100% ...... 
-								}, 
-								extras:{ 
-			
-				//					.....//自定义扩展参数，可以用来处理页面间传值 
-								},show:{ //控制打开页面的类型
-									autoShow:true,
-				//					//页面loaded事件发生后自动显示，默认为true 
-									aniShow:'slide-in-right',//页面显示动画，默认为”slide-in-right“；  页面出现的方式 左右上下
-									duration:''//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒； 
-								}, waiting:{ // 控制 弹出转圈框的信息
-									autoShow:true,//自动显示等待框，默认为true 
-									title:'加载中...',//等待对话框上显示的提示内容 
-									options:{ 
-										width:'100px',//等待框背景区域宽度，默认根据内容自动计算合适宽度 
-										height:'100px',//等待框背景区域高度，默认根据内容自动计算合适高度 ...... 
-									} 
-								}
-							});
-						}else{
+//						if(index == 5){
+//							mui.openWindow({
+//								url:toUrl[index], //需要打开页面的url地址 
+//								id:'person'+index,  //需要打开页面的url页面id
+//								styles:{ 
+//									top:'0px',//新页面顶部位置 
+//									bottom:'0px',//新页面底部位置 
+//								}, 
+//								waiting:{ // 控制 弹出转圈框的信息
+//									autoShow:true,//自动显示等待框，默认为true 
+//									title:'加载中...',//等待对话框上显示的提示内容 
+//									options:{ 
+//										width:'100px',//等待框背景区域宽度，默认根据内容自动计算合适宽度 
+//										height:'100px',//等待框背景区域高度，默认根据内容自动计算合适高度 ...... 
+//									} 
+//								}
+//							});
+//						}else{
 							//判断是否在另一台设备登录的接口
 							mui.ajax(url + '/yskjApp/appYskj/V1/landState.do',{
 								data:{
@@ -214,67 +246,47 @@
 										if(index==0||index==1||index==2||index==3||index==4){
 											if(lostate==1){
 												//登录状态
-													mui.openWindow({
-											url:toUrl[index], //需要打开页面的url地址 
-											id:'person'+index,  //需要打开页面的url页面id
-											styles:{ 
-												top:'0px',//新页面顶部位置 
-												bottom:'0px',//新页面底部位置 
-							//					width:newpage-width,//新页面宽度，默认为100% 
-							//					height:newpage-height,//新页面高度，默认为100% ...... 
-											}, 
-											extras:{ 
-						
-							//					.....//自定义扩展参数，可以用来处理页面间传值 
-											},show:{ //控制打开页面的类型
-												autoShow:true,
-							//					//页面loaded事件发生后自动显示，默认为true 
-												aniShow:'slide-in-right',//页面显示动画，默认为”slide-in-right“；  页面出现的方式 左右上下
-												duration:''//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒； 
-											}, waiting:{ // 控制 弹出转圈框的信息
-												autoShow:true,//自动显示等待框，默认为true 
-												title:'加载中...',//等待对话框上显示的提示内容 
-												options:{ 
-													width:'100px',//等待框背景区域宽度，默认根据内容自动计算合适宽度 
-													height:'100px',//等待框背景区域高度，默认根据内容自动计算合适高度 ...... 
-												} 
-											}
-										});
+												mui.openWindow({
+													url:toUrl[index], //需要打开页面的url地址 
+													id:'person'+index,  //需要打开页面的url页面id
+													styles:{ 
+														top:'0px',//新页面顶部位置 
+														bottom:'0px',//新页面底部位置 
+													}, 
+													waiting:{ // 控制 弹出转圈框的信息
+														autoShow:true,//自动显示等待框，默认为true 
+														title:'加载中...',//等待对话框上显示的提示内容 
+														options:{ 
+															width:'100px',//等待框背景区域宽度，默认根据内容自动计算合适宽度 
+															height:'100px',//等待框背景区域高度，默认根据内容自动计算合适高度 ...... 
+														} 
+													}
+												});
 											}else{
 												//未登录状态
-														mui.openWindow({
-											  				url: './page/login.html', 
-											  				id:'login'
-															});	
+												mui.openWindow({
+									  				url: './page/login.html', 
+									  				id:'login'
+												});	
 											}
 											
 										}else{
-										mui.openWindow({ 
-											url:toUrl[index], //需要打开页面的url地址 
-											id:'person'+index,  //需要打开页面的url页面id
-											styles:{ 
-												top:'0px',//新页面顶部位置 
-												bottom:'0px',//新页面底部位置 
-							//					width:newpage-width,//新页面宽度，默认为100% 
-							//					height:newpage-height,//新页面高度，默认为100% ...... 
-											}, 
-											extras:{ 
-												
-							//					.....//自定义扩展参数，可以用来处理页面间传值 
-											},show:{ //控制打开页面的类型
-												autoShow:true,
-							//					//页面loaded事件发生后自动显示，默认为true 
-												aniShow:'slide-in-right',//页面显示动画，默认为”slide-in-right“；  页面出现的方式 左右上下
-												duration:''//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒； 
-											}, waiting:{ // 控制 弹出转圈框的信息
-												autoShow:true,//自动显示等待框，默认为true 
-												title:'加载中...',//等待对话框上显示的提示内容 
-												options:{ 
-													width:'100px',//等待框背景区域宽度，默认根据内容自动计算合适宽度 
-													height:'100px',//等待框背景区域高度，默认根据内容自动计算合适高度 ...... 
-												} 
-											}
-										});
+											mui.openWindow({ 
+												url:toUrl[index], //需要打开页面的url地址 
+												id:'person'+index,  //需要打开页面的url页面id
+												styles:{ 
+													top:'0px',//新页面顶部位置 
+													bottom:'0px',//新页面底部位置 
+												}, 
+												waiting:{ // 控制 弹出转圈框的信息
+													autoShow:true,//自动显示等待框，默认为true 
+													title:'加载中...',//等待对话框上显示的提示内容 
+													options:{ 
+														width:'100px',//等待框背景区域宽度，默认根据内容自动计算合适宽度 
+														height:'100px',//等待框背景区域高度，默认根据内容自动计算合适高度 ...... 
+													} 
+												}
+											});
 										}
 									}else{
 										//未登录
@@ -295,13 +307,62 @@
 									console.log(type);
 								}
 							});
-						}
+//						}
 						
 					})
 				})(i)		
 			}
 			//立即登陆
 			document.getElementsByClassName('ljdl')[0].addEventListener('tap', function() {
+				//判断是否在另一台设备登录的接口
+				mui.ajax(url + '/yskjApp/appYskj/V1/landState.do',{
+					data:{
+						"cookie":cookie
+					},
+					dataType:'json',
+					type:'post',
+					timeout:10000,
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						console.log("用户登录状态： "+data.success);
+						if(data.success){
+							//已登录
+							if(lostate==1){
+								//跳转登陆页面
+								mui.openWindow({
+								  url: './page/person.html', 
+								  id:'person'
+								});		
+								return
+							}else{
+								//跳转登陆页面
+								mui.openWindow({
+								  url: './page/login.html', 
+								  id:'login'
+								});					
+							}
+						}else{
+							//未登录
+							localStorage.removeItem('cookxs_yh');
+							localStorage.removeItem('userInfos');
+							localStorage.removeItem('weinxin_shouquan');
+							localStorage.removeItem('lostate');
+							localStorage.removeItem('user_type');
+							localStorage.removeItem('user_id');
+							mui.openWindow({
+							  url: './page/login.html', 
+							  id:'login'
+							});
+							return;
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type);
+					}
+				});
+				
+			});
+			document.getElementsByClassName('head_img')[0].addEventListener('tap', function() {
 				//判断是否在另一台设备登录的接口
 				mui.ajax(url + '/yskjApp/appYskj/V1/landState.do',{
 					data:{
@@ -507,6 +568,25 @@
 					}
 				});
 	        	
+	        });
+	        //设置
+	        $('.setting').click(function(){
+	        	mui.openWindow({
+					url:'page/myset.html', //需要打开页面的url地址 
+					id:'person',  //需要打开页面的url页面id
+					styles:{ 
+						top:'0px',//新页面顶部位置 
+						bottom:'0px',//新页面底部位置 
+					}, 
+					waiting:{ // 控制 弹出转圈框的信息
+						autoShow:true,//自动显示等待框，默认为true 
+						title:'加载中...',//等待对话框上显示的提示内容 
+						options:{ 
+							width:'100px',//等待框背景区域宽度，默认根据内容自动计算合适宽度 
+							height:'100px',//等待框背景区域高度，默认根据内容自动计算合适高度 ...... 
+						} 
+					}
+				});
 	        });
 		</script>
 	</body>

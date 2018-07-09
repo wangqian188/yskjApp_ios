@@ -34,7 +34,8 @@
 			"page/mycollection.html",
 			"page/person.html",
 			"page/notice_center.html",
-			"page/my_sc_main.html"
+			"page/my_sc_main.html",
+			"webpage/my_history_main.html"
 		]
 	},
 	"page/wode_fangyang.html": {
@@ -202,6 +203,14 @@
 		],
 		"refer": [
 			"page/my_sc_list.html"
+		]
+	},
+	"webpage/my_history_main.html": {
+		"resources": [
+			"webpage/my_history_list.html"
+		],
+		"refer": [
+			"webpage/my_history_list.html"
 		]
 	}
 }

@@ -41,7 +41,7 @@
 									<i class="qy_sq"></i>
 									<i class="fy_wz"></i>
 								</span>
-							</span>
+							</p>
 							<p class="qierldetu qierlyundelainjie qierldetudisp">
 								<span></span>
 							</p>
@@ -172,8 +172,10 @@
 				var collectId="";
 				var le=0;
 				var fyid="";
+				var his_id='';//历史记录跳转
 				var self = plus.webview.currentWebview();
                 fyid = self.fyid;
+                his_id = self.his_id;
                 localStorage.setItem('fyid',self.fyid);
                 if(fyid == ''){
                 	fyid = localStorage.getItem('fyid');
@@ -337,7 +339,7 @@
 													h_img+=v2;
 												} 
 												h_img+=' <div class="mui-slider-item">';
-												h_img+='<a href="#">';
+												h_img+='<a href="#" class="mui-content-padded" style="margin: 0rem;">';
 												h_img+='<img src="'+img_url+ims+'" alt="" />';
 												h_img+=' </a> </div>';
 												
@@ -349,13 +351,13 @@
 												if(i==0){
 													h_img+=v2;
 													h_img+=' <div class="mui-slider-item">';
-													h_img+='<a href="#">';
+													h_img+='<a href="#" class="mui-content-padded" style="margin: 0rem;">';
 													h_img+='<img src="'+img_url+ims+'" alt="" />';
 													h_img+='<span class="fyxqdebofangan"><i></i></span>';
 													h_img+=' </a> </div>';
 												}else{
 													h_img+=' <div class="mui-slider-item">';
-													h_img+='<a href="#">';
+													h_img+='<a href="#" class="mui-content-padded" style="margin: 0rem;">';
 													h_img+='<img src="'+img_url+ims+'" alt="" />';
 													h_img+=' </a> </div>';
 												}
@@ -369,6 +371,26 @@
 										
 									}									
 									$(".mui-slider-loop").html(h_img);
+
+									//图片放大和缩小
+									// 获取图片地址列表
+								  	var images = document.querySelectorAll('.mui-content-padded img');
+								  	var urls = [];
+								  	for(var i = 0; i < images.length; i++) {
+									    urls.push(images[i].src);
+								  	}
+								  	// 监听图片的点击
+								  	mui('body').on('tap', 'img', function() {
+									    // 查询图片在列表中的位置
+									    // 由于dom节点列表是伪数组，需要处理一下
+									    var index = [].slice.call(images).indexOf(this);
+									    plus.nativeUI.previewImage(urls, {
+									      current: index,
+									      loop: true,
+									      indicator: 'number'
+									  	});
+									});
+									
 									//给图片轮播的第一张图加播放按钮
 									$('.fyxqdebofangan i').click(function(){
 										mui.openWindow({ 
@@ -536,6 +558,51 @@
 			  $('.imglunbo').html(event.detail.slideNumber+1+'/'+le);
 			  /*alert("你正在看第"+(event.detail.slideNumber+1)+"张图片");*/
 			});
+			
+			
+			if(cookieId && his_id != 'history'){//登陆状态下记录浏览历史
+				history_jl();
+			}else{//未登录状态下不做记录
+				
+			}
+			//记录浏览历史
+			function  history_jl(){
+				mui.ajax(url+'/yskjApp/appYskj/V1/browseRecords.do',{
+//				mui.ajax('http://192.168.0.126:8080/yskjApp/appYskj/V1/browseRecords.do',{
+					data:{
+						"cookie":cookieId,
+						"fyid":fyid
+					},
+					dataType:'json',//服务器返回json格式数据
+					type:'post',//HTTP请求类型
+					timeout:100000,//超时时间设置为10秒；
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						if(data.success){
+							console.log('浏览记录 +1');
+						}else{
+							
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理；
+						console.log(type);
+					}
+				});
+			}
+			
+			
+			
+			
+			
+			
+			 
+			
+			
+			
+			
+			
+			
 			
             });
 			/*window.addEventListener("fyyuadeqx", function (e) {

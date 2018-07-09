@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的收藏</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<script type="text/javascript" src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/my_sc.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/my_history.css"/>
+	</head>
+
+	<body>
+		<!--下拉刷新容器-->
+		<div class="mui-content">
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul id="OA_task_2" class="mui-table-view">
+					<!--日期-->
+					<!--<div class="history_data">2018-07-03</div>
+					<li class="mui-table-view-cell sc_list">
+						<div class="mui-slider-right mui-disabled">
+							<a class="mui-btn mui-btn-red mui-icon a_d" style="width: 1.72rem!important;font-size: 0.346666rem;color: #fff;">删除</a>
+						</div>
+						<div class="mui-slider-handle sc_content">
+							<div class="xj_zz"></div>
+
+							<div class="mui-input-row mui-checkbox bj_btn">
+								<label></label>
+								<input name="Checkbox" type="checkbox" value="">
+							</div>
+							<div class="sc_fy_pic">
+								<img src="../img/login_pic.png"/>
+								<div class="qieryun"></div>
+								<span class="pic_zz">房源已下架</span>
+							</div>
+							<div class="sc_right">
+								<p class="zd_fjh">建外SOHO 11-1109-5</p>
+								<p class="quyu"><span>朝阳区-国贸</span><span>101.5m²</span></p>
+								<p class="fy_tag"><span class="jzjf">精装交付</span><span class="dingjin">定金</span></p>
+								<p class="dj_price"><i>7.5</i>元/m²/天</p>
+							</div>
+						</div>
+					</li>-->
+				</ul>
+			</div>
+			<!--收藏为空-->
+			<div class="kong1" id="kong1">
+				<div class="kong">
+					<p></p>
+					<p>您还没有浏览记录，快去看看吧~</p>			
+				</div>
+			</div>
+		</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/lib/app_config.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			mui.init();
+			//监听编辑按钮
+			var bj_wc = false;
+			window.addEventListener("bianji", function (e) {
+			    //获得事件参数
+				var bjshow = e.detail.bjshow;
+				bj_wc = bjshow;
+				if(bjshow){
+					$('.bj_btn').css('display','block');
+					for (var n=0; n<$('#OA_task_2 li').length; n++) {
+						$('.mui-btn').eq(n).css("transform","translate(0px, 0px)");
+						$('.sc_content').eq(n).css("transform","translate(0px, 0px)");
+					}
+					mui.init({
+					  gestureConfig:{
+					  	drag: false, //默认为true
+					  }
+					});
+				}else{
+					mui.init({
+					  gestureConfig:{
+					  	drag: true, //默认为true
+					  }
+					});
+					$('.bj_btn').css('display','none');
+					for (var j=0; j<$('#OA_task_2 input').length; j++) {//清楚单选按钮的选中状态
+						$('#OA_task_2 input').eq(j).prop('checked',false);
+					}
+				}
+			});
+			var check_xz = true;//全选状态
+			var str_fyid = '';
+			var arr = [];
+			function sel(t,i,ev){
+				arr.push(t.value);
+				ev.stopPropagation();
+				//当前页面复选框全部选中
+				if($("#OA_task_2 input[type='checkbox']:checked").length == $('#OA_task_2 input[type="checkbox"]').length){
+					check_xz = true;
+					str_fyid = $("#OA_task_2 input:checked").map(function(index,elem) {
+			            return $(elem).val();
+			        }).get().join(',');
+				}
+				//当前页面有复选框未选中
+				if($("#OA_task_2 input[type='checkbox']:checked").length != $('#OA_task_2 input[type="checkbox"]').length){
+					check_xz = false;
+					str_fyid = $("#OA_task_2 input:checked").map(function(index,elem) {
+			            return $(elem).val();
+			        }).get().join(',');
+				}
+				//监听全选按钮
+				var main = plus.webview.getWebviewById('person2');
+				mui.fire(main, "all_dsel",{
+				    dsel: check_xz
+				})
+			}
+			//监听全选按钮返回的状态实现复选框全选
+			//全选
+			window.addEventListener("all_cek", function (e) {
+			    //获得事件参数
+				var cek = e.detail.cek;
+				if(cek==true){
+					sel_list1();//
+				}else{
+					qxsel_list1();					
+				}
+			});
+			function sel_list1(){//全选1
+				for (var i=0; i<$('#OA_task_2 input').length; i++) {
+					$('#OA_task_2 input').eq(i).prop('checked',true);
+				}
+				str_fyid = $("#OA_task_2 input:checked").map(function(index,elem) {
+		            return $(elem).val();
+		        }).get().join(',');
+			}
+			function qxsel_list1(){//取消全选1
+				for (var j=0; j<$('#OA_task_2 input').length; j++) {
+					$('#OA_task_2 input').eq(j).prop('checked',false);
+				}
+				str_fyid = '';
+			}
+			//监听删除按钮 del_statu = 'del';
+			window.addEventListener("del_his", function (e) {
+			    //获得事件参数
+				var del_statu = e.detail.del_statu;
+				if(del_statu == 'del'){
+					del_sc();
+				}
+			});
+			
+			//复选按钮删除浏览历史
+			function del_sc(){
+				var btnArray = ['取消', '确认'];
+				mui.confirm('确定删除吗?', '提示', btnArray, function(e) {
+				 	if(e.index == 1){
+				 		console.log(str_fyid);
+				 		if(str_fyid == ''){
+//				 			mui.alert("没有可删除的记录！！！", '提示',function(){
+//								var wobj = plus.webview.getWebviewById("person2");
+//								wobj.reload(true);
+//								return;
+//							},'div');
+							var wobj = plus.webview.getWebviewById("person2");
+							wobj.reload(true);
+							mui.toast('没有可删除的记录!!!',{ duration:'2000', type:'div'})
+				 		}
+				 		var arr_fyid = str_fyid.split(',');
+				 		for (var j=0; j<$('#OA_task_2 input').length; j++) {
+				 			for (var i=0; i<arr_fyid.length; i++) {
+				 				if($('#OA_task_2 input').eq(j).val() == arr_fyid[i]){			 				
+				 					$('#OA_task_2 li').eq(j).remove();
+				 				}
+				 			}				 			
+				 		}
+				 		mui.ajax(url + '/yskjApp/appYskj/V1/delBrowseRecords.do',{
+				 			data:{
+				 				"ids":str_fyid
+				 			},
+				 			dataType:'json',
+				 			type:'post',
+				 			timeout:10000,
+				 			headers:{'Content-Type':'application/json'},	              
+				 			success:function(data){
+				 				if(data.success){
+//				 					his_data();
+				 					//刷新页面
+									var wobj = plus.webview.getWebviewById("person2");
+									wobj.reload(true);
+									var wobj1 = plus.webview.getWebviewById("my_history_list.html");
+									wobj1.reload(true);
+				 					mui.toast(data.message,{ duration:'2000', type:'div' });
+				 				}else{
+								
+				 				}
+				 			},
+				 			error:function(xhr,type,errorThrown){
+				 				console.log(type);
+				 			}
+				 		});
+				 	}else{
+//				 		alert('取消');
+				 	}
+				},'div');
+			}	 
+			function his_data(){//该方法暂时不用
+				mui.ajax(Interface_url + '/yhcms/web/collecthouse/getAppBrowseRecords.do',{
+					data:{
+						"parameters":
+						{
+							"cookie":JSON.parse(localStorage.getItem('cookxs_yh')),
+							"search_keywork":"",
+							"curr_page":page,
+							"items_perpage":10,
+							"sid":0,//0所有，1上架，3下架
+						},
+						"foreEndType":2,
+						"code":"16"
+					},
+					dataType:'json',
+					type:'post',
+					timeout:10000,
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						if(data.success){
+							var hisData = data.data;
+							if(hisData.length == 0){
+								$('.history_data').eq(0).remove();
+//								//刷新页面
+//								var wobj = plus.webview.getWebviewById("person2");
+//								wobj.reload(true);
+//								var wobj1 = plus.webview.getWebviewById("my_history_list.html");
+//								wobj1.reload(true);
+							}
+							for (var i=0; i<hisData.length; i++) {
+								for (var j=0; j<$('.history_data').length; j++) {
+									if($('.history_data').eq(j).text() != hisData[i].hisDate){
+										$('.history_data').eq(j).remove();
+									}									
+								}
+							}
+						}else{
+							//数据获取不成功
+							
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type);
+					}
+				});
+			}
+			
+			var page = 1;//页数
+			my_shouc();
+			//删除
+			(function($) {
+				$('#OA_task_2').on('tap', '.mui-btn', function(event) {
+					var elem = this;
+					var li = elem.parentNode.parentNode;
+					var fysc_id = elem.parentNode.getAttribute('id');
+					mui.confirm('确认删除该条记录？', '提示', btnArray, function(e) {
+						if (e.index == 0) {
+							li.parentNode.removeChild(li);
+							mui.ajax(url + '/yskjApp/appYskj/V1/delBrowseRecords.do',{
+//							mui.ajax('https://yhcms.tunnel.qydev.com/yskjApp/appYskj/V1/delBrowseRecords.do',{
+								data:{
+									"ids":String(fysc_id)
+								},
+								dataType:'json',
+								type:'post',
+								timeout:100000,
+								headers:{'Content-Type':'application/json'},	              
+								success:function(data){
+									if(data.success){
+										pabduan();
+										//刷新页面
+										var wobj = plus.webview.getWebviewById("person2");
+										wobj.reload(true);
+										var wobj1 = plus.webview.getWebviewById("my_history_list.html");
+										wobj1.reload(true);
+										mui.toast(data.message,{ duration:'2000', type:'div' });
+									}else{
+										
+									}
+								},
+								error:function(xhr,type,errorThrown){
+									console.log(type);
+								}
+							});
+						} else {
+							setTimeout(function() {
+								$.swipeoutClose(li);
+							}, 0);
+						}
+					});
+				});
+				var btnArray = ['确认', '取消'];
+			})(mui);
+
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				page = 1;
+				setTimeout(function() {
+					$('#OA_task_2').html('');
+					my_shouc();
+					//监听全选按钮
+					bj_wc = false;
+					var main = plus.webview.getWebviewById('person2');
+					mui.fire(main, "all_dsel_res",{
+					    dsel_res: 'sss'
+					})
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+					mui('#pullrefresh').pullRefresh().refresh(true);
+				}, 1500);
+			}
+			var count = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				page ++;
+				setTimeout(function() {
+//					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					my_shouc();
+				}, 1500);
+		}
+
+		//我的浏览历史
+		
+		function my_shouc(){
+			mui.ajax(Interface_url + '/yhcms/web/collecthouse/getAppBrowseRecords.do',{
+//			mui.ajax('http://192.168.0.126:8080/yhcms/web/collecthouse/getAppBrowseRecords.do',{
+				data:{
+					"parameters":
+					{
+						"cookie":JSON.parse(localStorage.getItem('cookxs_yh')),
+						"search_keywork":"",
+						"curr_page":page,
+						"items_perpage":10,
+						"sid":0,//0所有，1上架，3下架
+					},
+					"foreEndType":2,
+					"code":"16"
+				},
+				dataType:'json',
+				type:'post',
+				timeout:100000,
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					if(data.success){
+						var sc_html = '';
+						var allData = data.data;
+						//空状态
+						if(allData.length == 0 && page == 1){
+							$('#kong1').css('display','block');
+							$('#kong1').on('touchstart',function(e){
+								mui('#pullrefresh').pullRefresh().setStopped(true);
+								e.preventDefault();
+								return false;
+							});		
+						}else{
+							$('#kong1').css('display','none');
+						}
+						if(allData.length > 0 ){
+							var history = allData[0].hisDate;
+							var his_date = '<div class="history_data">'+history+'</div>';
+							if(page == 1){
+								$('#OA_task_2').append(his_date);			
+							}
+						}else{
+							var history = '';
+						}
+						for (var i=0; i<allData.length; i++) {
+							if(history != allData[i].hisDate){
+								history = allData[i].hisDate;
+								sc_html += '<div class="history_data">'+history+'</div>';
+							}
+							
+							if(allData[i].sid == 3){
+								sc_html += '<li class="mui-table-view-cell sc_list" style="background: rgba(255,255,255,0.5)">';								
+							}else{
+								sc_html += '<li class="mui-table-view-cell sc_list" style="">';	
+							}
+							sc_html += '<div class="mui-slider-right mui-disabled" id="'+allData[i].id+'">';
+							sc_html += '<a class="mui-btn mui-btn-red mui-icon a_d" style="width: 1.72rem!important;font-size: 0.346666rem;color: #fff;">删除</a></div>';
+							if(allData[i].sid == 1){
+								sc_html += '<div class="mui-slider-handle sc_content" onclick="mysc_detail('+allData[i].fyid+')">';								
+							}else{
+								sc_html += '<div class="mui-slider-handle sc_content">';
+							}
+							if(allData[i].sid == 3){
+								sc_html += '<div class="xj_zz"></div>';
+							}
+							//复选
+							sc_html += '<div class="mui-input-row mui-checkbox bj_btn">';
+							sc_html += '<label></label>';
+							sc_html += '<input name="Checkbox" type="checkbox" value="'+allData[i].id+'" onclick="sel(this,'+i+',event)">';
+							sc_html += '</div>';
+							sc_html += '<div class="sc_fy_pic">';
+							sc_html += '<img src="'+img_url + allData[i].housing_icon+'"/>';
+							if(allData[i].cloudscape){
+								sc_html += '<div class="qieryun"></div>';								
+							}
+							if(allData[i].sid == 3){
+								sc_html += '<span class="pic_zz">房源已下架</span>';		
+								$('.xj_zz').css('display','none');
+							}
+							sc_html += '</div>';
+							sc_html += '<div class="sc_right">';
+							sc_html += '<p class="zd_fjh">'+allData[i].topic +'&nbsp;&nbsp;'+ allData[i].zdh + '-' + allData[i].fybh +'</p>';
+							sc_html += '<p class="quyu"><span>'+allData[i].district+' </span><span> '+allData[i].housing_area+'m²</span></p>';
+							sc_html += '<p class="fy_tag">';
+							if(allData[i].decoration_level != ''){
+								sc_html += '<span class="jzjf">'+allData[i].decoration_level+'</span>';								
+							}
+							if(allData[i].cid == 1){
+								sc_html += '<span class="dingjin">定金</span>';								
+							}
+							sc_html += '</p>';
+							sc_html += '<p class="dj_price"><i>'+allData[i].daily_price+'</i>元/m²/天</p>';
+							sc_html += '</div>';
+							sc_html += '</div>';
+							sc_html += '</li>';
+						}
+						$('#OA_task_2').append(sc_html);
+						//上拉加载更多时如果处于编辑状态择下拉加载出来的数据保持编辑按钮显示
+						if(bj_wc == true){
+							$('.bj_btn').css('display','block');
+							//控制全选按钮状态
+							var main = plus.webview.getWebviewById('person2');
+							mui.fire(main, "all_dsel",{
+							    dsel: false
+							})
+						}else{
+							$('.bj_btn').css('display','none');
+						}
+//						mui('#pullrefresh').pullRefresh().setStopped(false);
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh((data.data.length<10)); //参数为true代表没有更多数据了。
+					}else{
+						//数据获取不成功
+						
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					console.log(type);
+				}
+			});
+		}
+		function pabduan(){
+			mui.ajax(Interface_url + '/yhcms/web/collecthouse/getAppBrowseRecords.do',{
+				data:{
+						"parameters":
+						{
+							"cookie":JSON.parse(localStorage.getItem('cookxs_yh')),
+							"search_keywork":"",
+							"curr_page":1,
+							"items_perpage":10,
+							"sid":0,//0所有，1上架，3下架
+						},
+						"foreEndType":2,
+						"code":"16"
+				},
+				dataType:'json',
+				type:'post',
+				timeout:10000,
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					if(data.success){
+						//空状态
+						if(data.data.length == 0){
+							$('#kong1').css('display','block');
+							$('#kong1').on('touchstart',function(e){
+								mui('#pullrefresh').pullRefresh().setStopped(true);
+								e.preventDefault();
+								return false;
+							});		
+						}else{
+							$('#kong1').css('display','none');
+//							my_shouc();
+						}							
+					}else{
+						//数据获取不成功
+						
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					console.log(type);
+				}
+			});
+		}
+		//跳转查看房源详情
+		function mysc_detail(fyid){
+			mui.openWindow({ 
+				url:'../page/fyTail.html',
+				id:'fyTail',
+				extras:{ 
+					fyid:fyid,
+					his_id:'history'
+				}
+			});
+		}
+		</script>
+	</body>
+
+</html>

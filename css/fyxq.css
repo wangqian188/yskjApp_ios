@@ -7,7 +7,7 @@
 	height: 5.813333rem;
 }
 .imglunbo{color: #ffffff;font-size: 0.293333rem;text-align: right;padding-right: 0.626666rem !important;}
-.fuxqxx{border-bottom: 1px solid #dbdbdb;height: 9.906666rem;}
+.fuxqxx{border-bottom: 1px solid #dbdbdb;min-height: 9.906666rem;height: auto;padding-bottom: 0.2rem;}
 .fyxqxxyiu{height: 1.666666rem;height: 2.266666rem;width:9.2rem;display: flex;justify-content: space-between!important;margin: 0 auto 0;}
 .fyxqxxyiu p{display: flex;display: -webkit-flex;align-items: center;border-bottom: 1px solid #e5e5e5;height: 100%;color: #282828;font-size:0.453333rem;}
 .fyxqxxyiu p:first-child{width: 6.133333rem;justify-content: center;flex-direction: column;-webkit-flex-direction: column;}

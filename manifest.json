@@ -289,7 +289,8 @@
 					"page/wode_fangyang.html",
 					"page/notice_center.html",
 					"page/wode_guanjia.html",
-					"page/my_sc_main.html"
+					"page/my_sc_main.html",
+					"webpage/my_history_main.html"
 				],
 				"priority": 0
 			},
@@ -1307,6 +1308,13 @@
 			"page/my_sc_main.html": {
 				"resources": [
 					"page/my_sc_list.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"webpage/my_history_main.html": {
+				"resources": [
+					"webpage/my_history_list.html"
 				],
 				"refer": [],
 				"priority": 0
