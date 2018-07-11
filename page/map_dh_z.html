@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<script type="text/javascript" src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+	</head>
+<style type="text/css">  
+    body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+    *{border: none;}
+    .dtdh_box{position: absolute;left: 0;right: 0;bottom: 0.32rem;top: 0;}
+</style>   
+	<body>
+		<header class="mui-bar mui-bar-nav sc_head_h">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title">
+		    	<span class="tit">地图导航</span>
+		    </h1>
+		</header>
+		<div class="mui-content content_main">
+	        <div class="dtdh_box">
+		    	<iframe src="" class="mapClass" style="width:100%;height: 100%;"></iframe>	
+     		</div>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?ak=pTHixzeMKbBbtNwycGsv47DuGjqEOgQw&v=2.0"></script>
+	<script type="text/javascript">		
+		mui.init();
+		var dqwd;//当前位置的纬度 
+		var dqjd;//当前位置经度
+		var mbwz1;//目标位置1
+		var mbwz2;//目标位置2
+        window.onload = function(){
+            mui.plusReady(function(){
+                var self = plus.webview.currentWebview();
+                var longitude = self.longitude;
+                var latitude = self.latitude;
+                var dtwz = self.dtwz;
+                mbwz1 = longitude;
+                mbwz2 = latitude;
+                dqwd = self.dqwd;
+                dqjd = self.dqjd;
+                
+                var dtdh_src = "http://api.map.baidu.com/direction?origin="+dqwd+","+dqjd+"&destination="+mbwz2+","+mbwz1+"&mode=driving&region=北京&output=html";
+                $(".mapClass").attr("src",dtdh_src);
+            });
+        }
+//      function daohang(){
+//      	location.href="http://api.map.baidu.com/direction?origin="+dqwd+","+dqjd+"&destination="+mbwz2+","+mbwz1+"&mode=driving&region=北京&output=html";
+//      }
+	</script>
+
+</html>

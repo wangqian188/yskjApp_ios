@@ -340,7 +340,7 @@
 //					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
 					my_shouc();
 				}, 1500);
-		}
+			}
 
 		//我的浏览历史
 		
@@ -364,6 +364,7 @@
 				timeout:100000,
 				headers:{'Content-Type':'application/json'},	              
 				success:function(data){
+//					console.log(JSON.stringify(data));
 					if(data.success){
 						var sc_html = '';
 						var allData = data.data;

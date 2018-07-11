@@ -36,12 +36,15 @@
 		var dqjd;//当前位置经度
 		var mbwz1;//目标位置1
 		var mbwz2;//目标位置2
+		var longitude;
+        var latitude;
+        var dtwz;
         window.onload = function(){
             mui.plusReady(function(){
                 var self = plus.webview.currentWebview();
-                var longitude = self.longitude;
-                var latitude = self.latitude;
-                var dtwz = self.dtwz;
+                longitude = self.longitude;
+                latitude = self.latitude;
+                dtwz = self.dtwz;
                 mbwz1 = longitude;
                 mbwz2 = latitude;
                 
@@ -96,7 +99,18 @@
             });
         }
         function daohang(){
-        	location.href="http://api.map.baidu.com/direction?origin="+dqwd+","+dqjd+"&destination="+mbwz2+","+mbwz1+"&mode=driving&region=北京&output=html";
+        	mui.openWindow({ 
+				url:'./map_dh_z.html', //需要打开页面的url地址 
+				id:'map_dh_z',  //需要打开页面的url页面id
+				extras:{
+			      longitude:longitude,
+			      latitude:latitude,
+			      dqwd:dqwd,
+			      dqjd:dqjd,
+			      dtwz:dtwz
+			    },
+			});
+//      		location.href="http://api.map.baidu.com/direction?origin="+dqwd+","+dqjd+"&destination="+mbwz2+","+mbwz1+"&mode=driving&region=北京&output=html";
         }
 	</script>
 
