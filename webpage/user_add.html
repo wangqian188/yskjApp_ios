@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/user_add.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/pickers/mui.dtpicker.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/pickers/mui.picker.min.css"/>
+		<script src="../js/mui.picker.min.js"></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav sc_head_h ipx_head_h edit" style="display: flex;align-items: center;justify-content: space-between;">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title">
+		    	<span class="tit">添加成员</span>
+		    </h1>
+		    <span id="edit">完成</span>
+		</header>
+		<div class="mui-content mysc_content">
+			<div class="wt_jbxx">
+		    	<div class="mui-input-row wt_inpsty">
+		    	    <label>姓名</label>
+		    	    <input type="text" class="mui-input" placeholder="请输入真实姓名" id="user_name">
+		    	</div>
+		    	<div class="mui-input-row wt_inpsty">
+		    	    <label>手机号</label>
+		    	    <input type="text" class="mui-input" placeholder="请输入手机号" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" autocomplete="off" maxlength="11"  id="tel">
+		    	</div>
+		    </div>
+		    <div class="wt_jbxx" style="padding-right: 0.4rem;">
+		    	<div class="mui-input-row wt_inpsty">
+		    	    <label>账号权限</label>
+		    	    <input type="text" class="mui-input" placeholder="请选择账号权限" readonly="readonly" id="zhqx" onclick="fw_news()">
+		    	    <span class="yjt"></span>
+		    	</div>
+		    </div>
+		    <!--提示信息-->
+		    <div class="tip">
+		    	<p>管理员：与主账号权限一致，拥有所有权限；</p>
+		    	<p>财   务：可查看合同摘要与支付凭证；</p>
+		    	<p>员   工：拥有管家服务、通知中心、我的管家等功能</p>		    	
+		    </div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		mui.init();
+		var arr = [
+		{value:'gly',text:'管理员'},
+		{value:'cw',text:'财务'},
+		{value:'yg',text:'员工'}
+		];
+		var picker = new mui.PopPicker({
+			layer: 1
+		});
+		picker.setData(arr);
+		picker.pickers[0].setSelectedIndex(0);
+		function fw_news(){
+			picker.show(function(SelectedItem) {
+				var sel_val = picker.getSelectedItems();
+				$('#zhqx').val(sel_val[0].text);
+			});
+		}
+	</script>
+
+</html>

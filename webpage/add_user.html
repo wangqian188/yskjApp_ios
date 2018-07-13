@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="../css/mui.min.css">
+	<script type="text/javascript" src="../js/lib/flexible.js"></script>
+	<script type="text/javascript" src="../js/lib/flexible_css.js"></script>
+	<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/add_user.css"/>
+</head>
+<body>
+	<header class="mui-bar mui-bar-transparent sc_head_h add_user_t">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+	    <h1 class="mui-title">
+	    	<span class="tit">添加账号</span>
+	    </h1>
+	    <span class="add_u"></span>
+	</header>
+	<div class="mui-content content_main">
+		<!--主账号信息-->
+        <div class="top_head">
+        	<div class="user_info">
+        		<p class="head_img"><img src="../img/head_img.png" alt="" /></p>
+        		<div class="user">
+        			<p class="user_name"><span class="user_name_u">小手冰凉</span><span class="main_ion"></span></p>
+        			<p class="user_tel">17600686025</p>        			
+        		</div>
+        	</div>
+        </div>
+        <!--成员管理-->
+        <div class="staff_box">
+        	<div class="user_list_box">
+        		<ul class="user_list">
+        			<li>
+        				<div class="left_box">
+        					<p class="list_head_img"><img src="../img/head_img.png" alt="" /></p>
+        					<p class="list_user_news">
+        						<span>张三</span>
+        						<span>15936866025</span>
+        					</p>
+        				</div>
+        				<div class="right_box">
+        					<span class="gly_ion"></span>
+        					<span class="yjt"></span>
+        				</div>
+        			</li>
+        			<li>
+        				<div class="left_box">
+        					<p class="list_head_img"><img src="../img/head_img.png" alt="" /></p>
+        					<p class="list_user_news">
+        						<span>李四</span>
+        						<span>17600686025</span>
+        					</p>
+        				</div>
+        				<div class="right_box">
+        					<span class="gly_ion" style="background: url(../img/add_user/yg_ion.png) no-repeat center;background-size: 100% auto;"></span>
+        					<span class="yjt"></span>
+        				</div>
+        			</li>
+        			<li>
+        				<div class="left_box">
+        					<p class="list_head_img"><img src="../img/head_img.png" alt="" /></p>
+        					<p class="list_user_news">
+        						<span>王二</span>
+        						<span>17600687497</span>
+        					</p>
+        				</div>
+        				<div class="right_box">
+        					<span class="gly_ion" style="background: url(../img/add_user/cw_ion.png) no-repeat center;background-size: 100% auto;"></span>
+        					<span class="yjt"></span>
+        				</div>
+        			</li>
+        			<li>
+        				<div class="left_box">
+        					<p class="list_head_img"><img src="../img/head_img.png" alt="" /></p>
+        					<p class="list_user_news">
+        						<span>李四</span>
+        						<span>17600686025</span>
+        					</p>
+        				</div>
+        				<div class="right_box">
+        					<span class="gly_ion" style="background: url(../img/add_user/yg_ion.png) no-repeat center;background-size: 100% auto;"></span>
+        					<span class="yjt"></span>
+        				</div>
+        			</li>
+        		</ul>
+        	</div>
+        	<!--提示信息-->
+        	<p class="staff">
+        		<span class="staff_ion"></span>
+        		<span class="staff_txt">添加企业成员，更好的帮您管理哦~~</span>
+        	</p>
+        </div>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script type="text/javascript">		
+	mui.init();
+	$('.add_u').click(function(){
+		mui.openWindow({ 
+			url:'./user_add.html', //需要打开页面的url地址 
+			id:'user_add',  //需要打开页面的url页面id
+		});
+	});
+	$('.user_list li').click(function(){
+		mui.openWindow({ 
+			url:'./see_user.html', //需要打开页面的url地址 
+			id:'see_user',  //需要打开页面的url页面id
+		});
+	});
+</script>
+
+</html>

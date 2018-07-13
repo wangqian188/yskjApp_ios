@@ -13,6 +13,10 @@
 		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
 	</head>
+	<style>
+		
+	</style>
+	<body>
 		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
 		    <div class="" style="display: flex;justify-content: space-between;">
 		    	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
@@ -35,7 +39,7 @@
 					<div class="qieryun qieryundisp"></div>
 					<div class="fuxqxx">
 						<div class="fyxqxxyiu">
-							<p class="">
+							<p class="" style="border-bottom: none;">
 								<span class="fybh"></span>
 								<span class="qysq_wz" id="fy_wz">
 									<i class="qy_sq"></i>
@@ -47,7 +51,7 @@
 							</p>
 						</div>
 						<div class="fyxqxxer">
-							<ul>
+							<ul style="border-top: 1px solid #e5e5e5;">
 								<li>
 									<p class="danjia" >单价</p>
 									<p class="danyuan dj" ></p>
@@ -162,7 +166,7 @@
 				</div>
 		    </div>
 		</div>
-	<body>
+	
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/lib/app_config.js"></script>
 		<script type="text/javascript" src="../js/lib/castapp.js" ></script>
@@ -568,7 +572,7 @@
 			//记录浏览历史
 			function  history_jl(){
 				mui.ajax(url+'/yskjApp/appYskj/V1/browseRecords.do',{
-//				mui.ajax('http://192.168.0.126:8080/yskjApp/appYskj/V1/browseRecords.do',{
+//				mui.ajax('https://yhcms.tunnel.qydev.com/yskjApp/appYskj/V1/browseRecords.do',{
 					data:{
 						"cookie":cookieId,
 						"fyid":fyid

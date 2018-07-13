@@ -60,3 +60,5 @@
 .yvzufdangyneiceng{}
 .qieryun{height: 0.533333rem;width: 0.6rem;position: absolute;left: 0.133333rem;top: 1.333333rem;background: url(../img/fylistqierl.png)no-repeat center;background-size: 100% 100%;}
 .listtail{position: relative;}
+.tuijianfay{height: 1.066666rem;display: flex;justify-content: center;align-items: center;font-size: 0.32rem;color: #999999;}
+.tuijianfaydis{display: none;}
