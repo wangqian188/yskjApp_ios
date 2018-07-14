@@ -1,0 +1,60 @@
+.mysc_content{
+	position: absolute;
+	left: 0;
+	top: 20px;
+	right: 0;
+	bottom: 0px;
+	background: #f0f0f0;
+}
+.wt_jbxx{
+	width: 10rem;
+	border-bottom: 1px solid #e5e5e5;
+	border-top: 1px solid #e5e5e5;
+	background: #fff;
+	padding-left: 0.4rem;
+	margin-top: 0.266666rem;
+}
+.wt_inpsty{
+	position: relative;
+	display: flex;
+	align-items: center;
+	height: 1.466666rem;
+	border-bottom: 1px solid #e5e5e5;
+}
+.wt_inpsty input{
+	text-align: right;
+	width: 80%!important;
+}
+.wt_inpsty label{
+	width: 20%!important;
+	padding: 0!important;
+}
+.wt_inpsty:last-child{
+	border-bottom: none;
+}
+.wt_inpsty label,.wt_inpsty input{
+	font-size: 0.4rem;
+	color: #333333;
+}
+.yjt{
+	display: inline-block;
+	width: 0.186666rem;
+	height: 0.32rem;
+	background: url(../img/add_user/yjt_ion.png) no-repeat center;
+	background-size: 100% auto;
+}
+#edit{
+	display: inline-block;
+	color: #fff;
+	font-size: 0.4rem;
+	margin-right: 0.133333rem;
+}
+.tip{
+	padding: 0 0.4rem;
+	margin-top: 0.4rem;
+}
+.tip p{
+	font-size: 0.346666rem;
+	color: #999999;
+	line-height: 0.6rem;
+}
