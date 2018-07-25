@@ -1,3 +1,4 @@
+body{touch-action: none;}
 .bar-h-s{height: 20px;}
 /*首页顶部高度1*/
 .bar-h-s1{height: 65px;}

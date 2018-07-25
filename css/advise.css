@@ -1,0 +1,129 @@
+.totality_box{
+	/*height: 4.733333rem;*/
+	height: auto;
+	width: 10rem;
+	background: #fff;
+	border-bottom: 1px solid #e5e5e5;
+	padding-top: 0.1px;
+	padding-bottom: 0.96rem;
+}
+.totality_text{
+	font-size: 0.453333rem;
+	color: #333333;
+	text-align: center;
+	font-weight: bold;
+	margin: 1.093333rem 0 0.6rem 0;
+}
+.totality_tip{
+	font-size: 0.4rem;
+	color: #666666;
+	text-align: center;
+	height: 0.4rem;
+	line-height: 0.4rem;
+	margin-bottom: 0.4rem;
+	display: none;
+}
+.totality_ion{
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+	width: 5.6rem;
+	margin: 0 auto 0;
+}
+/*默认*/
+.pj_ion{
+	display: inline-block;
+	width: 0.773333rem;
+	height: 0.773333rem;
+	background: url(../img/advise/advise_mr_ion.png) no-repeat center;
+	background-size: 100%;
+}
+/*一般图标*/
+.pj_ion1{
+	background: url(../img/advise/advise_yb_ion.png) no-repeat center;
+	background-size: 100%;
+}
+/*很差*/
+.pj_ion2{
+	background: url(../img/advise/advise_hc_ion.png) no-repeat center;
+	background-size: 100%;
+}
+.single_box{
+	width: 10rem;
+	background: #fff;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 0.8rem 0 0.933333rem 0;
+}
+.single_text{
+	width: 6.866666rem;
+	margin: 0 auto 0;
+	font-size: 0.4rem;
+	color: #333333;
+	font-weight: bold;
+	text-align: left;
+}
+.single_ion_box{
+	width: 6.866666rem;
+	margin: 0 auto 0;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	-webkit-align-items: center;
+	margin-top: 0.533333rem;
+}
+.single_name{
+	font-size: 0.4rem;
+	color: #999;
+	margin-right: 0.506666rem;
+}
+/*默认*/
+.pj_star{
+	display: inline-block;
+	width: 0.653333rem;
+	height: 0.626666rem;
+	background: url(../img/advise/star1_ion.png) no-repeat center;
+	background-size: 0.653333rem 0.626666rem;
+	margin-right: 0.2rem;
+}
+/*点亮*/
+.pj_star1{
+	background: url(../img/advise/star_ion.png) no-repeat center;
+	background-size: 0.653333rem 0.626666rem;
+}
+.opinion_box{
+	width: 10rem;
+	height: 3rem;
+	border-bottom: 1px solid #e5e5e5;
+	background: #fff;
+}
+#idea{
+	border: none;
+	height: 100%;
+	font-size: 0.4rem;
+	padding: 0.4rem 0.4rem;
+}
+.top_box{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 1.333333rem;
+	overflow: auto;
+	padding-bottom: 1.266666rem;
+}
+.bottom_box{
+	position: absolute;
+	bottom: 0;
+	height: 1.333333rem;
+	width: 10rem;
+	background: #d8d8d8;
+}
+.btn{
+	border: none;
+	width: 100%;
+	height: 100%;
+	background: #d8d8d8;
+	font-size: 0.453333rem;
+	color: #fff;
+}

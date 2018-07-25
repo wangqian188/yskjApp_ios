@@ -1,0 +1,125 @@
+.ht_box{
+	position: relative;
+	width: 9.2rem;
+	margin: 0.933333rem auto 0;
+	border-radius: 0.133333rem;
+	background: #fff;
+	-webkit-box-shadow:0px 0px 6px #E2E2E2;
+	box-shadow:0px 0px 6px #E2E2E2;
+}
+.ht_top{
+	height: 5.68rem;
+	background: url(../img/compact_img/top_bg.png);
+	background-size: 100%;
+	border-top-left-radius: 0.133333rem;
+	border-top-right-radius: 0.133333rem;
+}
+.lp_zd{
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	-webkit-flex-direction: column;
+	align-items: center;
+	-webkit-align-items: center;
+	justify-content: center;
+	-webkit-justify-content: center;
+	width: 8.24rem;
+	height: 3.466666rem;
+	margin: 0 auto 0;
+}
+.lp_zd p{
+	width: 100%;
+	height: 0.666666rem;
+	line-height: 0.666666rem;
+	font-size: 0.613333rem;
+	color: #fff;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: center;
+}
+.lp{
+	margin-bottom: 0.133333rem;
+}
+.htdate_box{
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	-webkit-flex-direction: column;
+	justify-content: center;
+	-webkit-justify-content: center;
+	width: 8.24rem;
+	height: 2.133333rem;
+	margin: 0 auto 0;
+	border-top: 1px dashed #bdedff;
+}
+.htdate_box p{
+	font-size: 0.4rem;
+	color: #fff;
+}
+.htdate_box p span:first-child{
+	margin-right: 0.533333rem;
+}
+.ht_qyr{
+	margin-bottom: 0.4rem;
+}
+.ht_nav{
+	padding-left: 0.48rem;
+}
+.ht_nav li{
+	position: relative;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	-webkit-align-items: center;
+	height: 1.466666rem;
+	border-bottom: 1px solid #e5e5e5;
+}
+.ht_nav li span{
+	display: inline-block;
+}
+.ht_nav li:last-child{
+	border-bottom: none;
+}
+.ht_nav_ion{
+	width: 0.573333rem;
+	height: 1.466666rem;
+}
+.fyxx .ht_nav_ion{
+	background: url(../img/compact_img/fy_ion.png) no-repeat center;
+	background-size: 100% auto;
+}
+.htzy .ht_nav_ion{
+	background: url(../img/compact_img/ht_ion.png) no-repeat center;
+	background-size: 100% auto;
+}
+.yfzd .ht_nav_ion{
+	background: url(../img/compact_img/yf_ion.png) no-repeat center;
+	background-size: 100% auto;
+}
+.ht_nav_jt{
+	position: absolute;
+	top: 50%;
+	right: 0.48rem;
+	margin-top: -0.24rem;
+	width: 0.28rem;
+	height: 0.48rem;
+	background: url(../img/compact_img/right_ion.png) no-repeat center;
+	background-size: 100% auto;
+}
+.ht_nav_name{
+	font-size: 0.426666rem;
+	color: #333333;
+	margin-left: 0.333333rem;
+}
+.zt_box{
+	position: absolute;
+	z-index: 9;
+	right: -0.1rem;
+	top: -0.06rem;
+	display: inline-block;
+	width: 1.466666rem;
+	height: 1.466666rem;
+	background: url(../img/compact_img/zt_zxz_ion.png) no-repeat center;
+	background-size: 100% auto;
+}

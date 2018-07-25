@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+		<script src="../js/lib/app_config.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/contract_ht.css"/>
+	</head>
+	<style>
+		.ht_box{
+			border-radius:  0.133333rem;
+			overflow: hidden;
+		}
+		.ht_box{
+			margin-top: 0.666666rem;
+		}
+		.content_main::after{
+			content: "";
+			display: block;
+			width: 100%;
+			height: 1.333333rem;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav sc_head_h ipx_head_h edit">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title">
+		    	<span class="tit">账户管理</span>
+		    </h1>
+		</header>
+		<div class="mui-content content_main" style="background: #f0f0f0;">
+			<!--<div class="ht_box">
+				<div class="ht_top">
+					<div class="lp_zd">
+						<p class="lp">建外SOHO</p>
+						<p class="zd">2-3203</p>
+					</div>
+					<div class="htdate_box">
+						<p class="ht_qyr">
+							<span class="qyr_name">到期时间</span>
+							<span class="qyr_date">2018.02.03</span>
+						</p>
+						<p class="ht_zzq">
+							<span class="qyr_name">合同编号</span>
+							<span class="qyr_date">2018.02.05-2018.05.04</span>
+						</p>
+					</div>
+				</div>
+			</div>-->
+		</div>
+	</body>
+	<script type="text/javascript">
+		mui.init();
+		var old_back = mui.back;
+		mui.back = function() {
+		    // 获取目标口窗口对象
+		    var target = plus.webview.getWebviewById('wd.html');
+		    mui.fire(target, 'customEvent', {
+		    	'ttt':1,
+		    });
+		    old_back();
+		};
+		mui.ajax(url + '/yskjApp/webApp/dataInfo/getContractListById',{
+//		mui.ajax('https://yhcms.tunnel.qydev.com/yskjApp/webApp/dataInfo/getContractListById',{
+			data:{
+				id:localStorage.getItem('user_id'),
+			},
+			dataType:'json',
+			type:'post',
+			timeout:100000,
+			headers:{'Content-Type':'application/json'},	              
+			success:function(data){
+				if(data.success){
+					var ht_data = data.data;
+					var ht_html = "";
+					for (var i=0; i<ht_data.length; i++) {
+						if(ht_data[i].roleid == '1'){
+							ht_html += '<div class="ht_box" onclick=clk_zhgl('+ht_data[i].hetongtid+','+ht_data[i].id+')>';
+							ht_html += '<div class="ht_top">';
+							ht_html += '<div class="lp_zd">';
+							ht_html += '<p class="lp">'+ht_data[i].lpname+'</p>';
+							ht_html += '<p class="zd">'+ht_data[i].zdname+'-'+ht_data[i].fyname+'</p>';
+							ht_html += '</div>';
+							ht_html += '<div class="htdate_box">'
+							ht_html += '<p class="ht_qyr">';
+							ht_html += '<span class="qyr_name">到期时间</span>';
+							ht_html += '<span class="qyr_date">'+ht_data[i].EndDate+'</span>';
+							ht_html += '</p>';
+							ht_html += '<p class="ht_zzq">';
+							ht_html += '<span class="qyr_name">合同编号</span>';
+							ht_html += '<span class="qyr_date">'+ht_data[i].Bianhao+'</span>';
+							ht_html += '</p>';
+							ht_html += '</div>';
+							ht_html += '</div>';
+							ht_html += '</div>';
+						}
+					}
+					$('.content_main').append(ht_html);
+				}
+			},
+			error:function(xhr,type,errorThrown){
+				console.log(type);
+			}
+		});
+		//跳转账户管理
+		function clk_zhgl(tid,id){
+			mui.openWindow({
+  				url: './add_user.html', 
+  				id:'add_user',
+  				extras:{
+					ht_tid:tid,
+					ht_id:id,
+			    },
+			});
+		}
+		//监听返回上一级
+		window.addEventListener('jb_succ', function(event) {
+		    var detail = event.detail;
+		    var param = detail.jb_user;
+		    if(param == 1){
+				mui.back();
+		    }
+		});
+	</script>
+
+</html>

@@ -407,6 +407,7 @@
 								lostate=1;
 								localStorage.setItem('lostate', lostate);
 								mui.ajax(url + '/yskjApp/appYskj/V1/getCookieInfo.do',{
+//								mui.ajax('https://yhcms.tunnel.qydev.com/yskjApp/appYskj/V1/getCookieInfo.do',{
 									data:{
 										"cookie":cookie
 									},
@@ -417,6 +418,8 @@
 									success:function(data){
 										if(data.success){
 											var userData = data.data;
+											console.log(JSON.stringify(data))
+											localStorage.setItem('roleid',data.roleid);
 											localStorage.setItem('user_id',userData.id);//1 渠道用户 2 业主用户 3 客户用户
 											//将手机号中间加密
 											var type = userData.typeid;

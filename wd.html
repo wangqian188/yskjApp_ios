@@ -162,6 +162,10 @@
 		    </div>
 		    
 		    <!--<p id="zhgl">账户管理</p>-->
+		    <!--<p id="jypz">交易凭证</p>-->
+		    <!--<p id="yfzd">应付账单</p>-->
+		    <!--<p id="fwdd">服务订单</p>-->
+		    <!--<p id="my_ht">我的合同</p>-->
 		    
 		</div>
 		 <!--1<div class="sy_kfion">
@@ -169,13 +173,67 @@
 			</div>-->
 		<script type="text/javascript" src="js/lib/app_config.js" ></script>
 		<script type="text/javascript">
-//			$('#zhgl').click(function(){
-//				mui.openWindow({
-//	  				url: './webpage/add_user.html', 
-//	  				id:'add_user'
-//				});
-//			});
-			
+			$('#zhgl').click(function(){
+				mui.openWindow({
+	  				url: './webpage/ht_list.html', 
+	  				id:'ht_list'
+				});
+			});
+			$('#jypz').click(function(){
+				mui.openWindow({
+	  				url: './webpage/proof_jy.html', 
+	  				id:'proof_jy'
+				});
+			});
+			$('#yfzd').click(function(){
+				mui.openWindow({
+	  				url: './webpage/bills.html', 
+	  				id:'bills'
+				});
+			});
+			$('#fwdd').click(function(){
+				mui.openWindow({
+	  				url: './webpage/service_gj.html', 
+	  				id:'service_gj'
+				});
+			});
+			$('#my_ht').click(function(){
+				mui.openWindow({
+	  				url: './webpage/contract_ht.html', 
+	  				id:'contract_ht'
+				});
+			});
+			//账户管理
+			if(localStorage.getItem('lostate') == '1'){
+				mui.ajax(url + '/yskjApp/appYskj/V1/getCookieInfo.do',{
+//				mui.ajax('https://yhcms.tunnel.qydev.com/yskjApp/appYskj/V1/getCookieInfo.do',{
+					data:{
+						"cookie":JSON.parse(localStorage.getItem('cookxs_yh'))
+					},
+					dataType:'json',
+					type:'post',
+					timeout:100000,
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						if(data.success){
+							var userData = data.data;
+							localStorage.setItem('roleid',data.roleid);
+							if(localStorage.getItem('roleid') && localStorage.getItem('roleid') == '1'){
+								$('#zhgl').css('display','block');				
+							}else{
+								$('#zhgl').css('display','none');
+							}				
+						}else{
+							return;
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type);
+					}
+				});
+			}else{
+				$('#zhgl').css('display','block');
+			}
 			
 			var cookie=JSON.parse(localStorage.getItem('cookxs_yh'));
 			var lostate = localStorage.getItem('lostate');
@@ -300,6 +358,7 @@
 										localStorage.removeItem('lostate');
 										localStorage.removeItem('user_type');
 										localStorage.removeItem('user_id');
+										localStorage.removeItem('roleid');
 										mui.openWindow({
 										  url: './page/login.html', 
 										  id:'login'
@@ -353,6 +412,7 @@
 							localStorage.removeItem('lostate');
 							localStorage.removeItem('user_type');
 							localStorage.removeItem('user_id');
+							localStorage.removeItem('roleid');
 							mui.openWindow({
 							  url: './page/login.html', 
 							  id:'login'
@@ -402,6 +462,7 @@
 							localStorage.removeItem('lostate');
 							localStorage.removeItem('user_type');
 							localStorage.removeItem('user_id');
+							localStorage.removeItem('roleid');
 							mui.openWindow({
 							  url: './page/login.html', 
 							  id:'login'
@@ -560,6 +621,7 @@
 							localStorage.removeItem('lostate');
 							localStorage.removeItem('user_type');
 							localStorage.removeItem('user_id');
+							localStorage.removeItem('roleid');
 							mui.openWindow({
 							  url: './page/login.html', 
 							  id:'login'

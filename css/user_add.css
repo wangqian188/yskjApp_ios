@@ -44,10 +44,13 @@
 	background-size: 100% auto;
 }
 #edit{
+	position: absolute;
 	display: inline-block;
 	color: #fff;
 	font-size: 0.4rem;
-	margin-right: 0.133333rem;
+	right: 0.4rem;
+	height: 44px;
+	line-height: 44px;
 }
 .tip{
 	padding: 0 0.4rem;

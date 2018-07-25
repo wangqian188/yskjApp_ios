@@ -1,0 +1,68 @@
+.lease_box{
+	margin-top: 0.426666rem;
+}
+.lease{
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	-webkit-align-items: center;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+	padding: 0 0.426666rem;
+	width: 9.2rem;
+	height: 1.466666rem;
+	margin: 0 auto 0;
+	line-height: 1.466666rem;
+	border-radius: 0.106666rem;
+	overflow: hidden;
+	background: #5ec3f2;
+}
+.lease span{
+	display: inline-block;
+}
+.lease_zq{
+	font-size: 0.4rem;
+	color: #fff;
+}
+.lease_jt{
+	width: 0.32rem;
+	height: 0.186666rem;
+	background: url(../img/compact_img/top_jt.png) no-repeat center;
+	background-size: 100% auto;
+}
+/*租期列表*/
+.lease_list{
+
+}
+.lease_list li{
+	width: 9.2rem;
+	margin: 0.533333rem auto 0.533333rem;
+	border-radius: 0.106666rem;
+	overflow: hidden;
+	background: #ffffff;
+	padding-left: 0.426666rem;
+	padding-bottom: 0.466666rem;
+	-webkit-box-shadow:0px 0px 8px #E2E2E2;
+	box-shadow:0px 0px 8px #E2E2E2;
+}
+.yjzd{
+	height: 1.106666rem;
+	line-height: 1.106666rem;
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 0.426666rem;
+	color: #333333;
+}
+.fk_date{
+	margin-top: 0.426666rem;
+	font-size: 0.4rem;
+}
+.fk_date span:first-child,.fk_money span:first-child{
+	color: #666666;	
+}
+.fk_date span:last-child,.fk_money span:last-child{
+	color: #333333;	
+}
+.fk_money{
+	font-size: 0.4rem;
+	margin-top: 0.32rem;
+}

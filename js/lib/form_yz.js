@@ -308,16 +308,18 @@ function huoqv_yonghuxix(){
 				var lostate=1;
 				localStorage.setItem('lostate', lostate);
 				mui.ajax(url + '/yskjApp/appYskj/V1/getCookieInfo.do',{
+//				mui.ajax('https://yhcms.tunnel.qydev.com/yskjApp/appYskj/V1/getCookieInfo.do',{
 					data:{
 						"cookie":JSON.parse(localStorage.getItem('cookxs_yh'))
 					},
 					dataType:'json',
 					type:'post',
-					timeout:10000,
+					timeout:100000,
 					headers:{'Content-Type':'application/json'},	              
 					success:function(data){
 						if(data.success){
 							var userData = data.data;
+							localStorage.setItem('roleid',data.roleid);
 							localStorage.setItem('user_id',userData.id);//1 渠道用户 2 业主用户 3 客户用户
 							//将手机号中间加密
 							var type = userData.typeid;

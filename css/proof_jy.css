@@ -1,0 +1,48 @@
+.proof_box{
+	width: 9.2rem;
+	/*min-height: 9.226666rem;*/
+	height: auto;
+	margin: 0 auto 0.666666rem;
+	border: 1px solid #dedede;
+	background: #fff;
+	overflow: hidden;
+	border-radius: 0.08rem;
+	padding: 0 0.453333rem 0.56rem 0.453333rem;
+}
+.proof_tit,.proof_skje{
+	height: 1.333333rem;
+	line-height: 1.333333rem;
+	font-size: 0.48rem;
+	color: #333333;
+}
+.proof_skje{
+	font-size: 0.426666rem;
+	color: #999999;
+	text-align: center;
+	margin-top: 0.333333rem;
+}
+.money{
+	height: 1.706666rem;
+	border-bottom: 1px dashed #dedede;
+	font-size: 0.88rem;
+	color: #333333;
+	text-align: center;
+}
+.detail{
+	width: 100%;
+	margin-top: 0.24rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.detail_name{
+	display: inline-block;
+	width: 2.2rem;
+	font-size: 0.4rem;
+	color: #999999;
+}
+.detail_conent{
+	display: inline-block;
+	font-size: 0.4rem;
+	color: #333333;
+}

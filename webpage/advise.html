@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+		<script type="text/javascript" src="../js/lib/app_config.js" ></script>
+		<link rel="stylesheet" type="text/css" href="../css/advise.css"/>
+	</head>
+	<style>
+		.mui-input-row .mui-input-clear~.mui-icon-clear{
+			top: 50%!important;
+			margin-top: -10px;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav sc_head_h ipx_head_h edit">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title">
+		    	<span class="tit">评价</span>
+		    </h1>
+		</header>
+		<div class="mui-content content_main" style="background: #f0f0f0;">
+			<div class="top_box">
+				<!--亮狮服务总体评价-->
+				<div class="totality_box">
+					<p class="totality_text">对亮狮的服务总体印象评价</p>
+					<p class="totality_tip"></p>
+					<p class="totality_ion">
+						<span class="pj_ion"></span>
+						<span class="pj_ion"></span>
+						<span class="pj_ion"></span>
+						<span class="pj_ion"></span>
+						<span class="pj_ion"></span>
+					</p>
+				</div>
+				<!--服务项评价-->
+				<div class="single_box">
+					<div class="single_text">对如下服务评价，让亮狮为您更好服务</div>
+					<div class="single_ion_box">
+						<p class="single_name">响应速度</p>
+						<p class="single_ion xysd">
+							<span class="pj_star"></span>
+							<span class="pj_star"></span>
+							<span class="pj_star"></span>
+							<span class="pj_star"></span>
+							<span class="pj_star"></span>
+						</p>
+					</div>
+					<div class="single_ion_box">
+						<p class="single_name">服务态度</p>
+						<p class="single_ion fwtd">
+							<span class="pj_star"></span>
+							<span class="pj_star"></span>
+							<span class="pj_star"></span>
+							<span class="pj_star"></span>
+							<span class="pj_star"></span>
+						</p>
+					</div>
+					<div class="single_ion_box">
+						<p class="single_name">问题解决</p>
+						<p class="single_ion wtjj">
+							<span class="pj_star"></span>
+							<span class="pj_star"></span>
+							<span class="pj_star"></span>
+							<span class="pj_star"></span>
+							<span class="pj_star"></span>
+						</p>
+					</div>
+				</div>
+				<!--意见-->
+				<div class="opinion_box">
+					<textarea name="idea" rows="" cols="" id="idea" placeholder="您的意见对我们很重要"></textarea>
+				</div>
+		
+			</div>
+			<div class="bottom_box">
+				<button class="btn">提交</button>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		mui.init();
+		var ztpj = '';//总体评价
+		var xysd = '';//响应速度
+		var fwtd = '';//服务态度
+		var wtjj = '';//问题解决
+		//总体满意度评价
+		for (var i=0; i<$('.totality_ion span').length; i++) {
+			(function(index){
+				$('.totality_ion span').eq(index).click(function(){
+					$('.totality_ion span').removeClass('pj_ion2');
+					$('.totality_ion span').removeClass('pj_ion1');
+					if(index == 0){
+						$('.totality_ion span').eq(index).addClass('pj_ion2');
+						$('.totality_tip').css('display','block');
+						$('.totality_tip').text('很差');
+						ztpj = index + 1;
+					}
+					if(index == 1){
+						$('.totality_tip').css('display','block');
+						$('.totality_tip').text('一般');
+						ztpj = index + 1;
+					}
+					if(index == 2){
+						$('.totality_tip').css('display','block');
+						$('.totality_tip').text('满意');
+						ztpj = index + 1;
+					}
+					if(index == 3){
+						$('.totality_tip').css('display','block');
+						$('.totality_tip').text('非常满意');
+						ztpj = index + 1;
+					}
+					if(index == 4){
+						$('.totality_tip').css('display','block');
+						$('.totality_tip').text('无可挑剔');
+						ztpj = index + 1;
+					}
+					if(index > 0){
+						for (var j=0; j<=index; j++) {
+							$('.totality_ion span').eq(j).addClass('pj_ion1');
+						}
+					}
+					btn_active();
+				});
+			})(i);
+		}
+		//响应速度
+		for (var m=0; m<$('.xysd span').length; m++) {
+			(function(index){
+				$('.xysd span').eq(index).click(function(){
+					$('.xysd span').removeClass('pj_star1');
+					xysd = index + 1;
+					for (var n=0; n<=index; n++) {
+						$('.xysd span').eq(n).addClass('pj_star1');
+					}
+					btn_active();
+				});
+			})(m);
+		}
+		//服务态度
+		for (var k=0; k<$('.fwtd span').length; k++) {
+			(function(index){
+				$('.fwtd span').eq(index).click(function(){
+					$('.fwtd span').removeClass('pj_star1');
+					fwtd = index + 1;
+					for (var g=0; g<=index; g++) {
+						$('.fwtd span').eq(g).addClass('pj_star1');
+					}
+					btn_active();
+				});
+			})(k);
+		}
+		//问题解决
+		for (var p=0; p<$('.wtjj span').length; p++) {
+			(function(index){
+				$('.wtjj span').eq(index).click(function(){
+					$('.wtjj span').removeClass('pj_star1');
+					wtjj = index + 1;
+					for (var w=0; w<=index; w++) {
+						$('.wtjj span').eq(w).addClass('pj_star1');
+					}
+					btn_active();
+				});
+			})(p);
+		}
+		//控制按钮状态
+		function btn_active(){
+			if(ztpj != '' && xysd != '' && fwtd != '' && wtjj != ''){
+				$('.btn').css('background','#febb26');
+			}else{
+				$('.btn').css('background','#d8d8d8');
+			}
+		}
+	</script>
+
+</html>

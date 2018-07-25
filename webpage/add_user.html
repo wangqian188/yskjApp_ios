@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/add_user.css"/>
+	<script type="text/javascript" src="../js/lib/app_config.js" ></script>
 </head>
 <body>
 	<header class="mui-bar mui-bar-transparent sc_head_h add_user_t">
@@ -28,8 +29,8 @@
         	<div class="user_info">
         		<p class="head_img"><img src="../img/head_img.png" alt="" /></p>
         		<div class="user">
-        			<p class="user_name"><span class="user_name_u">小手冰凉</span><span class="main_ion"></span></p>
-        			<p class="user_tel">17600686025</p>        			
+        			<p class="user_name"><span class="user_name_u"></span><span class="main_ion"></span></p>
+        			<p class="user_tel"></p>        			
         		</div>
         	</div>
         </div>
@@ -37,20 +38,7 @@
         <div class="staff_box">
         	<div class="user_list_box">
         		<ul class="user_list">
-        			<li>
-        				<div class="left_box">
-        					<p class="list_head_img"><img src="../img/head_img.png" alt="" /></p>
-        					<p class="list_user_news">
-        						<span>张三</span>
-        						<span>15936866025</span>
-        					</p>
-        				</div>
-        				<div class="right_box">
-        					<span class="gly_ion"></span>
-        					<span class="yjt"></span>
-        				</div>
-        			</li>
-        			<li>
+        			<!--<li>
         				<div class="left_box">
         					<p class="list_head_img"><img src="../img/head_img.png" alt="" /></p>
         					<p class="list_user_news">
@@ -62,58 +50,153 @@
         					<span class="gly_ion" style="background: url(../img/add_user/yg_ion.png) no-repeat center;background-size: 100% auto;"></span>
         					<span class="yjt"></span>
         				</div>
-        			</li>
-        			<li>
-        				<div class="left_box">
-        					<p class="list_head_img"><img src="../img/head_img.png" alt="" /></p>
-        					<p class="list_user_news">
-        						<span>王二</span>
-        						<span>17600687497</span>
-        					</p>
-        				</div>
-        				<div class="right_box">
-        					<span class="gly_ion" style="background: url(../img/add_user/cw_ion.png) no-repeat center;background-size: 100% auto;"></span>
-        					<span class="yjt"></span>
-        				</div>
-        			</li>
-        			<li>
-        				<div class="left_box">
-        					<p class="list_head_img"><img src="../img/head_img.png" alt="" /></p>
-        					<p class="list_user_news">
-        						<span>李四</span>
-        						<span>17600686025</span>
-        					</p>
-        				</div>
-        				<div class="right_box">
-        					<span class="gly_ion" style="background: url(../img/add_user/yg_ion.png) no-repeat center;background-size: 100% auto;"></span>
-        					<span class="yjt"></span>
-        				</div>
-        			</li>
+        			</li>-->
         		</ul>
         	</div>
         	<!--提示信息-->
-        	<p class="staff">
-        		<span class="staff_ion"></span>
-        		<span class="staff_txt">添加企业成员，更好的帮您管理哦~~</span>
-        	</p>
+        	<div class="kong">
+	        	<p class="staff">
+	        		<span class="staff_ion"></span>
+	        		<span class="staff_txt">添加企业成员，更好的帮您管理哦~~</span>
+	        	</p>
+        	</div>
         </div>
 	</div>
 </body>
 <script src="../js/mui.min.js"></script>
 <script type="text/javascript">		
 	mui.init();
-	$('.add_u').click(function(){
-		mui.openWindow({ 
-			url:'./user_add.html', //需要打开页面的url地址 
-			id:'user_add',  //需要打开页面的url页面id
-		});
-	});
-	$('.user_list li').click(function(){
+	var hetong_tid = '';
+	var hetong_id = '';
+    window.onload = function(){
+        mui.plusReady(function(){
+            var self = plus.webview.currentWebview();
+            var ht_tid = self.ht_tid;
+            hetong_tid = ht_tid;
+            var ht_id = self.ht_id;
+            hetong_id = ht_id;
+            plus.nativeUI.closeWaiting();
+            mui.currentWebview.show();
+            //获取当前用户信息
+            mui.ajax(url + '/yskjApp/appYskj/V1/getCookieInfo.do',{
+//			mui.ajax('https://yhcms.tunnel.qydev.com/yskjApp/appYskj/V1/getCookieInfo.do',{
+				data:{
+					"cookie":JSON.parse(localStorage.getItem('cookxs_yh'))
+				},
+				dataType:'json',
+				type:'post',
+				timeout:100000,
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					if(data.success){
+						var user_data = data.data;
+						if(user_data.name == null || user_data.name == '' || user_data.name == 'null'){
+							$('.user_name_u').text('');
+							$('.main_ion').css({
+								'right':'50%',
+								'margin-right':'-0.566666rem'
+							});
+						}else{
+							$('.user_name_u').text(user_data.name);
+						}
+						$('.user_tel').text(user_data.phone);
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					console.log(type);
+				}
+			});
+            //获取当前账户列表
+            take_userlist();
+            function take_userlist(){
+	          mui.ajax(url + '/yskjApp/appYskj/V1/getAccountNumber.do',{
+//				mui.ajax('https://yhcms.tunnel.qydev.com/yskjApp/appYskj/V1/getAccountNumber.do',{
+					data:{
+						"hetongid":ht_id,
+						"hetongtid":ht_tid
+					},
+					dataType:'json',
+					type:'post',
+					timeout:100000,
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						if(data.success){
+							var user_listdata = data.data;
+							console.log(JSON.stringify(user_listdata))
+							var user_listhtml = '';
+							if(user_listdata && user_listdata.length==0){
+								$('.kong').css('display','block');
+								$('.user_list_box').css('display','none');
+							}else{
+								for (var i=0; i<user_listdata.length; i++) {
+									user_listhtml += '<li onclick="user_see('+user_listdata[i].userid+','+i+','+user_listdata[i].roleid+')">';
+									user_listhtml += '<div class="left_box">';
+									user_listhtml += '<p class="list_head_img"><img src="../img/head_img.png" alt="" /></p>';
+									user_listhtml += '<p class="list_user_news">';
+									user_listhtml += '<span class="user_listname">'+user_listdata[i].name+'</span>';
+									user_listhtml += '<span class="user_listphone">'+user_listdata[i].phone+'</span>';
+									user_listhtml += '</p>';
+									user_listhtml += '</div>';
+									user_listhtml += '<div class="right_box">';
+									if(user_listdata[i].roleid == 1){
+										user_listhtml += '<span class="gly_ion" style="background: url(../img/add_user/gly_ion.png) no-repeat center;background-size: 100% auto;"></span>';
+									}else{
+										user_listhtml += '<span class="gly_ion" style="background: url(../img/add_user/yg_ion.png) no-repeat center;background-size: 100% auto;"></span>';
+									}
+									user_listhtml += '<span class="yjt"></span>';
+									user_listhtml += '</div>';
+									user_listhtml += '</li>';       			
+								}
+								$('.user_list').append(user_listhtml);
+							}
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type);
+					}
+				});
+            }
+            $('.add_u').click(function(){
+				mui.openWindow({ 
+					url:'./user_add.html', //需要打开页面的url地址 
+					id:'user_add',  //需要打开页面的url页面id
+					extras:{
+						ht_tid:ht_tid,
+						ht_id:ht_id
+				    },
+				});
+			});
+			
+			//添加成员    //解除绑定监听
+			window.addEventListener('add_userlist', function(event) {
+			    var detail = event.detail;
+			    var param = detail.adduser;
+			    if(param == 1){
+			    	var wobj = plus.webview.getWebviewById("add_user");
+					wobj.reload(true);
+			    }
+			});
+            
+            
+        });
+    }
+	//查看
+	function user_see(listuser_id,idx,user_roleid){
+		var user_name = $('.user_listname').eq(idx).text();
+		var user_phone = $('.user_listphone').eq(idx).text();
 		mui.openWindow({ 
 			url:'./see_user.html', //需要打开页面的url地址 
 			id:'see_user',  //需要打开页面的url页面id
-		});
-	});
+			extras:{
+				listuser_id:listuser_id,
+				hetong_tid: hetong_tid,
+				hetong_id: hetong_id,
+				user_name: user_name,
+				user_phone: user_phone,
+				user_roleid: user_roleid
+		    },
+		});		
+	}
 </script>
 
 </html>
