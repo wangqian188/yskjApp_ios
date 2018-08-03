@@ -78,58 +78,6 @@
 				roleid = sel_val[0].value;
 			});
 		}
-		//手机号输入
-		document.getElementById('tel').addEventListener('input',function(){
-			if($('#tel').val().length == 11){	
-				var tel = $('#tel').val();
-				if(checkPhone(tel)){
-					select_tel(tel);
-				}
-			}else{
-				$('#user_name').val('');
-			}
-		},false);
-		//查询手机号
-		function select_tel(tel){
-			mui.ajax(url + '/yskjApp/appYskj/V1/getRolehone.do',{
-//			mui.ajax('https://yhcms.tunnel.qydev.com/yskjApp/appYskj/V1/getRolehone.do',{
-				data:{
-					"phone": tel
-				},
-				dataType:'json',
-				type:'post',
-				timeout:100000,
-				headers:{'Content-Type':'application/json'},	              
-				success:function(data){
-					if(data.success){
-						var user_data = data.data;
-						if(user_data && user_data.length == 0){
-							mui.alert('该手机号尚未注册', '提示', function(){},'div');
-						}else{
-							var user_datas = data.data[0];
-							console.log(JSON.stringify(user_datas));
-							if(user_datas.typeid == '2' && dq_user_typeid == '3'){
-								mui.alert('该账户的身份为"租户"不能添加业主', '提示', function(){},'div');	
-								return;
-							}
-							if(user_datas.typeid == '3' && dq_user_typeid == '2'){
-								mui.alert('该账户的身份为"业主"不能添加租户', '提示', function(){},'div');	
-								return;
-							}
-							userid = user_datas.id;
-							if(user_datas.name != null && user_datas.name != ''){
-								$('#user_name').val(user_datas.name);
-							}else{
-								$('#user_name').val('该账号个人信息未填写姓名');
-							}
-						}
-					}
-				},
-				error:function(xhr,type,errorThrown){
-					console.log(type);
-				}
-			});
-		}
 		//手机号码验证
 		function checkPhone(tel){
 		   if(!(/^1[345786]\d{9}$/.test(tel))){
@@ -147,6 +95,66 @@
 	            var ht_id = self.ht_id;
 	            plus.nativeUI.closeWaiting();
 	            mui.currentWebview.show();
+	            //手机号输入
+				document.getElementById('tel').addEventListener('input',function(){
+					if($('#tel').val().length == 11){	
+						var tel = $('#tel').val();
+						if(checkPhone(tel)){
+							select_tel(tel);
+						}
+					}else{
+						$('#user_name').val('');
+					}
+				},false);
+	            //查询手机号
+				function select_tel(tel){
+					mui.ajax(url + '/yskjApp/appYskj/V1/getRolehone.do',{
+		//			mui.ajax('https://yhcms.tunnel.qydev.com/yskjApp/appYskj/V1/getRolehone.do',{
+						data:{
+							"phone": tel,
+							"hetongtid": ht_tid,
+							"hetongid": ht_id
+						},
+						dataType:'json',
+						type:'post',
+						timeout:100000,
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							if(data.success){
+								var user_data = data.data;
+								if(user_data && user_data.length == 0){
+									mui.alert('该手机号尚未注册', '提示', function(){},'div');
+								}else{
+									if(data.ismark){
+										mui.alert('您已添加过该账号，请勿重复添加！', '提示', queren,'div');
+										return;
+									}
+									var user_datas = data.data[0];
+									if(user_datas.typeid == '2' && dq_user_typeid == '3'){
+										mui.alert('您输入的用户身份为业主，暂无法绑定', '提示', function(){},'div');	
+										return;
+									}
+									if(user_datas.typeid == '3' && dq_user_typeid == '2'){
+										mui.alert('您输入的用户身份为租户，暂无法绑定', '提示', function(){},'div');	
+										return;
+									}
+									userid = user_datas.id;
+									if(user_datas.name != null && user_datas.name != '' && user_datas.name != 'null'){
+										$('#user_name').val(user_datas.name);
+									}else{
+										$('#user_name').val('该账号个人信息未填写姓名');
+									}
+								}
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});
+				}
+				function queren(){
+					$('#tel').val('');
+				}
 	            //保存数据
 				$('#edit').click(function(){
 					if($('#tel').val() == '' || $('#tel').val() == null){

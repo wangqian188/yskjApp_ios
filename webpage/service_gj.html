@@ -14,18 +14,61 @@
 		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/service_dd.css"/>
+		<script src="../js/lib/app_config.js"></script>
 	</head>
 	<style>
-
+		#box_box{
+			position: absolute;
+			width: 10rem;
+			top: 45px;
+			bottom: 0;
+			right: 0;
+			left: 0;
+			overflow: auto;
+		}
+		.nav_nav{
+			display: flex;
+			display: -webkit-flex;
+			justify-content: space-between;
+			-webkit-justify-content: space-between;
+			width: 10rem;
+			height: 45px;
+			padding: 0 0.4rem;
+			font-size: 0.373333rem;
+			color: #666666;
+			background: #ffffff;
+			border-bottom: 1px solid #e5e5e5;
+		}
+		.nav_nav span{
+			position: relative;
+			display: inline-block;
+			height: 100%;
+			line-height: 45px;
+		}
+		.span_active::after{
+			content: "";
+			display: block;
+			height: 0.04rem;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			background: #2b70d8;
+		}
+		.mui-scroll{
+			padding-bottom: 0;
+		}
+		.ttt{
+			font-style: normal;
+		}
 	</style>
 	<body>
-		<header class="mui-bar mui-bar-nav sc_head_h ipx_head_h edit" style="position: relative;z-index: 9999999;">
+		<header class="mui-bar mui-bar-nav sc_head_h ipx_head_h edit">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
 		    <h1 class="mui-title">
-		    	<span class="main_tit">服务订单<i class="top_jt"></i></span>
+		    	<span class="main_tit"><i class="ttt">服务订单</i><i class="top_jt"></i></span>
 		    </h1>
 		</header>
-		<div class="mui-content content_main" style="background: #f0f0f0;">
+		<div class="mui-content content_main" style="background: #f0f0f0;overflow: hidden!important;">
 			<div class="big_zz">
 				<div class="filtrate_box">
 					<p>全部</p>
@@ -35,201 +78,315 @@
 					<p>房屋费用</p>
 				</div>
 			</div>
-			<div id="slider" class="mui-slider">
-				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<a class="mui-control-item mui-active" href="#item1mobile">全部</a>
-					<a class="mui-control-item" href="#item2mobile">待接单</a>
-					<a class="mui-control-item" href="#item3mobile">已接单</a>
-					<a class="mui-control-item" href="#item4mobile">已完成</a>
-					<a class="mui-control-item" href="#item5mobile">待评价</a>
+			<div class="nav_nav">
+				<span id="0" class="span_active">全部</span>
+				<span id="1">待接单</span>
+				<span id="2">已接单</span>
+				<span id="3">已完成</span>
+				<span id="4">待评价</span>
+			</div>
+			<!--全部-->
+			<div style="position: absolute;left: 0;top: 45px;right: 0;bottom: 0;overflow: hidden;" id="content">
+				<div id="box_box" class="pullrefresh" style="top: 0;">
+					<div class="mui-scroll">
+						<ul id="order_list1" class="order_list1">
+							
+						</ul>
+					</div>
 				</div>
-				<div class="mui-slider-group">
-					<!--全部-->
-					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
-						<div id="scroll1" class="mui-scroll-wrapper pullrefresh">
-							<div class="mui-scroll">
-								
-							</div>
-							<!--空状态-->
-							<div class="dd_kong">
-								<p class="dd_kong_ion"></p>
-								<p class="dd_kong_text">您还没有相关订单</p>
-							</div>
-						</div>
-					</div>
-					<!--待接单-->
-					<div id="item2mobile" class="mui-slider-item mui-control-content">
-						<div id="scroll2" class="mui-scroll-wrapper pullrefresh1">
-							<div class="mui-scroll">
-								<!--<div class="mui-loading">
-									<div class="mui-spinner">
-									</div>
-								</div>-->
-							</div>
-						</div>
-						<!--空状态-->
-						<div class="dd_kong">
-							<p class="dd_kong_ion"></p>
-							<p class="dd_kong_text">您还没有相关订单</p>
-						</div>
-					</div>
-					<!--已接单-->
-					<div id="item3mobile" class="mui-slider-item mui-control-content">
-						<div id="scroll3" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<!--<div class="mui-loading">
-									<div class="mui-spinner">
-									</div>
-								</div>-->
-							</div>
-						</div>
-						<!--空状态-->
-						<div class="dd_kong">
-							<p class="dd_kong_ion"></p>
-							<p class="dd_kong_text">您还没有相关订单</p>
-						</div>
-					</div>
-					<!--已完成-->
-					<div id="item4mobile" class="mui-slider-item mui-control-content">
-						<div id="scroll4" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<!--<div class="mui-loading">
-									<div class="mui-spinner">
-									</div>
-								</div>-->
-							</div>
-						</div>
-						<!--空状态-->
-						<div class="dd_kong">
-							<p class="dd_kong_ion"></p>
-							<p class="dd_kong_text">您还没有相关订单</p>
-						</div>
-					</div>
-					<!--待评价-->
-					<div id="item5mobile" class="mui-slider-item mui-control-content">
-						<div id="scroll5" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul id="order_list">
-									<li>
-										<h3 class="top_lb_zt">
-											<span>在线报修</span>
-											<span>已完成</span>
-										</h3>
-										<div class="content_mains">
-											<p class="">
-												<span class="main_name">服务项目：</span>
-												<span class="main_text">门窗维修</span>
-											</p>
-											<p class="">
-												<span class="main_name">费用合计：</span>
-												<span class="main_text">￥200</span>
-											</p>
-											<p class="">
-												<span class="main_name">提交时间：</span>
-												<span class="main_text">2018-05-06 18：00</span>
-											</p>
-										</div>
-										<div class="bottom_box">
-											<span class="del_dd">删除订单</span>
-											<span class="pj_dd">评价</span>								
-											<span class="qx_dd">取消订单</span>
-											<span class="li_kf">联系客服</span>
-										</div>
-									</li>
-								</ul>
-								
-								<!--<div class="mui-loading">
-									<div class="mui-spinner">
-									</div>
-								</div>-->
-							</div>
-						</div>
-					</div>
-					
+				<!--空状态-->
+				<div class="dd_kong dd_kong_status">
+					<p class="dd_kong_ion"></p>
+					<p class="dd_kong_text">您还没有相关订单</p>
 				</div>
 			</div>
 		</div>
 	</body>
-	<script src="../js/webviewGroup.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../js/lib/service_dd.js"></script>
 	<script type="text/javascript">
 		mui.init();
-//		mui('.mui-slider').slider().setStopped(true); //禁止轮播左右滑动
-		mui('#scroll1').pullRefresh({
-		    up: {
-		        contentrefresh: "正在加载...",
-		        contentnomore: "没有更多数据了",
-		        callback: getMoreItem
-		    }
+		var page = 1;
+		var status = '';//空：全部  1待接单  2已接单  3已完成
+		var evaluate = '';//待评价
+		var type = '';
+		//导航菜单
+		mui(".nav_nav").on('tap','span',function(){
+			$('.nav_nav span').removeClass('span_active');
+			this.setAttribute('class','span_active');
+			var id = this.getAttribute('id');
+			$('#order_list1').html('');
+			if(id == 0){
+				mui('.pullrefresh').pullRefresh().refresh(true);
+				page = 1;
+				status = '';//空：全部  1待接单  2已接单  3已完成
+				evaluate = '';
+				all_dd(page,status,evaluate,type);
+			} else if (id == 1){
+				mui('.pullrefresh').pullRefresh().refresh(true);
+				page = 1;
+				status = '1';//空：全部  1待接单  2已接单  3已完成
+				evaluate = '';
+				all_dd(page,status,evaluate,type);
+			} else if (id == 2){
+				mui('.pullrefresh').pullRefresh().refresh(true);
+				page = 1;
+				status = '2';//空：全部  1待接单  2已接单  3已完成
+				evaluate = '';
+				all_dd(page,status,evaluate,type);
+			} else if (id == 3){
+				mui('.pullrefresh').pullRefresh().refresh(true);
+				page = 1;
+				status = '3';//空：全部  1待接单  2已接单  3已完成
+				evaluate = '';
+				all_dd(page,status,evaluate,type);
+			} else if (id == 4){
+				mui('.pullrefresh').pullRefresh().refresh(true);
+				page = 1;
+				status = '3';//空：全部  1待接单  2已接单  3已完成
+				evaluate = '0';
+				all_dd(page,status,evaluate,type);
+			}
 		});
+		//全部订单
+		mui.init({
+		  pullRefresh : {
+		    container:'.pullrefresh',
+		    up : {
+		      contentrefresh : "正在加载...",
+		      contentnomore:'没有更多数据了',
+		      callback :getMoreItem 
+		    }
+		  }
+		});
+		function fun(e){
+			e.preventDefault();
+		}
 		function getMoreItem() {
+			page ++;
 			setTimeout(function() {
-					mui('.pullrefresh').pullRefresh().endPullupToRefresh(true);
+				all_dd(page,status,evaluate,type);
 			}, 1000);
 		}
-		mui('#scroll2').pullRefresh({
-		    up: {
-		        contentrefresh: "正在加载...",
-		        contentnomore: "没有更多数据了",
-		        callback: getMoreItem2
-		    }
+		all_dd(page,status,evaluate,type);
+		function all_dd(page,status,evaluate,type){//全部订单
+			mui.ajax(url + '/yskjApp/webApp/orderInfo/getOrderlist.do',{
+				data:{
+					"uid": localStorage.getItem('user_id'),
+					"type": type,
+					"status": status,
+					"evaluate": evaluate,
+					"page": page,
+					"pageNum": 10
+				},
+				dataType:'json',
+				type:'post',
+				timeout:100000,
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					var all_data = data.data;
+					//空页面
+					if(all_data.length == 0 && page == 1){
+						$('#content .dd_kong').removeClass('dd_kong_status');							
+//  					document.getElementById('box_box').removeEventListener('touchmove',fun,false);
+					}else{		
+						$('#content .dd_kong').addClass('dd_kong_status');							
+//						document.getElementById('box_box').addEventListener('touchmove',fun,false);
+					}
+					var html1 = "";
+					for (var i=0; i<all_data.length; i++) {
+						html1 += '<li id="'+all_data[i].id+'">';
+						html1 += '<h3 class="top_lb_zt">';
+						html1 += '<span>'+all_data[i].typeName+'</span>';
+						if(all_data[i].status == 1){
+							html1 += '<span>待接单</span>';							
+						} else if (all_data[i].status == 2){
+							html1 += '<span>已接单</span>';	
+						} else {
+							html1 += '<span>已完成</span>';
+						}
+						html1 += '</h3>';
+						html1 += '<div class="content_mains">';
+						html1 += '<p class="">';
+						html1 += '<span class="main_name">服务项目：</span>';
+						html1 += '<span class="main_text">'+all_data[i].categoryName+'</span>';
+						html1 += '</p>';
+						html1 += '<p class="">';
+						html1 += '<span class="main_name">费用合计：</span>';
+						if(all_data[i].totalAmount == null){
+							html1 += '<span class="main_text">￥0元</span>';
+						}else{
+							html1 += '<span class="main_text">￥'+all_data[i].totalAmount+'元</span>';							
+						}
+						html1 += '</p>';
+						html1 += '<p class="">';
+						html1 += '<span class="main_name">提交时间：</span>';
+						html1 += '<span class="main_text">'+all_data[i].createTime+'</span>';
+						html1 += '</p>';
+						html1 += '</div>';
+						html1 += '<div class="bottom_box">';
+						if(all_data[i].status == 3){
+							html1 += '<span class="del_dd">删除订单</span>';
+						}
+						if(all_data[i].status == 3 && all_data[i].evaluate != 1){
+							html1 += '<span class="pj_dd">评价</span>';																					
+						}
+						if(all_data[i].status == 1){
+							html1 += '<span class="qx_dd">取消订单</span>';							
+						}
+						if(all_data[i].status == 2){	
+							html1 += '<span class="li_kf"><a href="tel:'+all_data[i].tel+'" style="color:#333333;">联系客服</a></span>';
+						}
+						html1 += '</div>';
+						html1 += '</li>';
+					}
+					$('#order_list1').append(html1);
+					mui('.pullrefresh').pullRefresh().endPullupToRefresh(all_data.length<10);//数据长度小于10没有更多数据
+				},
+				error:function(xhr,type,errorThrown){
+					console.log(type);
+				}
+			});
+		}
+		//联系客服
+		mui(".order_list1").on('tap','a',function(event){
+			event.stopPropagation();
+			window.location.href = this.getAttribute('href');
 		});
-		function getMoreItem2() {
-			setTimeout(function() {
-					mui('.pullrefresh1').pullRefresh().endPullupToRefresh(true);
-			}, 1000);
-		}
-//		mui.init({
-//			swipeBack: false
-//		});
-		(function($) {
-			$('.mui-scroll-wrapper').scroll({
-				indicators: true //是否显示滚动条
+		//全部跳转详情
+		mui(".order_list1").on('tap','li',function(){
+			var dd_id = this.getAttribute('id');
+			mui.openWindow({ 
+				url:'./service_detail.html', 
+				id:'service_detail',
+				extras:{
+					'dd_id': dd_id
+				}
 			});
-			var html2 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第二个选项卡子项-1</li><li class="mui-table-view-cell">第二个选项卡子项-2</li><li class="mui-table-view-cell">第二个选项卡子项-3</li><li class="mui-table-view-cell">第二个选项卡子项-4</li><li class="mui-table-view-cell">第二个选项卡子项-5</li></ul>';
-			var html3 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第三个选项卡子项-1</li><li class="mui-table-view-cell">第三个选项卡子项-2</li><li class="mui-table-view-cell">第三个选项卡子项-3</li><li class="mui-table-view-cell">第三个选项卡子项-4</li><li class="mui-table-view-cell">第三个选项卡子项-5</li></ul>';
-			var html4 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第三个选项卡子项-1</li><li class="mui-table-view-cell">第四个选项卡子项-2</li><li class="mui-table-view-cell">第三个选项卡子项-3</li><li class="mui-table-view-cell">第三个选项卡子项-4</li><li class="mui-table-view-cell">第三个选项卡子项-5</li></ul>';
-//			var html5 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第三个选项卡子项-1</li><li class="mui-table-view-cell">第五个选项卡子项-2</li><li class="mui-table-view-cell">第三个选项卡子项-3</li><li class="mui-table-view-cell">第三个选项卡子项-4</li><li class="mui-table-view-cell">第三个选项卡子项-5</li></ul>';
-			var item2 = document.getElementById('item2mobile');
-			var item3 = document.getElementById('item3mobile');
-			var item4 = document.getElementById('item4mobile');
-			var item5 = document.getElementById('item5mobile');
-			document.getElementById('slider').addEventListener('slide', function(e) {
-//				if (e.detail.slideNumber === 1) {
-//					if (item2.querySelector('.mui-loading')) {
-//						setTimeout(function() {
-//							item2.querySelector('.mui-scroll').innerHTML = html2;
-//						}, 500);
-//					}
-//				} else if (e.detail.slideNumber === 2) {
-//					if (item3.querySelector('.mui-loading')) {
-//						setTimeout(function() {
-//							item3.querySelector('.mui-scroll').innerHTML = html3;
-//						}, 500);
-//					}
-//				} else if (e.detail.slideNumber === 3) {
-//					if (item4.querySelector('.mui-loading')) {
-//						setTimeout(function() {
-//							item4.querySelector('.mui-scroll').innerHTML = html4;
-//						}, 500);
-//					}
-//				} else if (e.detail.slideNumber === 4) {
-//					if (item5.querySelector('.mui-loading')) {
-//						setTimeout(function() {
-//							item5.querySelector('.mui-scroll').innerHTML = html5;
-//						}, 500);
-//					}
-//				}
-			});
-		})(mui);
-		//评价订单跳转
-		$('.pj_dd').click(function(){
+		});
+		//类型筛选
+		$('.main_tit').click(function(){
+			if($('.big_zz').css('display') == 'none'){
+				$('.top_jt').css("transform","rotate(180deg)");
+				$('.big_zz').css('display','block');
+				$('.filtrate_box').stop(true).animate({top:'0'});
+			}else{
+				$('.top_jt').css("transform","rotate(0deg)");
+				$('.big_zz').css('display','none');
+				$('.filtrate_box').stop(true).animate({top:'-6.026666rem'});
+			}
+		});
+		//点击选择类型
+		$('.filtrate_box p').click(function(){
+			$('.filtrate_box p').css('color','#999999');
+			$(this).css('color','#2b70d8');
+			$('.ttt').text($(this).html());
+			$('#order_list1').html('');
+			type_index = $(this).index();//筛选类型
+			if(type_index == 0){
+				page = 1;
+				type = '';
+				all_dd(page,status,evaluate,type);
+			} else if (type_index == 1){//合同变更
+				page = 1;
+				type = 5;
+				all_dd(page,status,evaluate,type);
+			} else if (type_index == 2){//在线报修
+				page = 1;
+				type = 1;
+				all_dd(page,status,evaluate,type);
+			} else if (type_index == 3){//物业对接
+				page = 1;
+				type = 2;
+				all_dd(page,status,evaluate,type);
+			} else if (type_index == 4){//合同变更
+				page = 1;
+				type = 4;
+				all_dd(page,status,evaluate,type);
+			}
+		});
+		//遮罩点击
+		$('.big_zz').click(function(){
+			$('.big_zz').css('display','none');
+			$('.filtrate_box').stop(true).animate({top:'-6.026666rem'});
+			$('.top_jt').css("transform","rotate(0deg)");
+		});
+		//取消订单
+		mui(".order_list1").on('tap','.qx_dd',function(event){
+			event.stopPropagation();
+			var dd_id = this.parentNode.parentNode.getAttribute('id');
+			var li_html = this.parentNode.parentNode;
+			var btnArray = ['取消', '确认'];
+			mui.confirm('您确定要取消该订单嘛?', '提示', btnArray, function(e) {
+			 	if(e.index == 1){
+			 		li_html.remove();
+			 		cance_dd(dd_id);
+			 	}else{
+			 		//取消
+			 	}
+			},'div');
+		});
+		//删除订单
+		mui(".order_list1").on('tap','.del_dd',function(event){
+			event.stopPropagation();
+			var dd_id = this.parentNode.parentNode.getAttribute('id');
+			var li_html = this.parentNode.parentNode;
+			var btnArray = ['取消', '确认'];
+			mui.confirm('您确定要删除该订单嘛?', '提示', btnArray, function(e) {
+			 	if(e.index == 1){
+			 		li_html.remove();
+			 		del_dd(dd_id);
+			 	}else{
+			 		//取消
+			 	}
+			},'div');
+		});
+		//评价订单
+		mui(".order_list1").on('tap','.pj_dd',function(event){
+			event.stopPropagation();
+			var dd_id = this.parentNode.parentNode.getAttribute('id');
 			mui.openWindow({ 
 				url:'./advise.html', 
 				id:'advise',
-				extras:{}
+				extras:{
+					'dd_id': dd_id
+				}
 			});
 		});
+		//删除订单接口
+		function del_dd(dd_id){
+			mui.ajax(url + '/yskjApp/webApp/orderInfo/deleteOrder.do',{
+				data:{
+					'id': dd_id
+				},
+				dataType:'json',
+				type:'post',
+				timeout:100000,
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					console.log(JSON.stringify(data));
+				},
+				error:function(xhr,type,errorThrown){
+					console.log(type);
+				}
+			});
+		}
+		//取消订单接口
+		function cance_dd(dd_id){
+			mui.ajax(url + '/yskjApp/webApp/orderInfo/cancelOrder.do',{
+				data:{
+					'id': dd_id
+				},
+				dataType:'json',
+				type:'post',
+				timeout:100000,
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					console.log(JSON.stringify(data));
+				},
+				error:function(xhr,type,errorThrown){
+					console.log(type);
+				}
+			});
+		}
 	</script>
 
 </html>

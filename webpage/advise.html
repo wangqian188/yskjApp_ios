@@ -15,6 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
 		<script type="text/javascript" src="../js/lib/app_config.js" ></script>
 		<link rel="stylesheet" type="text/css" href="../css/advise.css"/>
+		<script src="../js/lib/app_config.js"></script>
 	</head>
 	<style>
 		.mui-input-row .mui-input-clear~.mui-icon-clear{
@@ -182,6 +183,45 @@
 				$('.btn').css('background','#d8d8d8');
 			}
 		}
+		window.onload = function(){
+	        mui.plusReady(function(){
+	            self = plus.webview.currentWebview();
+	            dd_id = self.dd_id;
+	            plus.nativeUI.closeWaiting();
+	            mui.currentWebview.show();
+	            $('.btn').click(function(){
+	            	var idea = $('#idea').val();
+//					mui.ajax('http://yhcms.tunnel.qydev.com/yskjApp/webApp/orderInfo/orderEvaluate.do',{
+					mui.ajax( url + '/yskjApp/webApp/orderInfo/orderEvaluate.do',{
+						data:{
+							"generalImpression": ztpj,
+							"responseSpeed": xysd,
+							"servsAttitude": fwtd,
+							"problemSolving": wtjj,
+							"evaluationOpinion": idea,
+							"id": dd_id
+						},
+						dataType:'json',
+						type:'post',
+						timeout:100000,
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							console.log(JSON.stringify(data));
+							if(data.success){
+								mui.openWindow({
+					  				url: './webpage/service_gj.html', 
+					  				id:'service_gj'
+								});							
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type);
+						}
+					});
+	            });
+	            
+	        });
+	    }
 	</script>
 
 </html>

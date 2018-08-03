@@ -77,6 +77,13 @@
             hetong_id = ht_id;
             plus.nativeUI.closeWaiting();
             mui.currentWebview.show();
+            
+            if(localStorage.getItem('userInfos')){
+	            var data = JSON.parse(localStorage.getItem('userInfos'));
+		    	$('.head_img img').attr('src',data.headimgurl);
+            }else{
+            	$('.head_img img').attr('src','../img/head_img.png');
+            }
             //获取当前用户信息
             mui.ajax(url + '/yskjApp/appYskj/V1/getCookieInfo.do',{
 //			mui.ajax('https://yhcms.tunnel.qydev.com/yskjApp/appYskj/V1/getCookieInfo.do',{
@@ -133,7 +140,9 @@
 									user_listhtml += '<div class="left_box">';
 									user_listhtml += '<p class="list_head_img"><img src="../img/head_img.png" alt="" /></p>';
 									user_listhtml += '<p class="list_user_news">';
-									user_listhtml += '<span class="user_listname">'+user_listdata[i].name+'</span>';
+									if(user_listdata[i].name != null && user_listdata[i].name != '' && user_listdata[i].name != 'null'){
+										user_listhtml += '<span class="user_listname">'+user_listdata[i].name+'</span>';										
+									}
 									user_listhtml += '<span class="user_listphone">'+user_listdata[i].phone+'</span>';
 									user_listhtml += '</p>';
 									user_listhtml += '</div>';

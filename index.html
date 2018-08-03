@@ -60,7 +60,6 @@
 	        }
 	        return false;
 	    }
-	    
 	    mui.plusReady(function(){
 	        var self = plus.webview.currentWebview();
 	        self.setStyle({'popGesture':'none'});
@@ -165,6 +164,15 @@
 			}
 		});
 		
+		//底部菜单被键盘顶起
+		window.addEventListener("bottomxuanxika", function (e) {
+			var idxid = e.detail.idxid;
+			mui.plusReady(function() {
+				//设置bottom绝对位置
+				document.getElementById('bottomx').style.top = (plus.display.resolutionHeight - 50) + "px";
+			});
+		});
+		
 		
 		
 //		window.addEventListener("newsId", function (e) {
@@ -173,13 +181,7 @@
 //			alert(idx)
 //			activeTab = subpages[idx]
 //		});
-		
-		//底部菜单被键盘顶起
-//		mui.plusReady(function() {
-//          //设置bottom绝对位置
-//          document.getElementById('bottomx').style.top = (plus.display.resolutionHeight - 50) + "px";
-//      });
-			
+
     </script>
 </body>
 </html>

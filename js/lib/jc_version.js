@@ -94,7 +94,7 @@ function version(){
 //								});
 
 					    }else {
-					        //window.location.href="http://47.92.145.21:81/yskj.apk";
+					        //window.location.href="http://omc.urskongjian.com:81/yskj.apk";
 					    } 
 	              },
 	              error:function(xhr,type,errorThrown){

@@ -93,7 +93,7 @@ function version(){
 //								});
 
 			}else {
-					        //window.location.href="http://47.92.145.21:81/yskj.apk";
+					        //window.location.href="http://omc.urskongjian.com:81/yskj.apk";
 					    } 
 	              },
 	              error:function(xhr,type,errorThrown){
@@ -105,21 +105,21 @@ function version(){
 	    }
 	    
 		//下拉刷新
-		window.onload = function(){
-		    window.addEventListener('touchstart', touchstart, false);
-		    window.addEventListener('touchmove', touchMove, false);
-		}
-		var _start = 0; 
-		var _end = 0;
-		function touchstart(event) {
-		    var touch = event.targetTouches[0];
-		    _start = touch.pageY; 
-		}
-		function touchMove(event){ 
-		    var touch = event.targetTouches[0]; 
-		    _end = ( touch.pageY - _start); 
-		    //下滑才执行操作 
-		    if(_end > 200){     //200即手机下滑屏幕的距离，超过200则执行刷新动作
-		    location.reload();
-		    } 
-		} 
+//		window.onload = function(){
+//		    window.addEventListener('touchstart', touchstart, false);
+//		    window.addEventListener('touchmove', touchMove, false);
+//		}
+//		var _start = 0; 
+//		var _end = 0;
+//		function touchstart(event) {
+//		    var touch = event.targetTouches[0];
+//		    _start = touch.pageY; 
+//		}
+//		function touchMove(event){ 
+//		    var touch = event.targetTouches[0]; 
+//		    _end = ( touch.pageY - _start); 
+//		    //下滑才执行操作 
+//		    if(_end > 200){     //200即手机下滑屏幕的距离，超过200则执行刷新动作
+//		    location.reload();
+//		    } 
+//		} 

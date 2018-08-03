@@ -175,43 +175,51 @@
 				});
 				//解绑账号
 		        $('.jcbd_btn').click(function(){
-		            mui.ajax(url + '/yskjApp/appYskj/V1/untieRole.do',{
-//					mui.ajax('https://yhcms.tunnel.qydev.com/yskjApp/appYskj/V1/untieRole.do',{
-						data:{
-							userid: listuser_id,
-							httid: hetong_tid,
-							htid: hetong_id
-						},
-						dataType:'json',
-						type:'post',
-						timeout:100000,
-						headers:{'Content-Type':'application/json'},	              
-						success:function(data){
-							if(data.success){
-//								if(listuser_id == localStorage.getItem('user_id') && roleid == 1){
-//									localStorage.removeItem('roleid');
-//								}
-								if(listuser_id == localStorage.getItem('user_id')){
-									mui.toast('解绑成功！');
-									setTimeout(function(){
-										mui.openWindow({
-							  				url: './webpage/ht_list.html', 
-							  				id:'ht_list'
-										});
-										var jb_success = plus.webview.getWebviewById('ht_list');
-									    mui.fire(jb_success, 'jb_succ', {
-									    	'jb_user':1
-									    });
-									},300)
-								}else{
-									mui.back();
+		        	var btnArray = ['取消', '确认'];
+					mui.confirm('您确定要解绑该账号嘛?', '提示', btnArray, function(e) {
+					 	if(e.index == 1){
+					 		mui.ajax(url + '/yskjApp/appYskj/V1/untieRole.do',{
+		//					mui.ajax('https://yhcms.tunnel.qydev.com/yskjApp/appYskj/V1/untieRole.do',{
+								data:{
+									userid: listuser_id,
+									httid: hetong_tid,
+									htid: hetong_id
+								},
+								dataType:'json',
+								type:'post',
+								timeout:100000,
+								headers:{'Content-Type':'application/json'},	              
+								success:function(data){
+									if(data.success){
+		//								if(listuser_id == localStorage.getItem('user_id') && roleid == 1){
+		//									localStorage.removeItem('roleid');
+		//								}
+										if(listuser_id == localStorage.getItem('user_id')){
+											mui.toast('解绑成功！');
+											setTimeout(function(){
+												mui.openWindow({
+									  				url: './webpage/ht_list.html', 
+									  				id:'ht_list'
+												});
+												var jb_success = plus.webview.getWebviewById('ht_list');
+											    mui.fire(jb_success, 'jb_succ', {
+											    	'jb_user':1
+											    });
+											},300)
+										}else{
+											mui.back();
+										}
+									}
+								},
+								error:function(xhr,type,errorThrown){
+									console.log(type);
 								}
-							}
-						},
-						error:function(xhr,type,errorThrown){
-							console.log(type);
-						}
-					});
+							});
+					 	}else{
+					 		//取消
+					 		return;
+					 	}
+			        },'div');
 				});
 		    });
 		}

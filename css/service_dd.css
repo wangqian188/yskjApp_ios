@@ -1,3 +1,6 @@
+.mui-scroll{
+	padding-bottom: 1.6rem;
+}
 .dd_kong{
 	display: flex;
 	display: -webkit-flex;
@@ -5,9 +8,9 @@
 	-webkit-flex-direction: column;
 	align-items: center;
 	-webkit-align-items: center;
-	/*position: fixed;*/
+	position: absolute;
 	height: 100%;
-	z-index: 999;
+	z-index: 9999;
 	left: 0;
 	right: 0;
 	top: 0;
@@ -28,7 +31,7 @@
 	text-align: center;
 }
 .mui-control-content ,#sliderSegmentedControl{
-	background-color: white;
+	/*background-color: white;*/
 	touch-action: none;
 }
 .mui-control-content .mui-loading {
@@ -89,9 +92,15 @@
 	border-bottom: none!important;
 }
 #order_list{
-	
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	overflow: auto;
+	padding-bottom: 1.6rem;
 }
-#order_list li{
+#order_list li,#order_list1 li,#order_list2 li,#order_list3 li,#order_list4 li,#order_list5 li{
 	border-bottom: 1px solid #e5e5e5;
 	border-top: 1px solid #e5e5e5;
 	margin-top: 0.293333rem;
@@ -164,7 +173,7 @@
 .big_zz{
 	display: none;
 	position: absolute;
-	z-index: 9999;
+	z-index: 9999999;
 	left: 0;
 	top: 0;
 	right: 0;
@@ -185,4 +194,7 @@
 	font-size: 0.453333rem;
 	color: #999999;
 	text-align: center;
+}
+.dd_kong_status{
+	display: none;
 }

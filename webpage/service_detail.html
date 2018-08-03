@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible.js"></script>
+		<script type="text/javascript" src="../js/lib/flexible_css.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/style_a_d.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/a_fringe.css"/>
+		<script type="text/javascript" src="../js/lib/app_config.js" ></script>
+		<link rel="stylesheet" type="text/css" href="../css/advise.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/notice_center_detail.css"/>
+		<script src="../js/lib/app_config.js"></script>
+	</head>
+	<style>
+		.mui-input-row .mui-input-clear~.mui-icon-clear{
+			top: 50%!important;
+			margin-top: -10px;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav sc_head_h ipx_head_h edit">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    <h1 class="mui-title">
+		    	<span class="tit">订单详情</span>
+		    </h1>
+		</header>
+		<div class="mui-content content_main" style="background: #f0f0f0;overflow: auto;padding: 0 0.4rem 0.666666rem 0.4rem;">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		mui.init();
+		window.onload = function(){
+	        mui.plusReady(function(){
+	             self = plus.webview.currentWebview();
+	             dd_id = self.dd_id;
+	            plus.nativeUI.closeWaiting();
+	            mui.currentWebview.show();
+	            mui.ajax(url + '/yskjApp/webApp/orderInfo/orderInfo.do',{
+					data:{
+						"id": dd_id,
+					},
+					dataType:'json',
+					type:'post',
+					timeout:100000,
+					headers:{'Content-Type':'application/json'},	              
+					success:function(data){
+						console.log(JSON.stringify(data.data));
+						var data_detail = data.data;
+						var html = '';
+						if(data_detail.typeName == "在线报修"){
+							if(data_detail.pic == null || data_detail.pic == ""){
+	            			
+		            		}else{
+		            			var array = data_detail.pic.split(";");
+		            		}
+							html += '<div class="detail_lag" style="margin-top: 0.666666rem;">';
+							html += '<h1></h1>';
+							html += '<div class="xycontent">';
+							html += '<p>';
+							html += '<span class="xxingmspan xinmgwid">姓名：</span>';
+							html += '<span class="sansspan name">'+data_detail.name+'</span>';
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan shoujihwid">手机号：</span>';
+							html += '<span class="sansspan phone">'+data_detail.phone+'</span>';
+							html += '</p>';
+							//qiyehuldis  隐藏类
+							html += '<p class="fuwushench">';
+							html += '<span class="xxingmspan fangywidt">房屋信息：</span>';
+							html += '<span class="sansspan fangjian_xinxi">'+data_detail.repairHouse+'</span>';
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan fangywidt">服务项目：</span>';
+							html += '<span class="sansspan sale_xingmu">'+data_detail.categoryName+'</span>';
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan fangywidt">费用合计：</span>';
+							if(data_detail.totalAmount != null && data_detail.totalAmount != ''){
+								html += '<span class="sansspan sub_time">￥'+data_detail.totalAmount+'</span>';								
+							}else{
+								html += '<span class="sansspan sub_time">￥0</span>';		
+							}
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan fangywidt">订单编号：</span>';
+							html += '<span class="sansspan sub_time">'+data_detail.oddNumbers+'</span>';
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan fangywidt">提交时间：</span>';
+							html += '<span class="sansspan sub_time">'+data_detail.createTime+'</span>';
+							html += '</p>';
+							html += '</div>';
+							html += '<div class="compete">';
+							html += '<img src="../img/dacheghezuo.png" width="100%" height="100%"/>';
+							html += '</div>';
+							html += '</div>';
+							html += '<div class="fangwumiashu zaixianbaoxius">';
+							html += '<h1>原因说明</h1>';
+							html += '<div class="xycontent fangwufont">';
+							html += '<p class="content_class">'+data_detail.memo+'</p>';
+							html += '<p class="menchwei_p">';
+							if(array.length == 1 && data_detail.pic != null && data_detail.pic != ""){
+								html += '<span class="menchwei_img"><img src="'+data_detail.pic+'" width="100%"/></span>';	
+							}else{
+								var array = data_detail.pic.split(";");
+								for(var i=0;i<array.length;i++){
+									html += '<span class="menchwei_img"><img src="'+array[i]+'" width="100%"/></span>';								
+								}
+							}
+							html += '</p>';
+							html += '</div>';
+							html += '</div>';
+							$('.content_main').append(html);
+						}
+						if(data_detail.typeName == "物业对接" || data_detail.typeName == "房屋费用"){
+							html = '';
+							html += '<div class="detail_lag" style="margin-top: 0.666666rem;">';
+							html += '<h1></h1>';
+							html += '<div class="xycontent">';
+							html += '<p>';
+							html += '<span class="xxingmspan xinmgwid">姓名：</span>';
+							html += '<span class="sansspan name">'+data_detail.name+'</span>';
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan shoujihwid">手机号：</span>';
+							html += '<span class="sansspan phone">'+data_detail.phone+'</span>';
+							html += '</p>';
+							//qiyehuldis  隐藏类
+							html += '<p class="fuwushench">';
+							html += '<span class="xxingmspan fangywidt">房屋信息：</span>';
+							html += '<span class="sansspan fangjian_xinxi">'+data_detail.repairHouse+'</span>';
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan fangywidt">服务项目：</span>';
+							html += '<span class="sansspan sale_xingmu">'+data_detail.categoryName+'</span>';
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan fangywidt">费用合计：</span>';
+							if(data_detail.totalAmount != null && data_detail.totalAmount != ''){
+								html += '<span class="sansspan sub_time">￥'+data_detail.totalAmount+'</span>';								
+							}else{
+								html += '<span class="sansspan sub_time">￥0</span>';		
+							}
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan fangywidt">订单编号：</span>';
+							html += '<span class="sansspan sub_time">'+data_detail.oddNumbers+'</span>';
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan fangywidt">提交时间：</span>';
+							html += '<span class="sansspan sub_time">'+data_detail.createTime+'</span>';
+							html += '</p>';
+							html += '</div>';
+							html += '<div class="compete">';
+							html += '<img src="../img/dacheghezuo.png" width="100%" height="100%"/>';
+							html += '</div>';
+							html += '</div>';
+							html += '<div class="fangwumiashu zaixianbaoxius">';
+							html += '<h1>原因说明</h1>';
+							html += '<div class="xycontent fangwufont">';
+							html += '<p class="content_class">'+data_detail.memo+'</p>';
+							html += '</div>';
+							html += '</div>';
+							$('.content_main').append(html);
+						}
+						if(data_detail.typeName == "房屋变更"){
+							html = '';
+							html += '<div class="detail_lag" style="margin-top: 0.666666rem;">';
+							html += '<h1></h1>';
+							html += '<div class="xycontent">';
+							html += '<p>';
+							html += '<span class="xxingmspan xinmgwid">姓名：</span>';
+							html += '<span class="sansspan name">'+data_detail.name+'</span>';
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan shoujihwid">手机号：</span>';
+							html += '<span class="sansspan phone">'+data_detail.phone+'</span>';
+							html += '</p>';
+							//qiyehuldis  隐藏类
+							html += '<p class="fuwushench">';
+							html += '<span class="xxingmspan fangywidt">房屋信息：</span>';
+							html += '<span class="sansspan fangjian_xinxi">'+data_detail.repairHouse+'</span>';
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan fangywidt">服务项目：</span>';
+							html += '<span class="sansspan sale_xingmu">'+data_detail.categoryName+'</span>';
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan fangywidt">费用合计：</span>';
+							if(data_detail.totalAmount != null && data_detail.totalAmount != ''){
+								html += '<span class="sansspan sub_time">￥'+data_detail.totalAmount+'</span>';								
+							}else{
+								html += '<span class="sansspan sub_time">￥0</span>';		
+							}
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan fangywidt">订单编号：</span>';
+							html += '<span class="sansspan sub_time">'+data_detail.oddNumbers+'</span>';
+							html += '</p>';
+							html += '<p>';
+							html += '<span class="xxingmspan fangywidt">提交时间：</span>';
+							html += '<span class="sansspan sub_time">'+data_detail.createTime+'</span>';
+							html += '</p>';
+							if(data_detail.categoryName == '续租'){
+								html += '<p>';
+								html += '<span class="xxingmspan fangywidt">续租时间：</span>';
+								html += '<span class="sansspan sub_time">'+data_detail.renewalYears+'年</span>';
+								html += '</p>';								
+							}
+							if(data_detail.categoryName == '退房'){
+								html += '<p>';
+								html += '<span class="xxingmspan fangywidt">退租时间：</span>';
+								html += '<span class="sansspan sub_time">'+data_detail.changeTime+'</span>';
+								html += '</p>';								
+							}
+							html += '</div>';
+							html += '<div class="compete">';
+							html += '<img src="../img/dacheghezuo.png" width="100%" height="100%"/>';
+							html += '</div>';
+							html += '</div>';
+							if(data_detail.categoryName == '换租'){
+								html += '<div class="fangwumiashu hetonghuangfanzdis">';
+								html += '<h1>换房需求</h1>';
+								html += '<div class="xycontent">';
+								html += '<p>';
+								html += '<span class="xxingmspan fangywidt">目标区域：</span>';
+								html += '<span class="sansspan mubiao_qvyv">'+data_detail.changArea+'</span>';
+								html += '</p>';
+								html += '<p>';
+								html += '<span class="xxingmspan fangywidt">目标楼盘：</span>';
+								html += '<span class="sansspan mubiao_lupan">'+data_detail.changeLouPan+'</span>';
+								html += '</p>';
+								html += '<p>';
+								html += '<span class="xxingmspan fangywidt">目标面积：</span>';
+								html += '<span class="sansspan mubioa_area">'+data_detail.changeMJ+'m²</span>';
+								html += '</p>';
+								html += '<p>';
+								html += '<span class="xxingmspan fangywidt">目标租金：</span>';
+								html += '<span class="sansspan mubiao_zijin">'+data_detail.changeZuJin+'元/月</span>';
+								html += '</p>';
+								html += '<p>';
+								html += '<span class="xxingmspan fangywidt">换房时间：</span>';
+								html += '<span class="sansspan huangfan_time">'+data_detail.changeTime+'</span>';
+								html += '</p>';
+								html += '<p>';
+								html += '<span class="xxingmspan">是否需要注册：</span>';
+								if(data_detail.isZhuce==null || data_detail.isZhuce==''){
+									html += '<span class="sansspan shifou_zhuce">无</span>';									
+								}else if(data_detail.isZhuce==1){
+									html += '<span class="sansspan shifou_zhuce">是</span>';	
+								}else{
+									html += '<span class="sansspan shifou_zhuce">其他</span>';	
+								}
+								html += '</p>';
+								html += '</div>';
+								html += '</div>';
+							} else if (data_detail.categoryName == '退房') {
+								html += '<div class="fangwumiashu zaixianbaoxius">';
+								html += '<h1>退租理由</h1>';
+								html += '<div class="xycontent fangwufont">';
+								html += '<p class="content_class">'+data_detail.memo+'</p>';
+								html += '</div>';
+								html += '</div>';
+							} else {
+								
+							}
+							$('.content_main').append(html);
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type);
+					}
+				});
+	            
+	            
+	            
+	            
+	        })
+	    }
+	</script>
+
+</html>

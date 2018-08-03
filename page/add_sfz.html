@@ -36,7 +36,7 @@
 		   <ul class="per_news">
 		    	<li>
 		    		<div class="mui-input-row" style="width: 100%;">
-				        <input type="text" class="mui-input-clear add_n" placeholder="请输入公司名称" onchange="gongsoname()">
+				        <input type="text" class="mui-input-clear add_n" placeholder="请输入公司名称">
 				    </div>
 		    	</li>
 		    </ul>
@@ -141,7 +141,7 @@
 									success:function(data){
 										//服务器返回响应，根据响应结果，分析是否登录成功；
 										if(data.success){
-											mui.alert(data.message);
+//											mui.alert(data.message);
 											var person = plus.webview.getWebviewById('person0');
 										    // 执行相应的事件
 										    mui.fire(person, 'per_loc', {
