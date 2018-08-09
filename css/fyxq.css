@@ -90,7 +90,7 @@
 .qieryun{height: 0.933333rem;width: 0.8rem;position: absolute;left: 0.133333rem;top: 4.9rem;background: url(../img/fyxqdatiqier.png)no-repeat center;background-size: 100% auto;z-index: 13;}
 .qieryundisp{display: none;}
 /*.qierldetu{display: flex;align-items: center;margin-right: 0.493333rem;justify-content: flex-end;}*/
-.qierldetudisp{display: none;}
+.qierldetudisp{display: none!important;}
 .qierldetu span{width:2.52rem !important;border-radius:1.3rem;height:0.853333rem;width:100%;display: flex;background: url(../img/fyxqwierlquankf.png)no-repeat center;background-size: auto 100%;box-shadow:0px 0px 5px #333333;}
 .fyxqdebofangan{
 	position: absolute;

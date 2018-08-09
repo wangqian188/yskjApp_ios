@@ -109,7 +109,8 @@
 		<header class="mui-bar mui-bar-transparent bg-color-bg bar-h-s has-topbar-h">
 		    <h1 class="mui-title"></h1>
 		</header>
-		<div class="mui-content">
+		<div class="mui-content" id="pullrefresh">
+			<div class="mui-scroll">
 			<div class="qiyehulimg" style="position: relative;">
 				<div class="add_vip"><span>加入会员</span></div>
 			</div>
@@ -172,6 +173,7 @@
 		    <!--<div class="sy_kfion">
 				<p><a href="tel:400-078-8800"></a></p>
 			</div>-->
+			</div>
 		</div>
 		 <script src="js/lib/app_config.js"></script>
 		<script src="js/mui.min.js"></script>
@@ -681,28 +683,46 @@
 				    }
 				})
 			}
-		
-			//下拉刷新
-			window.onload = function(){
-			    window.addEventListener('touchstart', touchstart, false);
-			    window.addEventListener('touchmove', touchMove, false);
+		//下拉刷新
+		mui.init({
+			swipeBack: false,
+			pullRefresh: {
+				container: '#pullrefresh',
+				down: {
+					style:'circle',
+					color:'#2b70d8',
+					height:'50px',//可选,默认50px.下拉刷新控件的高度,
+				    range:'100px', //可选默认100px,控件可下拉拖拽的范围
+				    offset:'0px', //可选 默认0px,下拉刷新控件的起始位置
+				    auto: false,//可选,默认false.首次加载自动上拉刷新一次
+					callback: pulldownRefresh
+				},
+		//					up: {
+		//						contentrefresh: '正在加载...',
+		//						callback: pullupRefresh
+		//					}
 			}
-			var _start = 0; 
-			var _end = 0;
-			function touchstart(event) {
-			    var touch = event.targetTouches[0];
-			    _start = touch.pageY; 
-			}
-			function touchMove(event){ 
-			    var touch = event.targetTouches[0]; 
-			    _end = ( touch.pageY - _start); 
-			    //下滑才执行操作 
-			    if(_end > 200){     //200即手机下滑屏幕的距离，超过200则执行刷新动作
-//			    	location.reload();
-			    	var wobj = plus.webview.getWebviewById("qyhl.html");
-					wobj.reload(true);
-			    } 
-			}
+		});
+		/**
+		 * 下拉刷新具体业务实现
+		 */
+		function pulldownRefresh() {
+			setTimeout(function() {
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				var wobj = plus.webview.getWebviewById("qyhl.html");
+				wobj.reload(true);
+				mui.toast('刷新成功');
+			}, 1500);
+		}
+		var count = 0;
+		/**
+		 * 上拉加载具体业务实现
+		 */
+		//			function pullupRefresh() {
+		//				setTimeout(function() {
+		//					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据
+		//				}, 1000);
+		//			}
 		</script>
 	</body>
 

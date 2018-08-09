@@ -7,8 +7,8 @@
 	"id": "YSKJ",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "亮狮",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "2.1.0",/*应用版本名称*/
-		"code": "5"
+		"name": "2.1.1",/*应用版本名称*/
+		"code": "12"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -105,7 +105,8 @@
 		},
 		"NativeObj": {
 			"description": "原生对象"
-		},"OAuth":{},"Share":{}
+		},"OAuth":{},"Share":{},
+		"NSCameraUsageDescription": {"description": "相机访问"}
 	},
 	"plus": {
 		"splashscreen": {
@@ -205,25 +206,25 @@
 					"iphone": {
 						"default": "", /*iPhone3启动图片选，分辨率：320x480*/
 						/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
-						"retina40": "C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/5---640cheng11361.png","retina55":"C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png","retina47":"C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png","retina35":"C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/4--640成9601.png","retina55l":"C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png","iphonex":"C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/x---qidongye1.png","iphonexl":"C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/x---qidongye1.png"
+						"retina40": "C:/Users/yuan/Desktop/zs_ios_zs/5---640cheng11361.png","retina55":"C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png","retina47":"C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png","retina35":"C:/Users/yuan/Desktop/zs_ios_zs/4--640成9601.png","retina55l":"C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png","iphonex":"C:/Users/yuan/Desktop/zs_ios_zs/x---qidongye1.png","iphonexl":"C:/Users/yuan/Desktop/zs_ios_zs/x---qidongye1.png"
 					},
 					"ipad": {
-						"portrait": "C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png", /*iPad竖屏启动图片，分辨率：768x1004*/
-						"portrait-retina": "C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
-						"landscape": "C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png", /*iPad横屏启动图片，分辨率：1024x748*/
-						"landscape-retina": "C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
-						"portrait7": "C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
-						"portrait-retina7": "C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png",/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
-						"landscape7": "C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
-						"landscape-retina7": "C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png"
+						"portrait": "C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png", /*iPad竖屏启动图片，分辨率：768x1004*/
+						"portrait-retina": "C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
+						"landscape": "C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png", /*iPad横屏启动图片，分辨率：1024x748*/
+						"landscape-retina": "C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+						"portrait7": "C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+						"portrait-retina7": "C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png",/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+						"landscape7": "C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+						"landscape-retina7": "C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png"
 					}
 				},
 				"android": {
 					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
 					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
-					"hdpi": "C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png", /*高分屏启动图片，分辨率：480x762*/
-					"xhdpi": "C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png", /*720P高分屏启动图片，分辨率：720x1242*/
-					"xxhdpi": "C:/Users/yuan/Desktop/改完8张图字体/改完8张图字体/iPhone61.png"
+					"hdpi": "C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png", /*高分屏启动图片，分辨率：480x762*/
+					"xhdpi": "C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png", /*720P高分屏启动图片，分辨率：720x1242*/
+					"xxhdpi": "C:/Users/yuan/Desktop/zs_ios_zs/iPhone61.png"
 				}
 			}
 		},"ads":{"rp":false,"splash":false,"push":false},"adid":""
@@ -1325,6 +1326,13 @@
 				"refer": [
 					"webpage/see_user.html",
 					"webpage/user_add.html"
+				],
+				"priority": 0
+			},
+			"page/map_dh.html": {
+				"resources": [],
+				"refer": [
+					"page/map_dh_z.html"
 				],
 				"priority": 0
 			}

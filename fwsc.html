@@ -18,7 +18,8 @@
 		<header class="mui-bar mui-bar-transparent bg-color-bg bar-h-s has-topbar-h">
 		    <h1 class="mui-title"></h1>
 		</header>
-		<div class="mui-content fw_main">
+		<div class="mui-content fw_main" id="pullrefresh">
+			<div class="mui-scroll">
 		    <div class="fw_banner">
 		    	<img src="http://omc.urskongjian.com:81/yskjapp/servicemall/banner/mall_banner.jpg"/>
 		    </div> 
@@ -36,6 +37,12 @@
 						</p>
 						<p class="fw_name">装修定制</p>
 					</li>
+					<!--<li>
+						<p class="fw_ion">
+							<img src="http://omc.urskongjian.com:81/yskjapp\servicemall\fourservices\mall_finance.png" alt="" />
+						</p>
+						<p class="fw_name">金融服务</p>
+					</li>-->
 					<li>
 						<p class="fw_ion">
 							<img src="http://omc.urskongjian.com:81/yskjapp\servicemall\fourservices\mall_addservice.png" alt="" />
@@ -78,6 +85,7 @@
 						<!--<p class="sel_name">高效便捷</p>-->
 					</li>
 				</ul>
+			</div>
 			</div>
 			<!--<div class="sy_kfion">
 				<p><a href="tel:400-078-8800"></a></p>
@@ -152,6 +160,42 @@
 			    	},3000);
 			    }
 			});
+			
+			
+			//下拉刷新配置
+			mui.init({
+				swipeBack: false,
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						style:'circle',
+						color:'#2b70d8',
+						height:'50px',//可选,默认50px.下拉刷新控件的高度,
+					    range:'100px', //可选默认100px,控件可下拉拖拽的范围
+					    offset:'0px', //可选 默认0px,下拉刷新控件的起始位置
+					    auto: false,//可选,默认false.首次加载自动上拉刷新一次
+						callback: pulldownRefresh
+					},
+//					up: {
+//						contentrefresh: '正在加载...',
+//						callback: pullupRefresh
+//					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					var wobj = plus.webview.getWebviewById("fwsc.html");
+					wobj.reload(true);
+					mui.toast('刷新成功');
+				}, 1500);
+			}
+			var count = 0;
+			
+			
 		</script>
 	</body>
 
