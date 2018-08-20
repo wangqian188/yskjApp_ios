@@ -36,7 +36,10 @@
       "page/notice_center.html",
       "page/my_sc_main.html",
       "webpage/my_history_main.html",
-      "webpage/add_user.html"
+      "webpage/add_user.html",
+      "webpage/service_gj.html",
+      "webpage/ht_list.html",
+      "page/wode_guanjia.html"
     ]
   },
   "page/wode_fangyang.html": {
@@ -132,7 +135,8 @@
   },
   "page/person.html": {
     "refer": [
-      "page/add_sfz.html"
+      "page/add_sfz.html",
+      "page/add_name.html"
     ]
   },
   "page/notice_center.html": {
@@ -225,6 +229,26 @@
   "page/map_dh.html": {
     "refer": [
       "page/map_dh_z.html"
+    ]
+  },
+  "webpage/ht_list.html": {
+    "refer": [
+      "webpage/add_user.html"
+    ]
+  },
+  "page/my_sc_list.html": {
+    "refer": [
+      "page/fyTail.html"
+    ]
+  },
+  "webpage/my_history_list.html": {
+    "refer": [
+      "page/fyTail.html"
+    ]
+  },
+  "webpage/service_gj.html": {
+    "refer": [
+      "webpage/service_detail.html"
     ]
   }
 }

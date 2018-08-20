@@ -161,6 +161,10 @@
 						mui.alert('请输入您要添加的用户手机号', '提示', function(){},'div');
 						return;
 					}
+					if($('#user_name').val() == '' || $('#user_name').val() == null){
+						mui.alert('请确认您输入的手机号是否有误', '提示', function(){},'div');
+						return;
+					}
 					if(roleid == ''){
 						mui.alert('请选择此用户的账户权限', '提示', function(){},'div');
 						return;

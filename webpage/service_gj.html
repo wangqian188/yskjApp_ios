@@ -211,10 +211,18 @@
 						html1 += '</p>';
 						html1 += '<p class="">';
 						html1 += '<span class="main_name">费用合计：</span>';
-						if(all_data[i].totalAmount == null){
-							html1 += '<span class="main_text">￥0元</span>';
+						if(all_data[i].tenantAmount == null || all_data[i].tenantAmount == ''){
+							if(all_data[i].status == 2){//已接单
+								html1 += '<span class="main_text">待结算</span>';	
+							}else{
+								html1 += '<span class="main_text">￥0元</span>';																
+							}
 						}else{
-							html1 += '<span class="main_text">￥'+all_data[i].totalAmount+'元</span>';							
+							if(all_data[i].status == 2){//已接单
+								html1 += '<span class="main_text">待结算</span>';
+							}else{
+								html1 += '<span class="main_text">￥'+all_data[i].tenantAmount+'元</span>';															
+							}
 						}
 						html1 += '</p>';
 						html1 += '<p class="">';
@@ -387,6 +395,14 @@
 				}
 			});
 		}
+		window.addEventListener('customEvent', function(event) {
+		    var detail = event.detail;
+		    var param = detail.sss;
+		    if(param == 1){
+		    	var wobj = plus.webview.getWebviewById("person1");
+				wobj.reload(true);
+		    }
+		});
 	</script>
 
 </html>

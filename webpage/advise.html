@@ -22,6 +22,7 @@
 			top: 50%!important;
 			margin-top: -10px;
 		}
+		.mui-toast-container {bottom: 50% !important;}
 	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav sc_head_h ipx_head_h edit">
@@ -190,8 +191,16 @@
 	            plus.nativeUI.closeWaiting();
 	            mui.currentWebview.show();
 	            $('.btn').click(function(){
+	            	if(ztpj == '' || xysd == '' || fwtd == '' || wtjj == ''){
+	            		mui.toast('评价信息不完整！',{ duration:'2000', type:'div' });
+	            		return;
+	            	}
+	            	if(ztpj == '' && xysd == '' && fwtd == '' && wtjj == ''){
+	            		mui.toast('您还未进行评价！',{ duration:'2000', type:'div' });
+	            		return;
+	            	}
 	            	var idea = $('#idea').val();
-//					mui.ajax('http://yhcms.tunnel.qydev.com/yskjApp/webApp/orderInfo/orderEvaluate.do',{
+//					mui.ajax('http://192.168.0.126:8080/yskjApp/webApp/orderInfo/orderEvaluate.do',{
 					mui.ajax( url + '/yskjApp/webApp/orderInfo/orderEvaluate.do',{
 						data:{
 							"generalImpression": ztpj,
@@ -210,8 +219,13 @@
 							if(data.success){
 								mui.openWindow({
 					  				url: './webpage/service_gj.html', 
-					  				id:'service_gj'
-								});							
+					  				id:'person1',
+								});
+								var target = plus.webview.getWebviewById('person1');
+							    // 执行相应的事件
+							    mui.fire(target, 'customEvent', {
+							    	'sss':1,
+							    });
 							}
 						},
 						error:function(xhr,type,errorThrown){

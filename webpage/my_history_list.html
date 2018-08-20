@@ -402,7 +402,7 @@
 							sc_html += '<div class="mui-slider-right mui-disabled" id="'+allData[i].id+'">';
 							sc_html += '<a class="mui-btn mui-btn-red mui-icon a_d" style="width: 1.72rem!important;font-size: 0.346666rem;color: #fff;">删除</a></div>';
 							if(allData[i].sid == 1){
-								sc_html += '<div class="mui-slider-handle sc_content" onclick="mysc_detail('+allData[i].fyid+')">';								
+								sc_html += '<div class="mui-slider-handle sc_content his_link" id="'+allData[i].fyid+'">';								
 							}else{
 								sc_html += '<div class="mui-slider-handle sc_content">';
 							}
@@ -507,16 +507,28 @@
 			});
 		}
 		//跳转查看房源详情
-		function mysc_detail(fyid){
+//		function mysc_detail(fyid){
+//			mui.openWindow({ 
+//				url:'../page/fyTail.html',
+//				id:'fyTail',
+//				extras:{ 
+//					fyid:fyid,
+//					his_id:'history'
+//				}
+//			});
+//		}
+		$('#OA_task_2').on('tap', '.his_link', function(event) {
+			var elem = this;
+			var fysc_id = elem.getAttribute('id');
 			mui.openWindow({ 
 				url:'../page/fyTail.html',
 				id:'fyTail',
 				extras:{ 
-					fyid:fyid,
+					fyid:fysc_id,
 					his_id:'history'
 				}
 			});
-		}
+		});
 		</script>
 	</body>
 

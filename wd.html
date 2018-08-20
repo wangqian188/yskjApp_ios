@@ -116,6 +116,15 @@
 		    		<p>通知中心</p>
 		    		<span class="mui-icon mui-icon-arrowright wd_con"></span>
 		    	</li>
+		    	
+		    	<li id="fwdd" class="tolink">
+		    		<span class="wd_icon">
+		    			<img src="img/wode/fuwdd_ion.png" alt="" />
+		    		</span>
+		    		<p>服务订单</p>
+		    		<span class="mui-icon mui-icon-arrowright wd_con"></span>
+		    	</li>
+		    	
 		    	<ul class="my_type">
 			    	<li id="wdsc" class="tolink">
 			    		<span class="wd_icon">
@@ -146,6 +155,13 @@
 			    		<span class="mui-icon mui-icon-arrowright wd_con"></span>
 			    	</li>
 		    	</ul>
+		    	<li id="zhgl" class="tolink">
+		    		<span class="wd_icon">
+		    			<img src="img/wode/zhgl_ion.png" alt="" />
+		    		</span>
+		    		<p>账户管理</p>
+		    		<span class="mui-icon mui-icon-arrowright wd_con"></span>
+		    	</li>
 		    	<!--<li id="sz" class="tolink">
 		    		<span class="wd_icon">
 		    			<img src="img/sz.png" alt="" />
@@ -173,30 +189,30 @@
 			</div>-->
 		<script type="text/javascript" src="js/lib/app_config.js" ></script>
 		<script type="text/javascript">
-			$('#zhgl').click(function(){
-				mui.openWindow({
-	  				url: './webpage/ht_list.html', 
-	  				id:'ht_list'
-				});
-			});
-			$('#jypz').click(function(){
-				mui.openWindow({
-	  				url: './webpage/proof_jy.html', 
-	  				id:'proof_jy'
-				});
-			});
-			$('#yfzd').click(function(){
-				mui.openWindow({
-	  				url: './webpage/bills.html', 
-	  				id:'bills'
-				});
-			});
-			$('#fwdd').click(function(){
-				mui.openWindow({
-	  				url: './webpage/service_gj.html', 
-	  				id:'service_gj'
-				});
-			});
+//			$('#zhgl').click(function(){
+//				mui.openWindow({
+//	  				url: './webpage/ht_list.html', 
+//	  				id:'ht_list'
+//				});
+//			});
+//			$('#jypz').click(function(){
+//				mui.openWindow({
+//	  				url: './webpage/proof_jy.html', 
+//	  				id:'proof_jy'
+//				});
+//			});
+//			$('#yfzd').click(function(){
+//				mui.openWindow({
+//	  				url: './webpage/bills.html', 
+//	  				id:'bills'
+//				});
+//			});
+//			$('#fwdd').click(function(){
+//				mui.openWindow({
+//	  				url: './webpage/service_gj.html', 
+//	  				id:'service_gj'
+//				});
+//			});
 			$('#my_ht').click(function(){
 				mui.openWindow({
 	  				url: './webpage/contract_ht.html', 
@@ -219,9 +235,9 @@
 							var userData = data.data;
 							localStorage.setItem('roleid',data.roleid);
 							if(localStorage.getItem('roleid') && localStorage.getItem('roleid') == '1'){
-								$('#zhgl').css('display','block');				
+								$('#zhgl').css('visibility','initial');		
 							}else{
-								$('#zhgl').css('display','none');
+								$('#zhgl').css('visibility','hidden');
 							}				
 						}else{
 							return;
@@ -232,7 +248,7 @@
 					}
 				});
 			}else{
-				$('#zhgl').css('display','block');
+				$('#zhgl').css('visibility','initial');
 			}
 			
 			var cookie=JSON.parse(localStorage.getItem('cookxs_yh'));
@@ -270,7 +286,7 @@
 			
 			//跳转页面地址
 //			var toUrl = ['page/person.html','page/notice_center.html','page/my_sc_main.html','page/wode_fangyang.html','page/wode_guanjia.html','page/myset.html'];
-			var toUrl = ['page/notice_center.html','page/my_sc_main.html','webpage/my_history_main.html','page/wode_fangyang.html','page/wode_guanjia.html'];
+			var toUrl = ['page/notice_center.html','./webpage/service_gj.html','page/my_sc_main.html','webpage/my_history_main.html','page/wode_fangyang.html','page/wode_guanjia.html','./webpage/ht_list.html'];
 			for(var i=0; i<$('.tolink').length; i++){
 				(function(index){
 					$('.tolink').eq(index).click(function(){
@@ -305,7 +321,7 @@
 									console.log("用户登录状态： "+data.success);
 									if(data.success){
 										//已登录
-										if(index==0||index==1||index==2||index==3||index==4){
+										if(index==0||index==1||index==2||index==3||index==4||index==5||index==6){
 											if(lostate==1){
 												//登录状态
 												mui.openWindow({

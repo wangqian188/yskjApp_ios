@@ -19,7 +19,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav wd-header_p ipx_public_h1">
 		    <div class="" style="display: flex;justify-content: space-between;">
-		    	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a_d"></a>
+		    	<a class="mui-icon mui-icon-left-nav mui-pull-left a_d" id="fh_his"></a>
 		    	<!--<span class="titlezi topic" ></span>-->
 		    	<h1 class="mui-title topic"></h1>
 		    	<span class="mui-icon mui-icon-redo" id="share" style="color: white;"></span>
@@ -155,7 +155,7 @@
 				<div class="shouc">
 					<p class="shoucengdianji">
 						<span class="xindebg xindebgimg"></span>
-						<span class="choucdewezi choucdeweziwidth" onclick="logonJudge()">未收藏</span>
+						<span class="choucdewezi choucdeweziwidth">未收藏</span>
 					</p>
 					<p class="xmjx">
 						<a href="tel:400-078-8800" class="a_d">
@@ -171,6 +171,21 @@
 		<script src="../js/lib/app_config.js"></script>
 		<script type="text/javascript" src="../js/lib/castapp.js" ></script>
 		<script type="text/javascript">
+			mui.init()
+			var old_back = mui.back;
+			mui.back = function() {
+			    // 获取目标口窗口对象
+			    var target = plus.webview.getWebviewById('my_sc_list.html');
+			    // 执行相应的事件
+			    mui.fire(target, 'my_shoucang', {
+			    	'sc_state':444,
+			    });
+			    // 执行关闭
+			    old_back();
+			};
+			$('#fh_his').click(function(){
+				mui.back();
+			});
 			var longitude,latitude,dtwz;
 			mui.plusReady(function(){
 				var collectId="";

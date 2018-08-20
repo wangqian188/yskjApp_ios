@@ -160,7 +160,7 @@
 								var sc_data = data.data;//全部
 //								if(sc_data.length == 0){
 //									mui.plusReady(function(){
-//										var main = plus.webview.getWebviewById('person1');
+//										var main = plus.webview.getWebviewById('person2');
 //										mui.fire(main, "yincang",{//隐藏编辑按钮
 //										    yinc: 12
 //										})									
@@ -168,7 +168,7 @@
 //								}
 								if(data.data.length == 0 && page == 1){
 									mui.plusReady(function(){
-										var main = plus.webview.getWebviewById('person1');
+										var main = plus.webview.getWebviewById('person2');
 										mui.fire(main, "yincang",{//隐藏编辑按钮
 										    yinc: 12
 										})									
@@ -186,14 +186,14 @@
 								page++;
 								if($('.selc').css('display') == 'block'){
 									mui.plusReady(function(){
-										var main = plus.webview.getWebviewById('person1');
+										var main = plus.webview.getWebviewById('person2');
 										mui.fire(main, "dsel_hid",{
 										    delhid: 44
 										})									
 									});
 								}else{
 									mui.plusReady(function(){
-										var main = plus.webview.getWebviewById('person1');
+										var main = plus.webview.getWebviewById('person2');
 										mui.fire(main, "dsel_hid",{
 										    delhid: 4
 										})									
@@ -316,7 +316,7 @@
 			            return $(elem).val();
 			        }).get().join(',');
 				}
-				var main = plus.webview.getWebviewById('person1');
+				var main = plus.webview.getWebviewById('person2');
 				mui.fire(main, "all_dsel",{
 				    dsel: check_xz
 				})

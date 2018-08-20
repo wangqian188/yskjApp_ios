@@ -7,8 +7,8 @@
 	"id": "YSKJ",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "亮狮",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "2.1.2",/*应用版本名称*/
-		"code": "13"
+		"name": "2.2.0",/*应用版本名称*/
+		"code": "14"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -292,7 +292,9 @@
 					"page/wode_guanjia.html",
 					"page/my_sc_main.html",
 					"webpage/my_history_main.html",
-					"webpage/add_user.html"
+					"webpage/add_user.html",
+					"webpage/service_gj.html",
+					"webpage/ht_list.html"
 				],
 				"priority": 0
 			},
@@ -1333,6 +1335,34 @@
 				"resources": [],
 				"refer": [
 					"page/map_dh_z.html"
+				],
+				"priority": 0
+			},
+			"webpage/ht_list.html": {
+				"resources": [],
+				"refer": [
+					"webpage/add_user.html"
+				],
+				"priority": 0
+			},
+			"page/my_sc_list.html": {
+				"resources": [],
+				"refer": [
+					"page/fyTail.html"
+				],
+				"priority": 0
+			},
+			"webpage/my_history_list.html": {
+				"resources": [],
+				"refer": [
+					"page/fyTail.html"
+				],
+				"priority": 0
+			},
+			"webpage/service_gj.html": {
+				"resources": [],
+				"refer": [
+					"webpage/service_detail.html"
 				],
 				"priority": 0
 			}
